@@ -1,0 +1,5 @@
+Place your resume PDF here and name it: resume.pdf
+
+Full path should be: C:\Users\HP\portfolio\public\resume.pdf
+
+This file will be served at: https://yoursite.com/resume.pdf
