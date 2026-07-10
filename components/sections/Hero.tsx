@@ -28,28 +28,47 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020510]"
     >
-      {/* Background: gradient orbs */}
+      {/* Background: diagonal blue/cyan streaks */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px] animate-float" />
+        {/* Main diagonal streak — bright cyan/blue */}
         <div
-          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-500/5 blur-[100px] animate-float"
-          style={{ animationDelay: '3s' }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+          className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(circle, hsl(239 84% 67% / 0.04) 0%, transparent 70%)',
+              'linear-gradient(135deg, #000510 0%, #020b2e 25%, #0a2a6e 38%, #1565c0 45%, #00b4d8 50%, #1565c0 55%, #0a2a6e 62%, #020b2e 75%, #000510 100%)',
           }}
         />
-        {/* Grid pattern */}
+        {/* Secondary narrower streak overlay */}
         <div
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(135deg, transparent 0%, transparent 30%, rgba(0,200,255,0.18) 42%, rgba(0,220,255,0.45) 50%, rgba(0,200,255,0.18) 58%, transparent 70%, transparent 100%)',
+          }}
+        />
+        {/* Dark vignette edges to keep text readable */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse at center, transparent 30%, rgba(0,3,15,0.65) 100%)',
+          }}
+        />
+        {/* Bottom fade to blend with next section */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-40"
+          style={{
+            background: 'linear-gradient(to bottom, transparent, rgba(0,3,15,0.85))',
+          }}
+        />
+        {/* Subtle noise/shimmer overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              'linear-gradient(hsl(var(--text-primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--text-primary)) 1px, transparent 1px)',
+              'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
@@ -63,10 +82,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-text-primary leading-none tracking-tight mb-6"
+          className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight mb-6"
         >
-          Gull{' '}
-          <span className="gradient-text">Snobar</span>
+          <span className="text-white">Gull </span>
+          <span style={{ background: 'linear-gradient(90deg, #00d4ff 0%, #7b9fff 50%, #ffffff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Snobar</span>
         </motion.h1>
 
         {/* Rotating title */}
@@ -78,10 +97,10 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="font-display text-xl sm:text-2xl lg:text-3xl font-medium text-text-secondary"
+              className="font-display text-xl sm:text-2xl lg:text-3xl font-medium text-white/70"
             >
-              <span className="text-accent">&gt;</span>{' '}
-              <span className="text-text-primary">{ROTATING_TITLES[titleIndex]}</span>
+              <span className="text-cyan-400">&gt;</span>{' '}
+              <span className="text-white">{ROTATING_TITLES[titleIndex]}</span>
             </motion.p>
           </AnimatePresence>
         </div>
@@ -91,11 +110,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="max-w-2xl mx-auto text-text-secondary text-base sm:text-lg leading-relaxed mb-10"
+          className="max-w-2xl mx-auto text-white/60 text-base sm:text-lg leading-relaxed mb-10"
         >
           Building fast, reliable, and scalable web applications from{' '}
-          <span className="text-text-primary font-medium">server to client</span>. Based in{' '}
-          <span className="text-text-primary font-medium">Lahore, Pakistan</span>.
+          <span className="text-white font-medium">server to client</span>. Based in{' '}
+          <span className="text-white font-medium">Lahore, Pakistan</span>.
         </motion.p>
 
         {/* CTAs */}
@@ -103,42 +122,64 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
         >
+          {/* View My Work — glowing cyan button */}
           <Link
             href="/#projects"
-            className={cn(
-              'inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-medium text-sm',
-              'bg-accent text-white hover:bg-accent/90',
-              'transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-accent/30',
-              'shadow-lg shadow-accent/20'
-            )}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-105"
+            style={{
+              background: 'linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)',
+              boxShadow: '0 0 30px rgba(14,165,233,0.5), 0 4px 20px rgba(14,165,233,0.3)',
+            }}
           >
             <Terminal className="w-4 h-4" />
             View My Work
           </Link>
+
+          {/* Download Resume — white glass outlined button */}
           <Link
             href={personalInfo.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(
-              'inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-medium text-sm',
-              'border border-border bg-surface text-text-primary',
-              'hover:border-accent hover:bg-accent/5',
-              'transition-all duration-200 hover:scale-105'
-            )}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-105"
+            style={{
+              background: 'rgba(255,255,255,0.08)',
+              border: '1.5px solid rgba(255,255,255,0.35)',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+            }}
           >
             <Download className="w-4 h-4" />
             Download Resume
           </Link>
         </motion.div>
 
-        {/* Social links */}
+
+
+        {/* Scroll indicator — bottom center */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="flex items-center justify-center gap-4"
+          transition={{ duration: 0.6, delay: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex flex-col items-center gap-2 text-white/40"
+          >
+            <span className="text-xs tracking-widest uppercase">Scroll</span>
+            <ArrowDown className="w-4 h-4" />
+          </motion.div>
+        </motion.div>
+
+        {/* Social links — left vertical strip */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="hidden lg:flex absolute left-6 bottom-0 top-0 flex-col items-center justify-end pb-10 gap-5"
         >
           {[
             { href: personalInfo.linkedin, icon: Linkedin, label: 'LinkedIn' },
@@ -151,28 +192,19 @@ export function Hero() {
               target={href.startsWith('http') ? '_blank' : undefined}
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
               aria-label={label}
-              className="w-10 h-10 rounded-full border border-border bg-surface flex items-center justify-center text-text-secondary hover:text-accent hover:border-accent hover:bg-accent/10 transition-all duration-200 hover:scale-110"
+              className="group flex items-center justify-center w-10 h-10 rounded-xl text-white/50 hover:text-white transition-all duration-200 hover:scale-110"
+              style={{
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(8px)',
+              }}
+              title={label}
             >
               <Icon className="w-4 h-4" />
             </Link>
           ))}
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="flex flex-col items-center gap-2 text-text-secondary"
-          >
-            <span className="text-xs tracking-widest uppercase">Scroll</span>
-            <ArrowDown className="w-4 h-4" />
-          </motion.div>
+          {/* Decorative vertical line */}
+          <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent" />
         </motion.div>
       </div>
     </section>
