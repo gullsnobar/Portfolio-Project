@@ -49,7 +49,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/10 text-accent text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary text-text-secondary text-sm font-medium mb-6"
             >
               <Sparkles className="w-3.5 h-3.5" />
               Available for new opportunities
@@ -77,7 +77,7 @@ export function Hero() {
                   transition={{ duration: 0.35, ease: 'easeInOut' }}
                   className="text-lg sm:text-xl font-semibold text-text-secondary"
                 >
-                  <span className="text-accent">›</span>{' '}
+                  <span className="text-text-primary">›</span>{' '}
                   {ROTATING_TITLES[titleIndex]}
                 </motion.p>
               </AnimatePresence>
@@ -101,7 +101,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="inline-flex items-center gap-1.5 text-sm text-text-secondary mb-8"
             >
-              <MapPin className="w-3.5 h-3.5 text-accent" />
+              <MapPin className="w-3.5 h-3.5 text-text-primary" />
               Lahore, Pakistan
             </motion.div>
 
@@ -114,10 +114,7 @@ export function Hero() {
             >
               <Link
                 href="/#projects"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:shadow-lg hover:shadow-accent/30"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(var(--accent)) 0%, #8b5cf6 100%)',
-                }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-text-primary text-background transition-all duration-200 hover:opacity-85 hover:scale-[1.03] hover:shadow-lg"
               >
                 View My Work
               </Link>
@@ -125,7 +122,7 @@ export function Hero() {
                 href={personalInfo.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border border-border bg-surface text-text-primary hover:border-accent/50 hover:text-accent transition-all duration-200 hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border border-border bg-surface text-text-primary hover:border-text-primary hover:bg-secondary transition-all duration-200 hover:scale-[1.03]"
               >
                 <Download className="w-4 h-4" />
                 Download CV
@@ -150,7 +147,7 @@ export function Hero() {
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   aria-label={label}
-                  className="w-10 h-10 rounded-xl border border-border bg-surface flex items-center justify-center text-text-secondary hover:text-accent hover:border-accent/50 hover:bg-accent/5 transition-all duration-200 hover:scale-110"
+                  className="w-10 h-10 rounded-xl border border-border bg-surface flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-text-primary hover:bg-secondary transition-all duration-200 hover:scale-110"
                 >
                   <Icon className="w-4 h-4" />
                 </Link>
@@ -168,16 +165,6 @@ export function Hero() {
             className="hidden lg:block"
           >
             <div className="relative">
-              {/* Decorative blobs */}
-              <div
-                className="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-20 blur-3xl"
-                style={{ background: 'radial-gradient(circle, #6366f1, transparent)' }}
-              />
-              <div
-                className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full opacity-15 blur-3xl"
-                style={{ background: 'radial-gradient(circle, #8b5cf6, transparent)' }}
-              />
-
               {/* Stats grid */}
               <div className="relative grid grid-cols-2 gap-4">
                 {stats.map((stat, i) => (
@@ -188,7 +175,7 @@ export function Hero() {
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.07 }}
                     className="card p-6 rounded-2xl group hover:-translate-y-1"
                   >
-                    <p className="font-display text-4xl font-bold gradient-text mb-1">
+                    <p className="font-display text-4xl font-bold text-text-primary mb-1">
                       {stat.value}
                     </p>
                     <p className="text-text-secondary text-xs leading-snug whitespace-pre-line">
@@ -204,8 +191,8 @@ export function Hero() {
                   transition={{ duration: 0.5, delay: 0.58 }}
                   className="col-span-2 card p-5 rounded-2xl flex items-center gap-4"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="w-10 h-10 rounded-xl bg-secondary border border-border flex items-center justify-center shrink-0">
+                    <span className="w-2.5 h-2.5 rounded-full bg-text-primary animate-pulse" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-text-primary">Open to Work</p>
@@ -228,7 +215,7 @@ export function Hero() {
         >
           {stats.map((stat) => (
             <div key={stat.label} className="card p-4 rounded-2xl text-center">
-              <p className="font-display text-2xl font-bold gradient-text">{stat.value}</p>
+              <p className="font-display text-2xl font-bold text-text-primary">{stat.value}</p>
               <p className="text-text-secondary text-xs mt-1 leading-snug whitespace-pre-line">
                 {stat.label}
               </p>

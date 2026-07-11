@@ -11,19 +11,7 @@ interface ProjectCardProps {
   index?: number
 }
 
-// Gradient fallbacks when no image is available
-const gradients = [
-  { from: '#6366f1', to: '#8b5cf6' },
-  { from: '#0ea5e9', to: '#6366f1' },
-  { from: '#10b981', to: '#0ea5e9' },
-  { from: '#f59e0b', to: '#ef4444' },
-  { from: '#8b5cf6', to: '#ec4899' },
-  { from: '#06b6d4', to: '#6366f1' },
-]
-
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
-  const grad = gradients[index % gradients.length]
-
   return (
     <motion.div
       whileHover={{ y: -5 }}
@@ -34,11 +22,11 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         className={cn(
           'h-full flex flex-col rounded-2xl overflow-hidden',
           'bg-surface border border-border',
-          'hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10',
+          'hover:border-text-primary/25 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/5',
           'transition-all duration-300'
         )}
       >
-        {/* ── Image / Gradient Header ── */}
+        {/* ── Image / Placeholder Header ── */}
         <div className="relative h-44 overflow-hidden">
           {project.image_url ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -48,35 +36,22 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
-            <div
-              className="absolute inset-0 flex flex-col items-center justify-center gap-3"
-              style={{ background: `linear-gradient(135deg, ${grad.from}22 0%, ${grad.to}22 100%)` }}
-            >
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-secondary">
               {/* Large icon */}
-              <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg"
-                style={{ background: `linear-gradient(135deg, ${grad.from}, ${grad.to})` }}
-              >
-                <Code2 className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md bg-text-primary">
+                <Code2 className="w-7 h-7 text-background" />
               </div>
-              {/* Decorative floating circles */}
-              <div
-                className="absolute top-3 right-4 w-20 h-20 rounded-full opacity-20 blur-xl"
-                style={{ background: grad.from }}
-              />
-              <div
-                className="absolute bottom-3 left-4 w-16 h-16 rounded-full opacity-15 blur-xl"
-                style={{ background: grad.to }}
-              />
+              {/* Subtle index indicator */}
+              <span className="text-xs text-text-secondary font-mono opacity-40">
+                {String(index + 1).padStart(2, '0')}
+              </span>
             </div>
           )}
 
           {/* Featured badge */}
           {project.featured && (
-            <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold text-white"
-              style={{ background: `linear-gradient(135deg, ${grad.from}, ${grad.to})` }}
-            >
-              <Star className="w-2.5 h-2.5 fill-white" />
+            <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-text-primary text-background">
+              <Star className="w-2.5 h-2.5 fill-background" />
               Featured
             </span>
           )}
@@ -84,7 +59,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
         {/* ── Card Body ── */}
         <div className="flex-1 flex flex-col p-5">
-          <h3 className="font-display font-semibold text-text-primary text-base mb-2 group-hover:text-accent transition-colors duration-200">
+          <h3 className="font-display font-semibold text-text-primary text-base mb-2 group-hover:text-text-secondary transition-colors duration-200">
             {project.title}
           </h3>
           <p className="text-text-secondary text-sm leading-relaxed flex-1 mb-4">
@@ -111,10 +86,10 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  'flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white',
-                  'transition-all duration-200 hover:opacity-90 hover:shadow-lg hover:scale-[1.02]'
+                  'flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold',
+                  'bg-text-primary text-background',
+                  'transition-all duration-200 hover:opacity-85 hover:shadow-lg hover:scale-[1.02]'
                 )}
-                style={{ background: `linear-gradient(135deg, ${grad.from}, ${grad.to})` }}
               >
                 <ExternalLink className="w-3 h-3" />
                 Live Demo
@@ -128,7 +103,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 className={cn(
                   'flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium',
                   'border border-border bg-surface text-text-secondary',
-                  'hover:border-accent/40 hover:text-accent',
+                  'hover:border-text-primary hover:text-text-primary',
                   'transition-all duration-200'
                 )}
               >

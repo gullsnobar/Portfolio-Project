@@ -36,10 +36,10 @@ export function About() {
             </div>
 
             {/* Open to badge */}
-            <div className="inline-flex items-start gap-3 p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 shrink-0 animate-pulse" />
+            <div className="inline-flex items-start gap-3 p-4 rounded-xl border border-border bg-secondary">
+              <span className="w-2 h-2 rounded-full bg-text-primary mt-1.5 shrink-0 animate-pulse" />
               <div>
-                <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
+                <p className="text-xs font-semibold text-text-secondary uppercase tracking-widest mb-1">
                   Open to
                 </p>
                 <p className="text-text-primary text-sm">{personalInfo.openTo}</p>
@@ -50,7 +50,7 @@ export function About() {
             <div className="flex flex-wrap gap-3 pt-1">
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-text-secondary hover:text-accent hover:border-accent/40 text-sm transition-all duration-200 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-text-secondary hover:text-text-primary hover:border-text-primary text-sm transition-all duration-200 hover:scale-[1.02]"
               >
                 <Mail className="w-3.5 h-3.5" />
                 {personalInfo.email}
@@ -59,7 +59,7 @@ export function About() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-text-secondary hover:text-accent hover:border-accent/40 text-sm transition-all duration-200 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-text-secondary hover:text-text-primary hover:border-text-primary text-sm transition-all duration-200 hover:scale-[1.02]"
               >
                 <Linkedin className="w-3.5 h-3.5" />
                 LinkedIn
@@ -76,8 +76,8 @@ export function About() {
             {/* Education */}
             <div className="card p-5 rounded-2xl">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <GraduationCap className="w-4 h-4 text-accent" />
+                <div className="w-8 h-8 rounded-lg bg-secondary border border-border flex items-center justify-center">
+                  <GraduationCap className="w-4 h-4 text-text-primary" />
                 </div>
                 <h3 className="font-display font-semibold text-text-primary text-sm">Education</h3>
               </div>
@@ -86,7 +86,7 @@ export function About() {
                   <div key={i} className={cn('', i > 0 && 'pt-3 border-t border-border')}>
                     <p className="text-text-primary font-medium text-sm">{edu.institution}</p>
                     <p className="text-text-secondary text-xs mt-0.5">{edu.degree}</p>
-                    <p className="text-accent/80 text-xs mt-0.5">{edu.period}</p>
+                    <p className="text-text-secondary/70 text-xs mt-0.5">{edu.period}</p>
                   </div>
                 ))}
               </div>
@@ -95,15 +95,15 @@ export function About() {
             {/* Certifications */}
             <div className="card p-5 rounded-2xl">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <Award className="w-4 h-4 text-accent" />
+                <div className="w-8 h-8 rounded-lg bg-secondary border border-border flex items-center justify-center">
+                  <Award className="w-4 h-4 text-text-primary" />
                 </div>
                 <h3 className="font-display font-semibold text-text-primary text-sm">Certifications</h3>
               </div>
               <ul className="space-y-2">
                 {certifications.map((cert, i) => (
                   <li key={i} className="flex items-center gap-2 text-text-secondary text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-text-primary shrink-0" />
                     {cert}
                   </li>
                 ))}
@@ -113,8 +113,8 @@ export function About() {
             {/* Languages */}
             <div className="card p-5 rounded-2xl">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <Globe className="w-4 h-4 text-accent" />
+                <div className="w-8 h-8 rounded-lg bg-secondary border border-border flex items-center justify-center">
+                  <Globe className="w-4 h-4 text-text-primary" />
                 </div>
                 <h3 className="font-display font-semibold text-text-primary text-sm">Languages</h3>
               </div>
@@ -122,7 +122,7 @@ export function About() {
                 {languages.map((lang) => (
                   <div key={lang.name} className="flex items-center justify-between">
                     <span className="text-text-primary text-sm font-medium">{lang.name}</span>
-                    <span className="text-xs text-text-secondary px-2 py-0.5 rounded-full bg-border/60">
+                    <span className="text-xs text-text-secondary px-2 py-0.5 rounded-full bg-secondary border border-border">
                       {lang.level}
                     </span>
                   </div>

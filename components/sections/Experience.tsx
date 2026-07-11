@@ -17,7 +17,7 @@ export function Experience() {
 
         <div className="relative">
           {/* Vertical guide line */}
-          <div className="absolute left-[1.35rem] sm:left-[1.6rem] top-2 bottom-2 w-px bg-gradient-to-b from-accent/60 via-border to-transparent" />
+          <div className="absolute left-[1.35rem] sm:left-[1.6rem] top-2 bottom-2 w-px bg-gradient-to-b from-border via-border to-transparent" />
 
           <div className="space-y-6">
             {experience.map((item, index) => (
@@ -30,8 +30,8 @@ export function Experience() {
                       className={cn(
                         'w-3 h-3 rounded-full border-2 transition-all duration-300',
                         item.current
-                          ? 'bg-accent border-accent timeline-dot-active shadow-lg shadow-accent/40'
-                          : 'bg-surface border-border hover:border-accent'
+                          ? 'bg-text-primary border-text-primary timeline-dot-active'
+                          : 'bg-surface border-border hover:border-text-primary'
                       )}
                     />
                   </div>
@@ -40,7 +40,7 @@ export function Experience() {
                   <div
                     className={cn(
                       'flex-1 card p-5 sm:p-6 rounded-2xl transition-all duration-300 mb-1',
-                      item.current && 'border-accent/30 bg-accent/5'
+                      item.current && 'border-text-primary/20 bg-secondary/50'
                     )}
                   >
                     {/* Header row */}
@@ -51,13 +51,13 @@ export function Experience() {
                             {item.role}
                           </h3>
                           {item.current && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-[10px] font-semibold uppercase tracking-wide">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary border border-border text-text-secondary text-[10px] font-semibold uppercase tracking-wide">
+                              <span className="w-1.5 h-1.5 rounded-full bg-text-primary animate-pulse" />
                               Now
                             </span>
                           )}
                         </div>
-                        <p className="text-accent font-medium text-sm">{item.company}</p>
+                        <p className="text-text-primary font-medium text-sm">{item.company}</p>
                       </div>
 
                       {/* Meta pills — always horizontal row */}
@@ -81,7 +81,7 @@ export function Experience() {
                     <ul className="space-y-2">
                       {item.description.map((point, i) => (
                         <li key={i} className="flex items-start gap-3 text-text-secondary text-sm leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent/70 mt-[0.45rem] shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-text-secondary/60 mt-[0.45rem] shrink-0" />
                           {point}
                         </li>
                       ))}
