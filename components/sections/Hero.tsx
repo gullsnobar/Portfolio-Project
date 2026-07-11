@@ -3,16 +3,21 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowDown, Download, Github, Linkedin, Mail, Terminal } from 'lucide-react'
+import { ArrowDown, Download, Github, Linkedin, Mail, Sparkles, MapPin } from 'lucide-react'
 import { personalInfo } from '@/lib/data'
-import { cn } from '@/lib/utils'
 
 const ROTATING_TITLES = [
   'Full-Stack Developer',
   'React & Next.js Engineer',
   'Node.js Backend Dev',
   'MERN Stack Builder',
-  'API Architect',
+]
+
+const stats = [
+  { value: '1+', label: 'Year of\nExperience' },
+  { value: '10+', label: 'Projects\nShipped' },
+  { value: '15+', label: 'Technologies\nMastered' },
+  { value: '4', label: 'Roles &\nInternships' },
 ]
 
 export function Hero() {
@@ -28,183 +33,222 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020510]"
+      className="relative min-h-screen flex items-center overflow-hidden pt-20"
     >
-      {/* Background: diagonal blue/cyan streaks */}
-      <div className="absolute inset-0 pointer-events-none select-none">
-        {/* Main diagonal streak — bright cyan/blue */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(135deg, #000510 0%, #020b2e 25%, #0a2a6e 38%, #1565c0 45%, #00b4d8 50%, #1565c0 55%, #0a2a6e 62%, #020b2e 75%, #000510 100%)',
-          }}
-        />
-        {/* Secondary narrower streak overlay */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(135deg, transparent 0%, transparent 30%, rgba(0,200,255,0.18) 42%, rgba(0,220,255,0.45) 50%, rgba(0,200,255,0.18) 58%, transparent 70%, transparent 100%)',
-          }}
-        />
-        {/* Dark vignette edges to keep text readable */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, transparent 30%, rgba(0,3,15,0.65) 100%)',
-          }}
-        />
-        {/* Bottom fade to blend with next section */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-40"
-          style={{
-            background: 'linear-gradient(to bottom, transparent, rgba(0,3,15,0.85))',
-          }}
-        />
-        {/* Subtle noise/shimmer overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-      </div>
+      {/* Soft ambient glow */}
+      <div className="hero-glow" />
+      <div className="grid-bg absolute inset-0" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center pt-24 sm:pt-28">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full py-16 sm:py-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tight mb-6"
-        >
-          <span className="text-white">Gull </span>
-          <span style={{ background: 'linear-gradient(90deg, #00d4ff 0%, #7b9fff 50%, #ffffff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Snobar</span>
-        </motion.h1>
-
-        {/* Rotating title */}
-        <div className="h-12 sm:h-14 mb-6 overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={titleIndex}
+          {/* ── Left column ── */}
+          <div>
+            {/* Greeting badge */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="font-display text-xl sm:text-2xl lg:text-3xl font-medium text-white/70"
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/10 text-accent text-sm font-medium mb-6"
             >
-              <span className="text-cyan-400">&gt;</span>{' '}
-              <span className="text-white">{ROTATING_TITLES[titleIndex]}</span>
+              <Sparkles className="w-3.5 h-3.5" />
+              Available for new opportunities
+            </motion.div>
+
+            {/* Name */}
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.05] tracking-tight mb-4"
+            >
+              Gull{' '}
+              <span className="gradient-text">Snobar</span>
+            </motion.h1>
+
+            {/* Rotating subtitle */}
+            <div className="h-10 mb-5 overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={titleIndex}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  className="text-lg sm:text-xl font-semibold text-text-secondary"
+                >
+                  <span className="text-accent">›</span>{' '}
+                  {ROTATING_TITLES[titleIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+
+            {/* Bio */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-text-secondary leading-relaxed mb-2 max-w-lg text-base sm:text-[1.05rem]"
+            >
+              Building fast, reliable, and scalable web applications — from server to client.
+              Passionate about clean code, great UX, and shipping products that matter.
             </motion.p>
-          </AnimatePresence>
+
+            {/* Location */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="inline-flex items-center gap-1.5 text-sm text-text-secondary mb-8"
+            >
+              <MapPin className="w-3.5 h-3.5 text-accent" />
+              Lahore, Pakistan
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-3 mb-8"
+            >
+              <Link
+                href="/#projects"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-[1.03] hover:shadow-lg hover:shadow-accent/30"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--accent)) 0%, #8b5cf6 100%)',
+                }}
+              >
+                View My Work
+              </Link>
+              <Link
+                href={personalInfo.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border border-border bg-surface text-text-primary hover:border-accent/50 hover:text-accent transition-all duration-200 hover:scale-[1.03]"
+              >
+                <Download className="w-4 h-4" />
+                Download CV
+              </Link>
+            </motion.div>
+
+            {/* Social icons */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex items-center gap-3"
+            >
+              {[
+                { href: personalInfo.github, icon: Github, label: 'GitHub' },
+                { href: personalInfo.linkedin, icon: Linkedin, label: 'LinkedIn' },
+                { href: `mailto:${personalInfo.email}`, icon: Mail, label: 'Email' },
+              ].map(({ href, icon: Icon, label }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  aria-label={label}
+                  className="w-10 h-10 rounded-xl border border-border bg-surface flex items-center justify-center text-text-secondary hover:text-accent hover:border-accent/50 hover:bg-accent/5 transition-all duration-200 hover:scale-110"
+                >
+                  <Icon className="w-4 h-4" />
+                </Link>
+              ))}
+              <div className="w-16 h-px bg-gradient-to-r from-border to-transparent ml-1" />
+              <span className="text-xs text-text-secondary">Say hi 👋</span>
+            </motion.div>
+          </div>
+
+          {/* ── Right column — Stats card ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="hidden lg:block"
+          >
+            <div className="relative">
+              {/* Decorative blobs */}
+              <div
+                className="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-20 blur-3xl"
+                style={{ background: 'radial-gradient(circle, #6366f1, transparent)' }}
+              />
+              <div
+                className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full opacity-15 blur-3xl"
+                style={{ background: 'radial-gradient(circle, #8b5cf6, transparent)' }}
+              />
+
+              {/* Stats grid */}
+              <div className="relative grid grid-cols-2 gap-4">
+                {stats.map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.07 }}
+                    className="card p-6 rounded-2xl group hover:-translate-y-1"
+                  >
+                    <p className="font-display text-4xl font-bold gradient-text mb-1">
+                      {stat.value}
+                    </p>
+                    <p className="text-text-secondary text-xs leading-snug whitespace-pre-line">
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                ))}
+
+                {/* "Open to work" card spanning full width */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.58 }}
+                  className="col-span-2 card p-5 rounded-2xl flex items-center gap-4"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-text-primary">Open to Work</p>
+                    <p className="text-xs text-text-secondary mt-0.5">
+                      Frontend, Full-Stack &amp; innovative web dev roles
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="max-w-2xl mx-auto text-white/60 text-base sm:text-lg leading-relaxed mb-10"
-        >
-          Building fast, reliable, and scalable web applications from{' '}
-          <span className="text-white font-medium">server to client</span>. Based in{' '}
-          <span className="text-white font-medium">Lahore, Pakistan</span>.
-        </motion.p>
-
-        {/* CTAs */}
+        {/* ── Mobile stats strip ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
+          className="lg:hidden mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3"
         >
-          {/* View My Work — glowing cyan button */}
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-105"
-            style={{
-              background: 'linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)',
-              boxShadow: '0 0 30px rgba(14,165,233,0.5), 0 4px 20px rgba(14,165,233,0.3)',
-            }}
-          >
-            <Terminal className="w-4 h-4" />
-            View My Work
-          </Link>
-
-          {/* Download Resume — white glass outlined button */}
-          <Link
-            href={personalInfo.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-105"
-            style={{
-              background: 'rgba(255,255,255,0.08)',
-              border: '1.5px solid rgba(255,255,255,0.35)',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
-            }}
-          >
-            <Download className="w-4 h-4" />
-            Download Resume
-          </Link>
+          {stats.map((stat) => (
+            <div key={stat.label} className="card p-4 rounded-2xl text-center">
+              <p className="font-display text-2xl font-bold gradient-text">{stat.value}</p>
+              <p className="text-text-secondary text-xs mt-1 leading-snug whitespace-pre-line">
+                {stat.label}
+              </p>
+            </div>
+          ))}
         </motion.div>
 
-
-
-        {/* Scroll indicator — bottom center */}
+        {/* Scroll cue */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1 text-text-secondary/50"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="flex flex-col items-center gap-2 text-white/40"
           >
-            <span className="text-xs tracking-widest uppercase">Scroll</span>
             <ArrowDown className="w-4 h-4" />
           </motion.div>
-        </motion.div>
-
-        {/* Social links — left vertical strip */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="hidden lg:flex absolute left-6 bottom-0 top-0 flex-col items-center justify-end pb-10 gap-5"
-        >
-          {[
-            { href: personalInfo.linkedin, icon: Linkedin, label: 'LinkedIn' },
-            { href: personalInfo.github, icon: Github, label: 'GitHub' },
-            { href: `mailto:${personalInfo.email}`, icon: Mail, label: 'Email' },
-          ].map(({ href, icon: Icon, label }) => (
-            <Link
-              key={label}
-              href={href}
-              target={href.startsWith('http') ? '_blank' : undefined}
-              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              aria-label={label}
-              className="group flex items-center justify-center w-10 h-10 rounded-xl text-white/50 hover:text-white transition-all duration-200 hover:scale-110"
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                backdropFilter: 'blur(8px)',
-              }}
-              title={label}
-            >
-              <Icon className="w-4 h-4" />
-            </Link>
-          ))}
-          {/* Decorative vertical line */}
-          <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent" />
         </motion.div>
       </div>
     </section>

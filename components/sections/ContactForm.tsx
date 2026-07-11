@@ -4,15 +4,40 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle, Loader2, Mail, Linkedin, Github, Zap } from 'lucide-react'
 import { contactSchema, type ContactInput } from '@/lib/validations'
 import { SectionHeader, AnimatedSection } from '@/components/shared/AnimatedText'
 import { personalInfo } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { Mail, Linkedin, Github } from 'lucide-react'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
+
+const contactLinks = [
+  {
+    href: `mailto:${personalInfo.email}`,
+    icon: Mail,
+    label: 'Email',
+    value: personalInfo.email,
+    color: 'bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400',
+  },
+  {
+    href: personalInfo.linkedin,
+    icon: Linkedin,
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/gullsanobar',
+    color: 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400',
+    external: true,
+  },
+  {
+    href: personalInfo.github,
+    icon: Github,
+    label: 'GitHub',
+    value: 'github.com/gullsnobar',
+    color: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
+    external: true,
+  },
+]
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
@@ -46,77 +71,68 @@ export function ContactForm() {
   }
 
   const inputClass = cn(
-    'w-full px-4 py-3 rounded-xl bg-surface border text-text-primary text-sm',
+    'w-full px-4 py-3 rounded-xl bg-background border border-border text-text-primary text-sm',
     'placeholder:text-text-secondary/50',
-    'focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent',
+    'focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent',
     'transition-all duration-200'
   )
 
   return (
     <section id="contact" className="py-24 sm:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
+        {/* Available chip */}
+        <AnimatedSection className="mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            Available for new projects &amp; roles
+          </div>
+        </AnimatedSection>
+
         <SectionHeader
           tag="Contact"
           title="Let's build something."
           subtitle="Have a project in mind or want to connect? Send me a message — I typically reply within 24 hours."
+          className="mb-12"
         />
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact info */}
-          <AnimatedSection className="lg:col-span-2 space-y-6" delay={0.1}>
+          <AnimatedSection className="lg:col-span-2 space-y-5" delay={0.1}>
             <div>
-              <h3 className="font-display font-semibold text-text-primary mb-2">
-                Get in touch
-              </h3>
+              <h3 className="font-display font-semibold text-text-primary mb-2">Get in touch</h3>
               <p className="text-text-secondary text-sm leading-relaxed">
-                I&apos;m open to frontend, full-stack, and innovative web development opportunities. 
+                I&apos;m open to frontend, full-stack, and innovative web development opportunities.
                 Whether it&apos;s a full-time role, freelance project, or just a conversation — reach out.
               </p>
             </div>
 
             <div className="space-y-3">
-              <Link
-                href={`mailto:${personalInfo.email}`}
-                className="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border hover:border-accent/50 hover:bg-accent/5 transition-all duration-200 group"
-              >
-                <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <Mail className="w-4 h-4 text-accent" />
-                </div>
-                <div>
-                  <p className="text-xs text-text-secondary">Email</p>
-                  <p className="text-text-primary text-sm font-medium">{personalInfo.email}</p>
-                </div>
-              </Link>
+              {contactLinks.map(({ href, icon: Icon, label, value, color, external }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  className="flex items-center gap-3 p-4 rounded-2xl card group hover:-translate-y-0.5"
+                >
+                  <div className={cn('w-9 h-9 rounded-xl flex items-center justify-center shrink-0', color)}>
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-text-secondary uppercase tracking-widest font-medium">{label}</p>
+                    <p className="text-text-primary text-sm font-medium group-hover:text-accent transition-colors">
+                      {value}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
 
-              <Link
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border hover:border-accent/50 hover:bg-accent/5 transition-all duration-200 group"
-              >
-                <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <Linkedin className="w-4 h-4 text-accent" />
-                </div>
-                <div>
-                  <p className="text-xs text-text-secondary">LinkedIn</p>
-                  <p className="text-text-primary text-sm font-medium">linkedin.com/in/gullsanobar</p>
-                </div>
-              </Link>
-
-              <Link
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border hover:border-accent/50 hover:bg-accent/5 transition-all duration-200 group"
-              >
-                <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <Github className="w-4 h-4 text-accent" />
-                </div>
-                <div>
-                  <p className="text-xs text-text-secondary">GitHub</p>
-                  <p className="text-text-primary text-sm font-medium">github.com/gullsnobar</p>
-                </div>
-              </Link>
+            {/* Response time note */}
+            <div className="flex items-center gap-2 text-xs text-text-secondary">
+              <Zap className="w-3.5 h-3.5 text-accent" />
+              Typically responds within 24 hours
             </div>
           </AnimatedSection>
 
@@ -124,18 +140,18 @@ export function ContactForm() {
           <AnimatedSection className="lg:col-span-3" delay={0.2}>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="p-6 sm:p-8 rounded-2xl bg-surface border border-border space-y-5"
+              className="card p-6 sm:p-8 rounded-2xl space-y-5"
             >
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="contact-name" className="block text-xs font-medium text-text-secondary mb-2">
+                  <label htmlFor="contact-name" className="block text-xs font-medium text-text-secondary mb-2 uppercase tracking-wider">
                     Your Name
                   </label>
                   <input
                     id="contact-name"
                     type="text"
                     placeholder="John Doe"
-                    className={cn(inputClass, errors.name && 'border-red-500/50 focus:ring-red-500/30')}
+                    className={cn(inputClass, errors.name && 'border-red-400/60 focus:ring-red-400/30')}
                     {...register('name')}
                   />
                   {errors.name && (
@@ -143,14 +159,14 @@ export function ContactForm() {
                   )}
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="block text-xs font-medium text-text-secondary mb-2">
+                  <label htmlFor="contact-email" className="block text-xs font-medium text-text-secondary mb-2 uppercase tracking-wider">
                     Email Address
                   </label>
                   <input
                     id="contact-email"
                     type="email"
                     placeholder="john@example.com"
-                    className={cn(inputClass, errors.email && 'border-red-500/50 focus:ring-red-500/30')}
+                    className={cn(inputClass, errors.email && 'border-red-400/60 focus:ring-red-400/30')}
                     {...register('email')}
                   />
                   {errors.email && (
@@ -160,14 +176,14 @@ export function ContactForm() {
               </div>
 
               <div>
-                <label htmlFor="contact-message" className="block text-xs font-medium text-text-secondary mb-2">
+                <label htmlFor="contact-message" className="block text-xs font-medium text-text-secondary mb-2 uppercase tracking-wider">
                   Message
                 </label>
                 <textarea
                   id="contact-message"
                   rows={6}
                   placeholder="Tell me about your project or opportunity..."
-                  className={cn(inputClass, 'resize-none', errors.message && 'border-red-500/50 focus:ring-red-500/30')}
+                  className={cn(inputClass, 'resize-none', errors.message && 'border-red-400/60 focus:ring-red-400/30')}
                   {...register('message')}
                 />
                 {errors.message && (
@@ -179,10 +195,10 @@ export function ContactForm() {
                 {status === 'success' ? (
                   <motion.div
                     key="success"
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500"
+                    exit={{ opacity: 0, y: -8 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400"
                   >
                     <CheckCircle className="w-5 h-5 shrink-0" />
                     <p className="text-sm font-medium">Message sent! I&apos;ll get back to you soon.</p>
@@ -190,10 +206,10 @@ export function ContactForm() {
                 ) : status === 'error' ? (
                   <motion.div
                     key="error"
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500"
+                    exit={{ opacity: 0, y: -8 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500"
                   >
                     <AlertCircle className="w-5 h-5 shrink-0" />
                     <p className="text-sm">{errorMessage}</p>
@@ -205,12 +221,11 @@ export function ContactForm() {
                     disabled={status === 'loading'}
                     className={cn(
                       'w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl',
-                      'bg-accent text-white font-medium text-sm',
-                      'hover:bg-accent/90 transition-all duration-200',
-                      'hover:shadow-lg hover:shadow-accent/25',
-                      'disabled:opacity-60 disabled:cursor-not-allowed'
+                      'text-white font-semibold text-sm',
+                      'transition-all duration-200 hover:opacity-90 hover:shadow-lg hover:shadow-accent/25 hover:scale-[1.01]',
+                      'disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100'
                     )}
-                    whileHover={{ scale: status === 'loading' ? 1 : 1.01 }}
+                    style={{ background: 'linear-gradient(135deg, hsl(var(--accent)) 0%, #8b5cf6 100%)' }}
                     whileTap={{ scale: 0.99 }}
                   >
                     {status === 'loading' ? (

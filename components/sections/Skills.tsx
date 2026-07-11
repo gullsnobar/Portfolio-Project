@@ -1,30 +1,64 @@
 'use client'
 
-import { useState } from 'react'
 import { SectionHeader, AnimatedSection } from '@/components/shared/AnimatedText'
-import { skillGroups } from '@/lib/data'
-import { cn } from '@/lib/utils'
 
-// Skill icons map (using simple text badges with accent colors)
-const categoryColors: Record<string, string> = {
-  Frontend: 'from-blue-500/20 to-indigo-500/20 border-blue-500/30',
-  Backend: 'from-emerald-500/20 to-teal-500/20 border-emerald-500/30',
-  'Tools & DevOps': 'from-orange-500/20 to-amber-500/20 border-orange-500/30',
-  Exploring: 'from-purple-500/20 to-pink-500/20 border-purple-500/30',
-}
-
-const categoryDots: Record<string, string> = {
-  Frontend: 'bg-blue-500',
-  Backend: 'bg-emerald-500',
-  'Tools & DevOps': 'bg-orange-500',
-  Exploring: 'bg-purple-500',
-}
+// ── Skill data with colored icon badges ──────────────────────────────────────
+const skillGroups = [
+  {
+    category: 'Frontend',
+    color: 'from-blue-500/10 to-indigo-500/10 border-blue-400/20',
+    dot: 'bg-blue-500',
+    dotLabel: 'text-blue-600 dark:text-blue-400',
+    skills: [
+      { name: 'React.js',    icon: '⚛', color: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300' },
+      { name: 'Next.js',     icon: 'N', color: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200' },
+      { name: 'JavaScript',  icon: 'JS', color: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300' },
+      { name: 'TypeScript',  icon: 'TS', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300' },
+      { name: 'HTML5',       icon: '⌗', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300' },
+      { name: 'CSS3',        icon: '✦', color: 'bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300' },
+      { name: 'Tailwind',    icon: '~', color: 'bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300' },
+      { name: 'Material UI', icon: 'M', color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300' },
+    ],
+  },
+  {
+    category: 'Backend',
+    color: 'from-emerald-500/10 to-teal-500/10 border-emerald-400/20',
+    dot: 'bg-emerald-500',
+    dotLabel: 'text-emerald-600 dark:text-emerald-400',
+    skills: [
+      { name: 'Node.js',     icon: '⬡', color: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300' },
+      { name: 'Express.js',  icon: 'Ex', color: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300' },
+      { name: 'MongoDB',     icon: '🍃', color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300' },
+      { name: 'REST APIs',   icon: '⇌', color: 'bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300' },
+    ],
+  },
+  {
+    category: 'Tools & DevOps',
+    color: 'from-orange-500/10 to-amber-500/10 border-orange-400/20',
+    dot: 'bg-orange-500',
+    dotLabel: 'text-orange-600 dark:text-orange-400',
+    skills: [
+      { name: 'Git',         icon: '⌥', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300' },
+      { name: 'GitHub',      icon: 'GH', color: 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200' },
+      { name: 'Docker',      icon: '🐳', color: 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300' },
+      { name: 'VS Code',     icon: '{ }', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300' },
+      { name: 'Postman',     icon: 'PM', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300' },
+    ],
+  },
+  {
+    category: 'Exploring',
+    color: 'from-purple-500/10 to-pink-500/10 border-purple-400/20',
+    dot: 'bg-purple-500',
+    dotLabel: 'text-purple-600 dark:text-purple-400',
+    skills: [
+      { name: 'AI / LLMs',   icon: '🤖', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300' },
+      { name: 'Supabase',    icon: 'SB', color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300' },
+      { name: 'Web Perf',    icon: '⚡', color: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300' },
+    ],
+  },
+]
 
 export function Skills() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
-
-  const categories = skillGroups.map((g) => g.category)
-
   return (
     <section id="skills" className="py-24 sm:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -34,86 +68,50 @@ export function Skills() {
           subtitle="Technologies I work with daily, and a few I'm actively exploring."
         />
 
-        {/* Category filter tabs */}
-        <AnimatedSection delay={0.1} className="flex flex-wrap gap-2 mb-10">
-          <button
-            onClick={() => setActiveCategory(null)}
-            className={cn(
-              'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200',
-              activeCategory === null
-                ? 'bg-accent text-white shadow-lg shadow-accent/25'
-                : 'bg-surface border border-border text-text-secondary hover:border-accent hover:text-accent'
-            )}
-          >
-            All
-          </button>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
-              className={cn(
-                'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200',
-                activeCategory === cat
-                  ? 'bg-accent text-white shadow-lg shadow-accent/25'
-                  : 'bg-surface border border-border text-text-secondary hover:border-accent hover:text-accent'
-              )}
-            >
-              {cat}
-            </button>
+        <div className="space-y-10">
+          {skillGroups.map((group, gi) => (
+            <AnimatedSection key={group.category} delay={gi * 0.08}>
+              {/* Category label */}
+              <div className="flex items-center gap-2 mb-5">
+                <span className={`w-2 h-2 rounded-full ${group.dot}`} />
+                <h3 className={`text-xs font-semibold uppercase tracking-widest ${group.dotLabel}`}>
+                  {group.category}
+                </h3>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+
+              {/* Skill badges grid */}
+              <div className="flex flex-wrap gap-3">
+                {group.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="skill-badge group"
+                  >
+                    {/* Icon */}
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold ${skill.color}`}>
+                      {skill.icon}
+                    </div>
+                    {/* Label */}
+                    <span className="text-xs text-text-secondary group-hover:text-accent font-medium transition-colors text-center leading-tight max-w-[5rem]">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
           ))}
-        </AnimatedSection>
-
-        {/* Skill groups */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillGroups
-            .filter((g) => activeCategory === null || g.category === activeCategory)
-            .map((group, groupIndex) => (
-              <AnimatedSection key={group.category} delay={0.1 + groupIndex * 0.08}>
-                <div
-                  className={cn(
-                    'h-full p-6 rounded-2xl border bg-gradient-to-br',
-                    categoryColors[group.category] || 'from-surface to-surface border-border'
-                  )}
-                >
-                  {/* Category header */}
-                  <div className="flex items-center gap-2 mb-5">
-                    <span
-                      className={cn(
-                        'w-2.5 h-2.5 rounded-full',
-                        categoryDots[group.category] || 'bg-accent'
-                      )}
-                    />
-                    <h3 className="font-display font-semibold text-text-primary text-sm">
-                      {group.category}
-                    </h3>
-                  </div>
-
-                  {/* Skills list */}
-                  <div className="flex flex-wrap gap-2">
-                    {group.skills.map((skill) => (
-                      <span
-                        key={skill.name}
-                        className="inline-flex items-center px-3 py-1.5 rounded-lg bg-background/60 border border-border/60 text-text-primary text-xs font-medium hover:border-accent/50 hover:text-accent transition-all duration-200 cursor-default"
-                      >
-                        {skill.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
         </div>
 
-        {/* Bottom accent bar */}
-        <AnimatedSection delay={0.4} className="mt-16">
-          <div className="p-6 rounded-2xl bg-accent/5 border border-accent/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Bottom "always learning" bar */}
+        <AnimatedSection delay={0.4} className="mt-14">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl border border-dashed border-accent/30 bg-accent/5">
             <div>
               <p className="font-display font-semibold text-text-primary">Always learning.</p>
-              <p className="text-text-secondary text-sm mt-1">
-                Currently exploring AI integration, performance optimization, and modern web patterns.
+              <p className="text-text-secondary text-sm mt-0.5">
+                Currently exploring AI integration, performance optimisation, and modern web patterns.
               </p>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/30">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/25 shrink-0">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <span className="text-accent text-sm font-medium">In Progress</span>
             </div>

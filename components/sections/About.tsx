@@ -6,13 +6,6 @@ import { MapPin, Mail, Linkedin, GraduationCap, Award, Globe } from 'lucide-reac
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-const stats = [
-  { label: 'Years of Experience', value: '1+' },
-  { label: 'Technologies', value: '15+' },
-  { label: 'Projects Shipped', value: '10+' },
-  { label: 'Open to Roles', value: '∞' },
-]
-
 export function About() {
   return (
     <section id="about" className="py-24 sm:py-32">
@@ -25,7 +18,7 @@ export function About() {
 
         <div className="grid lg:grid-cols-5 gap-12 items-start">
           {/* Bio */}
-          <AnimatedSection className="lg:col-span-3 space-y-6" delay={0.1}>
+          <AnimatedSection className="lg:col-span-3 space-y-5" delay={0.1}>
             <div className="space-y-4">
               {personalInfo.bio.split('. ').reduce((acc: string[][], sentence, i, arr) => {
                 const groupIndex = Math.floor(i / 2)
@@ -35,27 +28,29 @@ export function About() {
               }, []).map((group, i) => (
                 <p
                   key={i}
-                  className="text-text-secondary leading-relaxed text-base sm:text-lg"
+                  className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]"
                 >
                   {group.join(' ')}
                 </p>
               ))}
             </div>
 
-            {/* Open to */}
-            <div className="inline-flex items-start gap-3 p-4 rounded-xl bg-accent/5 border border-accent/20">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0 animate-pulse" />
+            {/* Open to badge */}
+            <div className="inline-flex items-start gap-3 p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 shrink-0 animate-pulse" />
               <div>
-                <p className="text-xs font-medium text-accent uppercase tracking-widest mb-1">Open to</p>
+                <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
+                  Open to
+                </p>
                 <p className="text-text-primary text-sm">{personalInfo.openTo}</p>
               </div>
             </div>
 
-            {/* Contact links */}
-            <div className="flex flex-wrap gap-3 pt-2">
+            {/* Contact chips */}
+            <div className="flex flex-wrap gap-3 pt-1">
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-text-secondary hover:text-accent hover:border-accent text-sm transition-all duration-200"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-text-secondary hover:text-accent hover:border-accent/40 text-sm transition-all duration-200 hover:scale-[1.02]"
               >
                 <Mail className="w-3.5 h-3.5" />
                 {personalInfo.email}
@@ -64,12 +59,12 @@ export function About() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-text-secondary hover:text-accent hover:border-accent text-sm transition-all duration-200"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-text-secondary hover:text-accent hover:border-accent/40 text-sm transition-all duration-200 hover:scale-[1.02]"
               >
                 <Linkedin className="w-3.5 h-3.5" />
                 LinkedIn
               </Link>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-text-secondary text-sm">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-text-secondary text-sm">
                 <MapPin className="w-3.5 h-3.5" />
                 {personalInfo.location}
               </span>
@@ -77,10 +72,10 @@ export function About() {
           </AnimatedSection>
 
           {/* Sidebar cards */}
-          <AnimatedSection className="lg:col-span-2 space-y-4" delay={0.25}>
+          <AnimatedSection className="lg:col-span-2 space-y-4" delay={0.2}>
             {/* Education */}
-            <div className="p-5 rounded-2xl bg-surface border border-border">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="card p-5 rounded-2xl">
+              <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
                   <GraduationCap className="w-4 h-4 text-accent" />
                 </div>
@@ -98,8 +93,8 @@ export function About() {
             </div>
 
             {/* Certifications */}
-            <div className="p-5 rounded-2xl bg-surface border border-border">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="card p-5 rounded-2xl">
+              <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
                   <Award className="w-4 h-4 text-accent" />
                 </div>
@@ -116,8 +111,8 @@ export function About() {
             </div>
 
             {/* Languages */}
-            <div className="p-5 rounded-2xl bg-surface border border-border">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="card p-5 rounded-2xl">
+              <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
                   <Globe className="w-4 h-4 text-accent" />
                 </div>
@@ -127,7 +122,7 @@ export function About() {
                 {languages.map((lang) => (
                   <div key={lang.name} className="flex items-center justify-between">
                     <span className="text-text-primary text-sm font-medium">{lang.name}</span>
-                    <span className="text-xs text-text-secondary px-2 py-0.5 rounded-full bg-border/50">
+                    <span className="text-xs text-text-secondary px-2 py-0.5 rounded-full bg-border/60">
                       {lang.level}
                     </span>
                   </div>
@@ -136,19 +131,6 @@ export function About() {
             </div>
           </AnimatedSection>
         </div>
-
-        {/* Stats row */}
-        <AnimatedSection className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4" delay={0.3}>
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="group p-6 rounded-2xl bg-surface border border-border hover:border-accent/50 transition-all duration-300 text-center hover:bg-accent/5"
-            >
-              <p className="font-display text-3xl font-bold gradient-text mb-1">{stat.value}</p>
-              <p className="text-text-secondary text-xs">{stat.label}</p>
-            </div>
-          ))}
-        </AnimatedSection>
       </div>
     </section>
   )

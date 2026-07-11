@@ -18,13 +18,13 @@ export function AnimatedSection({
   direction = 'up',
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const isInView = useInView(ref, { once: true, margin: '-60px' })
 
   const directionMap = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { y: 0, x: 40 },
-    right: { y: 0, x: -40 },
+    up: { y: 32, x: 0 },
+    down: { y: -32, x: 0 },
+    left: { y: 0, x: 32 },
+    right: { y: 0, x: -32 },
     none: { y: 0, x: 0 },
   }
 
@@ -36,7 +36,7 @@ export function AnimatedSection({
       ref={ref}
       initial={initial}
       animate={animate}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -53,18 +53,20 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ tag, title, subtitle, className }: SectionHeaderProps) {
   return (
-    <AnimatedSection className={cn('mb-16', className)}>
+    <AnimatedSection className={cn('mb-14', className)}>
       {tag && (
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium tracking-widest uppercase mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10 text-accent text-[11px] font-semibold tracking-widest uppercase mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           {tag}
         </div>
       )}
-      <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary leading-tight">
+      <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-text-primary leading-tight">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-text-secondary text-lg max-w-2xl leading-relaxed">{subtitle}</p>
+        <p className="mt-3 text-text-secondary text-base sm:text-lg max-w-2xl leading-relaxed">
+          {subtitle}
+        </p>
       )}
     </AnimatedSection>
   )
