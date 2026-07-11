@@ -44,7 +44,7 @@ export function Experience() {
                     )}
                   >
                     {/* Header row */}
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                       <div>
                         <div className="flex items-center gap-2 flex-wrap mb-0.5">
                           <h3 className="font-display font-semibold text-text-primary text-base leading-tight">
@@ -60,8 +60,8 @@ export function Experience() {
                         <p className="text-accent font-medium text-sm">{item.company}</p>
                       </div>
 
-                      {/* Meta pills */}
-                      <div className="flex flex-wrap sm:flex-col gap-1.5 sm:items-end text-[11px] text-text-secondary shrink-0">
+                      {/* Meta pills — always horizontal row */}
+                      <div className="flex flex-wrap gap-1.5 text-[11px] text-text-secondary shrink-0">
                         <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary border border-border">
                           <Briefcase className="w-2.5 h-2.5" />
                           {item.type}

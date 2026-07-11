@@ -85,30 +85,7 @@ export const experience: ExperienceItem[] = [
       'Built and maintained the Project Hub System (a company product) using Next.js.',
     ],
   },
-  {
-    id: '3',
-    role: 'Campus Ambassador',
-    company: 'Institute of Emerging Careers',
-    type: 'Part-time',
-    period: 'Nov 2025',
-    location: 'Lahore, Pakistan',
-    description: [
-      'Represented the institute on campus and built the student community.',
-      'Promoted events and workshops through social media and peer networking.',
-    ],
-  },
-  {
-    id: '4',
-    role: 'Technical Content Intern',
-    company: 'Microtechx',
-    type: 'Internship',
-    period: 'July 2025',
-    location: 'Lahore, Pakistan',
-    description: [
-      'Prepared technical slide decks, playbooks, and internal documentation.',
-      'Collaborated with stakeholders on clarity, consistency, and information architecture.',
-    ],
-  },
+
 ]
 
 export const education: EducationItem[] = [
