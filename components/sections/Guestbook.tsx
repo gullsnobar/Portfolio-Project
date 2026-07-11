@@ -63,7 +63,7 @@ export function Guestbook() {
   const inputClass = cn(
     'w-full px-4 py-3 rounded-xl bg-background border border-border text-text-primary text-sm',
     'placeholder:text-text-secondary/50',
-    'focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent',
+    'focus:outline-none focus:ring-2 focus:ring-text-primary/20 focus:border-text-primary',
     'transition-all duration-200'
   )
 
@@ -71,8 +71,8 @@ export function Guestbook() {
     <section className="py-24 sm:py-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium tracking-widest uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary border border-border text-text-secondary text-xs font-medium tracking-widest uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-text-primary animate-pulse" />
             Guestbook
           </div>
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-text-primary mb-4">
@@ -131,8 +131,8 @@ export function Guestbook() {
               disabled={submitting}
               className={cn(
                 'inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium',
-                'bg-accent text-white hover:bg-accent/90',
-                'transition-all duration-200 hover:shadow-lg hover:shadow-accent/25',
+                'bg-text-primary text-background hover:opacity-85',
+                'transition-all duration-200 hover:shadow-lg',
                 'disabled:opacity-60 disabled:cursor-not-allowed'
               )}
             >
@@ -147,9 +147,9 @@ export function Guestbook() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center mb-12"
+            className="p-6 rounded-2xl bg-secondary border border-border text-center mb-12"
           >
-            <p className="text-emerald-500 font-medium">Thanks for signing! 🎉</p>
+            <p className="text-text-primary font-medium">Thanks for signing! 🎉</p>
           </motion.div>
         )}
 
@@ -157,7 +157,7 @@ export function Guestbook() {
         <div className="space-y-4">
           {loading ? (
             <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 text-accent animate-spin" />
+              <Loader2 className="w-6 h-6 text-text-secondary animate-spin" />
             </div>
           ) : entries.length === 0 ? (
             <div className="text-center py-16">
@@ -172,10 +172,10 @@ export function Guestbook() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className="flex gap-4 p-5 rounded-xl bg-surface border border-border hover:border-accent/30 transition-all duration-200"
+                  className="flex gap-4 p-5 rounded-xl bg-surface border border-border hover:border-text-primary/25 transition-all duration-200"
                 >
-                  <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
-                    <User className="w-4 h-4 text-accent" />
+                  <div className="w-9 h-9 rounded-full bg-secondary border border-border flex items-center justify-center shrink-0">
+                    <User className="w-4 h-4 text-text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2 mb-1">

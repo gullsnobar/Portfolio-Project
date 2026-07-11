@@ -41,11 +41,11 @@ export function Navbar() {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center group gap-1.5">
-          <span className="w-7 h-7 rounded-lg bg-accent flex items-center justify-center text-white text-xs font-bold">
+          <span className="w-7 h-7 rounded-lg bg-text-primary flex items-center justify-center text-background text-xs font-bold">
             G
           </span>
-          <span className="font-display font-semibold text-sm text-text-primary group-hover:text-accent transition-colors">
-            Gull<span className="text-accent">.</span>dev
+          <span className="font-display font-semibold text-sm text-text-primary group-hover:text-text-secondary transition-colors">
+            Gull<span className="text-text-secondary">.</span>dev
           </span>
         </Link>
 
@@ -69,9 +69,8 @@ export function Navbar() {
             href={`mailto:${personalInfo.email}`}
             className={cn(
               'hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold',
-              'text-white transition-all duration-200 hover:scale-[1.04] hover:shadow-lg hover:shadow-accent/25'
+              'bg-text-primary text-background transition-all duration-200 hover:opacity-85 hover:scale-[1.04] hover:shadow-lg'
             )}
-            style={{ background: 'linear-gradient(135deg, hsl(var(--accent)) 0%, #8b5cf6 100%)' }}
           >
             Hire Me ✦
           </Link>
@@ -79,7 +78,7 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-border bg-surface hover:border-accent transition-colors"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-border bg-surface hover:border-text-primary transition-colors"
             aria-label="Toggle mobile menu"
           >
             {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -116,8 +115,7 @@ export function Navbar() {
               ))}
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-medium text-sm hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(135deg, hsl(var(--accent)) 0%, #8b5cf6 100%)' }}
+                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-text-primary text-background font-medium text-sm hover:opacity-90 transition-opacity"
               >
                 Hire Me ✦
               </Link>
