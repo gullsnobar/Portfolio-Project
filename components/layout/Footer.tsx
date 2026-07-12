@@ -114,7 +114,7 @@ export function Footer() {
               </div>
 
               <p className="text-text-secondary text-sm leading-relaxed">
-                Building fast, reliable, and scalable web applications — from server to client.
+                Building fast, reliable, and scalable web applications from server to client.
                 Based in Lahore, Pakistan.
               </p>
 

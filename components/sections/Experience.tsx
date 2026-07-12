@@ -7,7 +7,7 @@ import { MapPin, Briefcase, Calendar } from 'lucide-react'
 
 export function Experience() {
   return (
-    <section id="experience" className="py-24 sm:py-32">
+    <section id="experience" className="pt-24 sm:pt-32 pb-12 sm:pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader
           tag="Experience"

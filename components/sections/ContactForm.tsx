@@ -75,7 +75,7 @@ export function ContactForm() {
   )
 
   return (
-    <section id="contact" className="py-24 sm:py-32">
+    <section id="contact" className="pt-12 sm:pt-16 pb-24 sm:pb-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* Available chip */}
@@ -89,7 +89,7 @@ export function ContactForm() {
         <SectionHeader
           tag="Contact"
           title="Let's build something."
-          subtitle="Have a project in mind or want to connect? Send me a message — I typically reply within 24 hours."
+          subtitle="Have a project in mind or want to connect? Send me a message, I typically reply within 24 hours."
           className="mb-12"
         />
 
@@ -100,7 +100,7 @@ export function ContactForm() {
               <h3 className="font-display font-semibold text-text-primary mb-2">Get in touch</h3>
               <p className="text-text-secondary text-sm leading-relaxed">
                 I&apos;m open to frontend, full-stack, and innovative web development opportunities.
-                Whether it&apos;s a full-time role, freelance project, or just a conversation — reach out.
+                Whether it&apos;s a full-time role, freelance project, or just a conversation, reach out.
               </p>
             </div>
 

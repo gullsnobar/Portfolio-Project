@@ -17,7 +17,7 @@ const stats = [
   { value: '1+', label: 'Year of\nExperience' },
   { value: '10+', label: 'Projects\nShipped' },
   { value: '15+', label: 'Technologies\nMastered' },
-  { value: '4', label: 'Roles &\nInternships' },
+  { value: '2', label: 'Roles &\nInternships' },
 ]
 
 export function Hero() {
@@ -51,7 +51,6 @@ export function Hero() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary text-text-secondary text-sm font-medium mb-6"
             >
-              <Sparkles className="w-3.5 h-3.5" />
               Available for new opportunities
             </motion.div>
 
@@ -77,7 +76,6 @@ export function Hero() {
                   transition={{ duration: 0.35, ease: 'easeInOut' }}
                   className="text-lg sm:text-xl font-semibold text-text-secondary"
                 >
-                  <span className="text-text-primary">›</span>{' '}
                   {ROTATING_TITLES[titleIndex]}
                 </motion.p>
               </AnimatePresence>
@@ -90,7 +88,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-text-secondary leading-relaxed mb-2 max-w-lg text-base sm:text-[1.05rem]"
             >
-              Building fast, reliable, and scalable web applications — from server to client.
+              Building fast, reliable, and scalable web applications from server to client.
               Passionate about clean code, great UX, and shipping products that matter.
             </motion.p>
 
@@ -110,7 +108,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-3 mb-8"
+              className="flex flex-wrap items-center gap-3"
             >
               <Link
                 href="/#projects"
@@ -129,32 +127,7 @@ export function Hero() {
               </Link>
             </motion.div>
 
-            {/* Social icons */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center gap-3"
-            >
-              {[
-                { href: personalInfo.github, icon: Github, label: 'GitHub' },
-                { href: personalInfo.linkedin, icon: Linkedin, label: 'LinkedIn' },
-                { href: `mailto:${personalInfo.email}`, icon: Mail, label: 'Email' },
-              ].map(({ href, icon: Icon, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  target={href.startsWith('http') ? '_blank' : undefined}
-                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  aria-label={label}
-                  className="w-10 h-10 rounded-xl border border-border bg-surface flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-text-primary hover:bg-secondary transition-all duration-200 hover:scale-110"
-                >
-                  <Icon className="w-4 h-4" />
-                </Link>
-              ))}
-              <div className="w-16 h-px bg-gradient-to-r from-border to-transparent ml-1" />
-              <span className="text-xs text-text-secondary">Say hi 👋</span>
-            </motion.div>
+            {/* Social icons removed as requested */}
           </div>
 
           {/* ── Right column — Stats card ── */}
@@ -184,23 +157,7 @@ export function Hero() {
                   </motion.div>
                 ))}
 
-                {/* "Open to work" card spanning full width */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.58 }}
-                  className="col-span-2 card p-5 rounded-2xl flex items-center gap-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-secondary border border-border flex items-center justify-center shrink-0">
-                    <span className="w-2.5 h-2.5 rounded-full bg-text-primary animate-pulse" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-text-primary">Open to Work</p>
-                    <p className="text-xs text-text-secondary mt-0.5">
-                      Frontend, Full-Stack &amp; innovative web dev roles
-                    </p>
-                  </div>
-                </motion.div>
+                {/* "Open to work" card removed as requested */}
               </div>
             </div>
           </motion.div>

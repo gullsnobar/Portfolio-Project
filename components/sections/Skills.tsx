@@ -2,49 +2,79 @@
 
 import { SectionHeader, AnimatedSection } from '@/components/shared/AnimatedText'
 
-// ── Skill data — grayscale badges ────────────────────────────────────────────
-const skillGroups = [
+/**
+ * Uses jsdelivr CDN to serve real SVG brand icons from simple-icons.
+ * CSS filter: invert(1) in dark mode flips black → white automatically.
+ */
+
+interface Skill {
+  name: string
+  slug: string  // simpleicons.org slug
+}
+
+interface SkillGroup {
+  category: string
+  skills: Skill[]
+}
+
+const skillGroups: SkillGroup[] = [
   {
     category: 'Frontend',
     skills: [
-      { name: 'React.js',    icon: '⚛' },
-      { name: 'Next.js',     icon: 'N' },
-      { name: 'JavaScript',  icon: 'JS' },
-      { name: 'TypeScript',  icon: 'TS' },
-      { name: 'HTML5',       icon: '⌗' },
-      { name: 'CSS3',        icon: '✦' },
-      { name: 'Tailwind',    icon: '~' },
-      { name: 'Material UI', icon: 'M' },
+      { name: 'React',        slug: 'react' },
+      { name: 'Next.js',      slug: 'nextdotjs' },
+      { name: 'JavaScript',   slug: 'javascript' },
+      { name: 'TypeScript',   slug: 'typescript' },
+      { name: 'HTML5',        slug: 'html5' },
+      { name: 'CSS3',         slug: 'css3' },
+      { name: 'Tailwind',     slug: 'tailwindcss' },
+      { name: 'Material UI',  slug: 'mui' },
     ],
   },
   {
-    category: 'Backend',
+    category: 'Backend & Database',
     skills: [
-      { name: 'Node.js',     icon: '⬡' },
-      { name: 'Express.js',  icon: 'Ex' },
-      { name: 'MongoDB',     icon: '🍃' },
-      { name: 'REST APIs',   icon: '⇌' },
+      { name: 'Node.js',      slug: 'nodedotjs' },
+      { name: 'Express',      slug: 'express' },
+      { name: 'GraphQL',      slug: 'graphql' },
+      { name: 'REST APIs',    slug: 'openapiinitiative' },
+      { name: 'PostgreSQL',   slug: 'postgresql' },
+      { name: 'MongoDB',      slug: 'mongodb' },
+      { name: 'Supabase',     slug: 'supabase' },
+      { name: 'Firebase',     slug: 'firebase' },
     ],
   },
   {
-    category: 'Tools & DevOps',
+    category: 'Tools & Deployment',
     skills: [
-      { name: 'Git',         icon: '⌥' },
-      { name: 'GitHub',      icon: 'GH' },
-      { name: 'Docker',      icon: '🐳' },
-      { name: 'VS Code',     icon: '{ }' },
-      { name: 'Postman',     icon: 'PM' },
-    ],
-  },
-  {
-    category: 'Exploring',
-    skills: [
-      { name: 'AI / LLMs',   icon: '🤖' },
-      { name: 'Supabase',    icon: 'SB' },
-      { name: 'Web Perf',    icon: '⚡' },
+      { name: 'Git',          slug: 'git' },
+      { name: 'GitHub',       slug: 'github' },
+      { name: 'Docker',       slug: 'docker' },
+      { name: 'VS Code',      slug: 'visualstudiocode' },
+      { name: 'Postman',      slug: 'postman' },
+      { name: 'Vercel',       slug: 'vercel' },
+      { name: 'Netlify',      slug: 'netlify' },
+      { name: 'OpenAI',       slug: 'openai' },
     ],
   },
 ]
+
+function TechIcon({ slug, name }: { slug: string; name: string }) {
+  return (
+    // Icon is always served black from CDN.
+    // dark:invert        → white on dark bg (normal state)
+    // group-hover:invert → white on black hover bg (light mode hover)
+    // dark:group-hover:invert-0 → black on white hover bg (dark mode hover)
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${slug}.svg`}
+      alt={name}
+      width={22}
+      height={22}
+      className="w-[22px] h-[22px] object-contain transition-all duration-200 dark:invert group-hover:invert dark:group-hover:invert-0"
+    />
+  )
+}
 
 export function Skills() {
   return (
@@ -53,7 +83,7 @@ export function Skills() {
         <SectionHeader
           tag="Skills"
           title="Tools of the trade."
-          subtitle="Technologies I work with daily, and a few I'm actively exploring."
+          subtitle="Technologies I work with daily to build scalable web applications."
         />
 
         <div className="space-y-10">
@@ -68,20 +98,17 @@ export function Skills() {
                 <div className="flex-1 h-px bg-border" />
               </div>
 
-              {/* Skill badges grid */}
+              {/* Skill badges */}
               <div className="flex flex-wrap gap-3">
-                {group.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="skill-badge group"
-                  >
-                    {/* Icon */}
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold bg-secondary border border-border text-text-primary">
-                      {skill.icon}
+                {group.skills.map(({ name, slug }) => (
+                  <div key={name} className="skill-badge group">
+                    {/* Icon container — bg inverts on hover */}
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary border border-border group-hover:bg-text-primary transition-all duration-200">
+                      <TechIcon slug={slug} name={name} />
                     </div>
                     {/* Label */}
                     <span className="text-xs text-text-secondary group-hover:text-text-primary font-medium transition-colors text-center leading-tight max-w-[5rem]">
-                      {skill.name}
+                      {name}
                     </span>
                   </div>
                 ))}
@@ -89,22 +116,6 @@ export function Skills() {
             </AnimatedSection>
           ))}
         </div>
-
-        {/* Bottom "always learning" bar */}
-        <AnimatedSection delay={0.4} className="mt-14">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl border border-dashed border-border bg-surface">
-            <div>
-              <p className="font-display font-semibold text-text-primary">Always learning.</p>
-              <p className="text-text-secondary text-sm mt-0.5">
-                Currently exploring AI integration, performance optimisation, and modern web patterns.
-              </p>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border shrink-0">
-              <span className="w-2 h-2 rounded-full bg-text-primary animate-pulse" />
-              <span className="text-text-primary text-sm font-medium">In Progress</span>
-            </div>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   )

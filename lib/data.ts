@@ -85,7 +85,18 @@ export const experience: ExperienceItem[] = [
       'Built and maintained the Project Hub System (a company product) using Next.js.',
     ],
   },
-
+  {
+    id: '3',
+    role: 'Front-End Web Development Intern',
+    company: 'Elevo',
+    type: 'Internship',
+    period: 'September 2025',
+    location: 'Remote',
+    description: [
+      'Worked on real-world projects and strengthened skills in HTML, CSS, JavaScript, and React.js.',
+      'Enhanced my ability to build responsive, user-friendly applications and apply modern front-end practices in practical scenarios.',
+    ],
+  },
 ]
 
 export const education: EducationItem[] = [
@@ -101,7 +112,12 @@ export const education: EducationItem[] = [
   },
 ]
 
-export const certifications = ['Web Development Bootcamp']
+export const certifications = [
+  'Web Development Bootcamp',
+  'Frontend Web Development',
+  'Soft Skills Development Course',
+  'Generative AI Application Developer Certificate',
+]
 
 export const languages = [
   { name: 'Urdu', level: 'Native' },

@@ -26,13 +26,13 @@ export default function HomePage() {
       <Experience />
 
       {/* Projects preview */}
-      <section id="projects" className="py-24 sm:py-32">
+      <section id="projects" className="pt-12 sm:pt-16 pb-12 sm:pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <SectionHeader
               tag="Projects"
               title="Things I've built."
-              subtitle="A selection of projects — from full-stack apps to APIs."
+              subtitle="A selection of projects from full-stack apps to APIs."
               className="mb-0"
             />
             <Link

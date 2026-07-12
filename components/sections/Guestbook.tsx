@@ -79,7 +79,7 @@ export function Guestbook() {
             Leave a mark.
           </h1>
           <p className="text-text-secondary leading-relaxed">
-            Sign the guestbook — say hello, drop feedback, or just leave your name.
+            Sign the guestbook, say hello, drop feedback, or just leave your name.
           </p>
         </div>
 
