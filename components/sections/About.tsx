@@ -11,27 +11,25 @@ export function About() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader
           tag="About Me"
-          title="Passion meets precision."
-          subtitle="From frontend interfaces to backend APIs, I build the full picture."
+          title="From idea to deployed product."
+          subtitle="Full-Stack MERN Developer building real, scalable applications with clean architecture and AI-powered workflows."
         />
 
         <div className="space-y-12">
           {/* Bio */}
           <AnimatedSection className="max-w-3xl space-y-5" delay={0.1}>
             <div className="space-y-4">
-              {personalInfo.bio.split('. ').reduce((acc: string[][], sentence, i, arr) => {
-                const groupIndex = Math.floor(i / 2)
-                if (!acc[groupIndex]) acc[groupIndex] = []
-                acc[groupIndex].push(sentence + (i < arr.length - 1 ? '.' : ''))
-                return acc
-              }, []).map((group, i) => (
-                <p
-                  key={i}
-                  className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]"
-                >
-                  {group.join(' ')}
-                </p>
-              ))}
+              <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
+                I'm Gull Snobar, a Computer Science graduate from University of Education, Lahore, specializing in full-stack development with React.js, Next.js, Node.js, Express.js, and MongoDB. I don't just write code, I architect systems, integrate third-party APIs, and ship products that work in production.
+              </p>
+
+              <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
+                In the past year, I completed a software engineering internship, a 6-month MERN fellowship, built an AI-powered mobile health app as my Final Year Project, and independently shipped a multivendor e-commerce platform with real-time chat and payment integration. I also use Claude, Cursor, and GitHub Copilot daily, not as a shortcut, but as a force multiplier that lets me ship faster without sacrificing quality.
+              </p>
+
+              <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
+                Currently focused on full-stack web and mobile development, system design, and building AI-integrated applications. Open to full-time roles and serious opportunities in Lahore.
+              </p>
             </div>
           </AnimatedSection>
 
