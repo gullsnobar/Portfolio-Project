@@ -8,6 +8,7 @@ export interface Project {
   live_url?: string | null
   repo_url?: string | null
   featured: boolean
+  company?: string
   created_at: string
 }
 
