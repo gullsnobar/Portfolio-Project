@@ -141,19 +141,7 @@ export const featuredProjects = [
     company: 'Xpert Prime',
     created_at: new Date().toISOString(),
   },
-  {
-    id: '2',
-    title: 'MERN E-Commerce API',
-    slug: 'mern-ecommerce-api',
-    description:
-      'A scalable RESTful API for an e-commerce platform. Implements JWT authentication, product catalog, cart management, and order processing with MongoDB and Express.',
-    tech_stack: ['Node.js', 'Express', 'MongoDB', 'JWT', 'REST API'],
-    image_url: '/projects/ecommerce-api.png',
-    live_url: null as string | null,
-    repo_url: null as string | null,
-    featured: true,
-    created_at: new Date().toISOString(),
-  },
+
   {
     id: '4',
     title: 'MultiVendor E-Commerce Platform (MERN Stack)',

@@ -88,8 +88,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-text-secondary leading-relaxed mb-2 max-w-lg text-base sm:text-[1.05rem]"
             >
-              Building fast, reliable, and scalable web applications from server to client.
-              Passionate about clean code, great UX, and shipping products that matter.
+              Full-Stack MERN Developer building real, scalable applications with clean architecture and AI-powered workflows.
             </motion.p>
 
             {/* Location */}

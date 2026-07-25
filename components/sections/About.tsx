@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 export function About() {
   return (
-    <section id="about" className="py-24 sm:py-32">
+    <section id="about" className="pt-12 sm:pt-16 pb-12 sm:pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader
           tag="About Me"
@@ -20,15 +20,19 @@ export function About() {
           <AnimatedSection className="max-w-3xl space-y-5" delay={0.1}>
             <div className="space-y-4">
               <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
-                I'm Gull Snobar, a Computer Science graduate from University of Education, Lahore, specializing in full-stack development with React.js, Next.js, Node.js, Express.js, and MongoDB. I don't just write code, I architect systems, integrate third-party APIs, and ship products that work in production.
+                I&apos;m Gull Snobar, a Computer Science graduate from Lahore who loves turning ideas into working products.
               </p>
 
               <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
-                In the past year, I completed a software engineering internship, a 6-month MERN fellowship, built an AI-powered mobile health app as my Final Year Project, and independently shipped a multivendor e-commerce platform with real-time chat and payment integration. I also use Claude, Cursor, and GitHub Copilot daily, not as a shortcut, but as a force multiplier that lets me ship faster without sacrificing quality.
+                I build with React.js, Next.js, Node.js, Express.js, and MongoDB. I don&apos;t just write code, I think about structure, plan the system first, then build it properly. I&apos;ve worked on a real company product, built an AI-powered mobile health app for my Final Year Project, and independently shipped a full multivendor marketplace with real-time chat and payment integration.
               </p>
 
               <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
-                Currently focused on full-stack web and mobile development, system design, and building AI-integrated applications. Open to full-time roles and serious opportunities in Lahore.
+                I use Claude and Cursor as daily tools, not to avoid thinking, but to move faster while keeping the code clean and maintainable.
+              </p>
+
+              <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
+                Currently open to full-time roles in Lahore where I can build real things, grow fast, and actually make a difference.
               </p>
             </div>
           </AnimatedSection>

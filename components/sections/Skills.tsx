@@ -78,7 +78,7 @@ function TechIcon({ slug, name }: { slug: string; name: string }) {
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 sm:py-32">
+    <section id="skills" className="pt-12 sm:pt-16 pb-12 sm:pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader
           tag="Skills"
