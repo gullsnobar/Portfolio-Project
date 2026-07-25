@@ -78,13 +78,6 @@ export function ContactForm() {
     <section id="contact" className="pt-12 sm:pt-16 pb-24 sm:pb-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-        {/* Available chip */}
-        <AnimatedSection className="mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary text-text-secondary text-sm font-medium">
-            <span className="w-2 h-2 rounded-full bg-text-primary animate-pulse" />
-            Available for new projects &amp; roles
-          </div>
-        </AnimatedSection>
 
         <SectionHeader
           tag="Contact"

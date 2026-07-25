@@ -134,7 +134,7 @@ export const featuredProjects = [
     description:
       'A company-internal project management platform built with Next.js and Node.js. Features task tracking, role-based access control, and a clean dashboard for project lifecycle management.',
     tech_stack: ['Next.js', 'Node.js', 'Express', 'TypeScript', 'MongoDB'],
-    image_url: null as string | null,
+    image_url: '/projects/project-hub.png',
     live_url: null as string | null,
     repo_url: null as string | null,
     featured: true,
@@ -148,20 +148,7 @@ export const featuredProjects = [
     description:
       'A scalable RESTful API for an e-commerce platform. Implements JWT authentication, product catalog, cart management, and order processing with MongoDB and Express.',
     tech_stack: ['Node.js', 'Express', 'MongoDB', 'JWT', 'REST API'],
-    image_url: null as string | null,
-    live_url: null as string | null,
-    repo_url: null as string | null,
-    featured: true,
-    created_at: new Date().toISOString(),
-  },
-  {
-    id: '3',
-    title: 'React Dashboard UI',
-    slug: 'react-dashboard-ui',
-    description:
-      'A responsive analytics dashboard built with React.js and Tailwind CSS. Features dark/light mode, interactive charts, and a component library built from scratch.',
-    tech_stack: ['React.js', 'Tailwind CSS', 'JavaScript', 'CSS3'],
-    image_url: null as string | null,
+    image_url: '/projects/ecommerce-api.png',
     live_url: null as string | null,
     repo_url: null as string | null,
     featured: true,
@@ -183,7 +170,7 @@ export const featuredProjects = [
       'Socket.IO',
       'Tailwind CSS'
     ],
-    image_url: null as string | null,
+    image_url: '/projects/multivendor-shop.png',
     live_url: null as string | null,
     repo_url: 'https://github.com/gullsnobar/Multivendor-Project',
     featured: true,
@@ -204,7 +191,7 @@ export const featuredProjects = [
       'MongoDB',
       'Tailwind CSS'
     ],
-    image_url: null as string | null,
+    image_url: '/projects/lms-dashboard.png',
     live_url: null as string | null,
     repo_url: 'https://github.com/gullsnobar/LMS-Project',
     featured: true,
@@ -226,9 +213,45 @@ export const featuredProjects = [
       'Google Fit API',
       'JWT Auth'
     ],
-    image_url: null as string | null,
+    image_url: '/projects/healio-app.png',
     live_url: null as string | null,
     repo_url: 'https://github.com/gullsnobar/Healio',
+    featured: true,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '7',
+    title: 'Edusity – Responsive LMS Website',
+    slug: 'edusity-lms-website',
+    description:
+      'A fully responsive front-end landing page for an educational platform built with React.js and Tailwind CSS. It features a modern hero section, program offerings, video modal, campus gallery, student testimonials, and a comprehensive contact form.',
+    tech_stack: [
+      'React.js',
+      'Tailwind CSS',
+      'HTML5',
+      'JavaScript'
+    ],
+    image_url: '/projects/edusity-website.png',
+    live_url: null as string | null,
+    repo_url: 'https://github.com/gullsnobar/LMS-Website',
+    featured: true,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '8',
+    title: 'QuickShop – Ecommerce Website',
+    slug: 'quickshop-ecommerce',
+    description:
+      'A modern E-commerce website built with React.js. It features robust React state management for seamless shopping experiences and prioritizes an intuitive UI/UX design.',
+    tech_stack: [
+      'React.js',
+      'State Management',
+      'UI/UX',
+      'JavaScript'
+    ],
+    image_url: '/projects/quickshop-ecommerce.png',
+    live_url: null as string | null,
+    repo_url: 'https://github.com/gullsnobar/QuickShop',
     featured: true,
     created_at: new Date().toISOString(),
   },

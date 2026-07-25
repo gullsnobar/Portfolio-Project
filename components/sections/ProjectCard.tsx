@@ -20,21 +20,25 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     >
       <div
         className={cn(
-          'h-full flex flex-col rounded-2xl overflow-hidden',
-          'bg-surface border border-border',
-          'hover:border-text-primary/25 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/5',
-          'transition-all duration-300'
+          'h-full flex flex-col rounded-2xl overflow-hidden relative',
+          'bg-surface border border-border/50',
+          'hover:border-text-primary/40 hover:shadow-2xl hover:shadow-black/20 dark:hover:shadow-white/10',
+          'transition-all duration-500 ease-out z-10 hover:z-20'
         )}
       >
         {/* ── Image / Placeholder Header ── */}
-        <div className="relative h-44 overflow-hidden">
+        <div className="relative h-52 overflow-hidden">
           {project.image_url ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={project.image_url}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.image_url}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+              {/* Dark overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            </>
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-secondary">
               {/* Large icon */}
@@ -51,14 +55,9 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-wrap gap-2">
             {project.featured && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-text-primary text-background">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-text-primary text-background shadow-md">
                 <Star className="w-2.5 h-2.5 fill-background" />
                 Featured
-              </span>
-            )}
-            {project.company && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 backdrop-blur-md">
-                🏢 Company Project
               </span>
             )}
           </div>
