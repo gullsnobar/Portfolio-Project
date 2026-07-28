@@ -6,15 +6,15 @@
   --radius: 0.75rem;
 }
 
-/* ─── Light Mode (default) ─────────────────────────────── */
+/* ─── Light Mode ──────────────────────────────────────── */
 :root:not(.dark) {
-  --background:         0   0% 100%;   /* pure white    */
-  --surface:            0   0% 97%;    /* off-white     */
-  --border:             0   0% 88%;    /* light gray    */
-  --text-primary:       0   0%  5%;    /* near black    */
-  --text-secondary:     0   0% 40%;    /* mid gray      */
-  --accent:             0   0%  0%;    /* pure black    */
-  --accent-foreground:  0   0% 100%;   /* white         */
+  --background:         0   0% 100%;
+  --surface:            0   0% 97%;
+  --border:             0   0% 88%;
+  --text-primary:       0   0%  5%;
+  --text-secondary:     0   0% 40%;
+  --accent:             0   0%  0%;
+  --accent-foreground:  0   0% 100%;
   --card:               0   0% 100%;
   --card-foreground:    0   0%  5%;
   --popover:            0   0% 100%;
@@ -31,15 +31,15 @@
   --ring:               0   0%  0%;
 }
 
-/* ─── Dark Mode ────────────────────────────────────────── */
+/* ─── Dark Mode ───────────────────────────────────────── */
 .dark {
-  --background:         0  0%  4%;    /* near black    */
-  --surface:            0  0%  8%;    /* dark gray     */
-  --border:             0  0% 16%;    /* subtle line   */
-  --text-primary:       0  0% 98%;    /* near white    */
-  --text-secondary:     0  0% 55%;    /* mid gray      */
-  --accent:             0  0% 100%;   /* pure white    */
-  --accent-foreground:  0  0%   0%;   /* black         */
+  --background:         0  0%  4%;
+  --surface:            0  0%  8%;
+  --border:             0  0% 16%;
+  --text-primary:       0  0% 98%;
+  --text-secondary:     0  0% 55%;
+  --accent:             0  0% 100%;
+  --accent-foreground:  0  0%   0%;
   --card:               0  0%  8%;
   --card-foreground:    0  0% 98%;
   --popover:            0  0%  8%;
@@ -56,7 +56,7 @@
   --ring:               0  0% 100%;
 }
 
-/* ─── Base resets ──────────────────────────────────────── */
+/* ─── Base resets ─────────────────────────────────────── */
 * {
   border-color: hsl(var(--border));
   box-sizing: border-box;
@@ -79,7 +79,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ─── Scrollbar ────────────────────────────────────────── */
+/* ─── Scrollbar ───────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: hsl(var(--background)); }
 ::-webkit-scrollbar-thumb {
@@ -88,13 +88,13 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover { background: hsl(var(--text-secondary)); }
 
-/* ─── Selection ────────────────────────────────────────── */
+/* ─── Selection ───────────────────────────────────────── */
 ::selection {
-  background: hsl(var(--text-primary) / 0.12);
+  background: rgba(16, 185, 129, 0.15);
   color: hsl(var(--text-primary));
 }
 
-/* ─── Gradient text — black/white only ─────────────────── */
+/* ─── Gradient text — monochrome ──────────────────────── */
 .gradient-text {
   background: linear-gradient(135deg, hsl(var(--text-primary)) 0%, hsl(var(--text-secondary)) 100%);
   -webkit-background-clip: text;
@@ -102,66 +102,169 @@ body {
   background-clip: text;
 }
 
-/* ─── Hero glow — neutral only ──────────────────────────── */
+/* ─── Gradient text — emerald signature ───────────────── */
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 60%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shimmer animation ───────────────────────────────── */
+@keyframes shimmer-badge {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer-badge {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 30%, #6ee7b7 50%, #34d399 70%, #10b981 100%);
+  background-size: 200% auto;
+  animation: shimmer-badge 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Float animations ────────────────────────────────── */
+@keyframes float-a {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translateY(0px) rotate(1deg); }
+  50%       { transform: translateY(-14px) rotate(-1deg); }
+}
+@keyframes float-c {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.float-a { animation: float-a 5s ease-in-out infinite; }
+.float-b { animation: float-b 7s ease-in-out infinite 0.8s; }
+.float-c { animation: float-c 6s ease-in-out infinite 1.5s; }
+.float-d { animation: float-a 8s ease-in-out infinite 2s; }
+
+/* ─── Hero glow — emerald tint ────────────────────────── */
 .hero-glow {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 55% at 65% 15%, hsl(var(--text-primary) / 0.03) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 35% at 15% 80%, hsl(var(--text-primary) / 0.02) 0%, transparent 70%);
+    radial-gradient(ellipse 65% 50% at 68% 18%, rgba(16,185,129,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 12% 82%, hsl(var(--text-primary) / 0.02) 0%, transparent 70%);
 }
 .dark .hero-glow {
   background:
-    radial-gradient(ellipse 70% 55% at 65% 15%, hsl(var(--text-primary) / 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 35% at 15% 80%, hsl(var(--text-primary) / 0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 65% 50% at 68% 18%, rgba(16,185,129,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 12% 82%, hsl(var(--text-primary) / 0.04) 0%, transparent 70%);
 }
 
-/* ─── Subtle grid ───────────────────────────────────────── */
+/* ─── Subtle grid ─────────────────────────────────────── */
 .grid-bg {
   background-image:
-    linear-gradient(hsl(var(--text-primary) / 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--text-primary) / 0.03) 1px, transparent 1px);
+    linear-gradient(hsl(var(--text-primary) / 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--text-primary) / 0.025) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
-/* ─── Card ──────────────────────────────────────────────── */
+/* ─── Card ────────────────────────────────────────────── */
 .card {
   background: hsl(var(--surface));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 .card:hover {
-  box-shadow: 0 8px 28px hsl(var(--text-primary) / 0.06), 0 2px 8px hsl(var(--text-primary) / 0.04);
-  border-color: hsl(var(--text-primary) / 0.25);
+  box-shadow: 0 8px 32px hsl(var(--text-primary) / 0.07), 0 2px 8px hsl(var(--text-primary) / 0.04);
+  border-color: hsl(var(--text-primary) / 0.20);
 }
 .dark .card:hover {
-  box-shadow: 0 8px 28px rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.40);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.40), 0 2px 8px rgba(0,0,0,0.20);
+  border-color: hsl(var(--text-primary) / 0.15);
 }
 
-/* ─── Skill badge ───────────────────────────────────────── */
+/* ─── Card with emerald hover glow ───────────────────── */
+.card-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 8px 32px rgba(16,185,129,0.10), 0 2px 8px hsl(var(--text-primary) / 0.04) !important;
+}
+.dark .card-emerald:hover {
+  border-color: rgba(52, 211, 153, 0.30) !important;
+  box-shadow: 0 8px 32px rgba(52,211,153,0.12), 0 2px 8px rgba(0,0,0,0.30) !important;
+}
+
+/* ─── Skill badge ─────────────────────────────────────── */
 .skill-badge {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.875rem 0.875rem;
+  padding: 0.875rem;
   border-radius: 0.875rem;
   background: hsl(var(--surface));
   border: 1px solid hsl(var(--border));
   cursor: default;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   min-width: 4.5rem;
 }
 .skill-badge:hover {
-  border-color: hsl(var(--text-primary) / 0.4);
-  background: hsl(var(--text-primary) / 0.04);
+  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(16, 185, 129, 0.04);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px hsl(var(--text-primary) / 0.08);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.12);
+}
+.dark .skill-badge:hover {
+  border-color: rgba(52, 211, 153, 0.40);
+  background: rgba(52, 211, 153, 0.07);
+  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.15);
 }
 
-/* ─── Glow ──────────────────────────────────────────────── */
+/* ─── Timeline dot animation ──────────────────────────── */
+@keyframes timeline-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+.timeline-dot-active {
+  animation: timeline-pulse 2.2s ease-in-out infinite;
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+/* ─── Section divider ─────────────────────────────────── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, hsl(var(--border)), transparent);
+}
+
+/* ─── Primary button ──────────────────────────────────── */
+.btn-primary {
+  background: hsl(var(--text-primary));
+  color: hsl(var(--background));
+}
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+/* ─── Emerald button ──────────────────────────────────── */
+.btn-emerald {
+  background: #10b981;
+  color: white;
+  transition: all 0.2s ease;
+}
+.btn-emerald:hover {
+  background: #059669;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ─── Glow utilities ──────────────────────────────────── */
 .glow {
   box-shadow: 0 0 24px hsl(var(--text-primary) / 0.15);
 }
@@ -169,28 +272,9 @@ body {
   box-shadow: 0 0 36px hsl(var(--text-primary) / 0.20);
   transition: box-shadow 0.3s ease;
 }
-
-/* ─── Timeline dot animation ─────────────────────────────── */
-@keyframes timeline-pulse {
-  0%, 100% { transform: scale(1);   opacity: 1;   }
-  50%       { transform: scale(1.5); opacity: 0.6; }
+.glow-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.20);
 }
-.timeline-dot-active {
-  animation: timeline-pulse 2s ease-in-out infinite;
-}
-
-/* ─── Section divider ───────────────────────────────────── */
-.section-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, hsl(var(--border)), transparent);
-}
-
-/* ─── Black/white button ────────────────────────────────── */
-.btn-primary {
-  background: hsl(var(--text-primary));
-  color: hsl(var(--background));
-}
-.btn-primary:hover {
-  opacity: 0.88;
+.dark .glow-emerald {
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.25);
 }

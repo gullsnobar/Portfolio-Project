@@ -9,21 +9,41 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { personalInfo } from '@/lib/data'
 
 const navLinks = [
-  { href: '/#about', label: 'About' },
-  { href: '/#skills', label: 'Skills' },
-  { href: '/#experience', label: 'Experience' },
-  { href: '/#projects', label: 'Projects' },
-  { href: '/guestbook', label: 'Guestbook' },
+  { href: '/#about',      label: 'About',      section: 'about'      },
+  { href: '/#skills',     label: 'Skills',     section: 'skills'     },
+  { href: '/#experience', label: 'Experience', section: 'experience' },
+  { href: '/#projects',   label: 'Projects',   section: 'projects'   },
+  { href: '/guestbook',   label: 'Guestbook',  section: 'guestbook'  },
 ]
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  /* Active-section detection via IntersectionObserver */
+  useEffect(() => {
+    const sectionIds = navLinks.map((l) => l.section).filter((s) => s !== 'guestbook')
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id) },
+        { rootMargin: '-40% 0px -50% 0px' }
+      )
+      obs.observe(el)
+      observers.push(obs)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
   }, [])
 
   return (
@@ -39,27 +59,43 @@ export function Navbar() {
       )}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+
         {/* Logo */}
         <Link href="/" className="flex items-center group gap-1.5">
-          <span className="w-7 h-7 rounded-lg bg-text-primary flex items-center justify-center text-background text-xs font-bold">
+          <span className="w-7 h-7 rounded-lg bg-emerald-500 flex items-center justify-center text-white text-xs font-bold shadow-md shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-shadow duration-300">
             G
           </span>
           <span className="font-display font-semibold text-sm text-text-primary group-hover:text-text-secondary transition-colors">
-            Gull<span className="text-text-secondary">.</span>dev
+            Gull<span className="text-emerald-500">.</span>dev
           </span>
         </Link>
 
-        {/* Desktop Nav — pill links */}
-        <div className="hidden md:flex items-center gap-1 p-1 rounded-full bg-surface border border-border">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 text-text-secondary hover:text-text-primary hover:bg-background"
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* Desktop nav — pill container */}
+        <div className="hidden md:flex items-center gap-0.5 p-1 rounded-full bg-surface border border-border">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.section
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  'relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200',
+                  isActive
+                    ? 'text-text-primary bg-background shadow-sm'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-background/60'
+                )}
+              >
+                {link.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-indicator"
+                    className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-500"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </Link>
+            )
+          })}
         </div>
 
         {/* Actions */}
@@ -69,7 +105,8 @@ export function Navbar() {
             href={`mailto:${personalInfo.email}`}
             className={cn(
               'hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold',
-              'bg-text-primary text-background transition-all duration-200 hover:opacity-85 hover:scale-[1.04] hover:shadow-lg'
+              'bg-emerald-500 text-white shadow-md shadow-emerald-500/25',
+              'hover:bg-emerald-600 hover:shadow-emerald-500/40 hover:scale-[1.04] transition-all duration-200'
             )}
           >
             Hire Me ✦
@@ -78,7 +115,7 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-border bg-surface hover:border-text-primary transition-colors"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-border bg-surface hover:border-emerald-500/40 transition-colors"
             aria-label="Toggle mobile menu"
           >
             {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -86,7 +123,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -107,7 +144,12 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-3 rounded-xl text-sm text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
+                    className={cn(
+                      'block px-4 py-3 rounded-xl text-sm transition-all',
+                      activeSection === link.section
+                        ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 font-medium'
+                        : 'text-text-secondary hover:text-text-primary hover:bg-surface'
+                    )}
                   >
                     {link.label}
                   </Link>
@@ -115,7 +157,7 @@ export function Navbar() {
               ))}
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-text-primary text-background font-medium text-sm hover:opacity-90 transition-opacity"
+                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-600 transition-colors shadow-md shadow-emerald-500/25"
               >
                 Hire Me ✦
               </Link>
