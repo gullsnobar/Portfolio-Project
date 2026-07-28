@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { guestbookSchema } from '@/lib/validations'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 
 export async function GET() {
   try {
+    const supabase = getSupabaseClient()
+    if (!supabase) return NextResponse.json({ entries: [] })
+
     const { data, error } = await supabase
       .from('guestbook')
       .select('*')
@@ -19,6 +22,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    const supabase = getSupabaseClient()
+    if (!supabase) {
+      return NextResponse.json({ error: 'Service not configured' }, { status: 503 })
+    }
+
     const body = await req.json()
     const parsed = guestbookSchema.safeParse(body)
 

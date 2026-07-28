@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ProjectCard } from '@/components/sections/ProjectCard'
 import { SectionHeader } from '@/components/shared/AnimatedText'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 import { featuredProjects } from '@/lib/data'
 import type { Project } from '@/types'
 
@@ -15,6 +15,9 @@ export const revalidate = 60 // ISR: revalidate every 60 seconds
 
 async function getProjects(): Promise<Project[]> {
   try {
+    const supabase = getSupabaseClient()
+    if (!supabase) return featuredProjects as Project[]
+
     const { data, error } = await supabase
       .from('projects')
       .select('*')

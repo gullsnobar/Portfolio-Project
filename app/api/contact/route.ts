@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { contactSchema } from '@/lib/validations'
 import { sendContactEmail } from '@/lib/email'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,11 +17,14 @@ export async function POST(req: NextRequest) {
 
     const { name, email, message } = parsed.data
 
-    // Store in Supabase (non-blocking if not configured)
+    // Store in Supabase only if configured
     try {
-      await supabase.from('messages').insert([{ name, email, message }])
+      const supabase = getSupabaseClient()
+      if (supabase) {
+        await supabase.from('messages').insert([{ name, email, message }])
+      }
     } catch {
-      // Supabase not configured — skip
+      // Supabase not configured or failed — skip silently
     }
 
     // Send email via Resend

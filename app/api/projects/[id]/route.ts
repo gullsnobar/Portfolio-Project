@@ -26,6 +26,8 @@ export async function PATCH(
     }
 
     const supabase = createServerSupabaseClient()
+    if (!supabase) return NextResponse.json({ error: 'Service not configured' }, { status: 503 })
+
     const { data, error } = await supabase
       .from('projects')
       .update(parsed.data)
@@ -51,6 +53,8 @@ export async function DELETE(
 
   try {
     const supabase = createServerSupabaseClient()
+    if (!supabase) return NextResponse.json({ error: 'Service not configured' }, { status: 503 })
+
     const { error } = await supabase.from('projects').delete().eq('id', params.id)
 
     if (error) throw error

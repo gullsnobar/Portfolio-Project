@@ -12,6 +12,8 @@ function isAdmin(): boolean {
 export async function GET() {
   try {
     const supabase = createServerSupabaseClient()
+    if (!supabase) return NextResponse.json({ projects: [] })
+
     const { data, error } = await supabase
       .from('projects')
       .select('*')
@@ -38,6 +40,8 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = createServerSupabaseClient()
+    if (!supabase) return NextResponse.json({ error: 'Service not configured' }, { status: 503 })
+
     const { data, error } = await supabase
       .from('projects')
       .insert([parsed.data])
