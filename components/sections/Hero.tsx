@@ -64,11 +64,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-7 tracking-wide"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-text-primary/30 bg-text-primary/5 text-text-primary text-xs font-semibold mb-7 tracking-wide"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-text-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-text-primary" />
               </span>
               Available for opportunities · Lahore, Pakistan
             </motion.div>
@@ -97,7 +97,7 @@ export function Hero() {
                 >
                   {ROTATING_TITLES[titleIndex]}
                   <span
-                    className="ml-0.5 text-emerald-500 transition-opacity duration-75"
+                    className="ml-0.5 text-text-primary transition-opacity duration-75"
                     style={{ opacity: cursor ? 1 : 0 }}
                   >|</span>
                 </motion.p>
@@ -132,7 +132,7 @@ export function Hero() {
                 href={personalInfo.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border border-border bg-surface text-text-primary hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all duration-200 hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border border-border bg-surface text-text-primary hover:border-text-primary/40 hover:bg-text-primary/5 transition-all duration-200 hover:scale-[1.03]"
               >
                 <Download className="w-4 h-4" />
                 Download CV
@@ -153,7 +153,7 @@ export function Hero() {
                   target={external ? '_blank' : undefined}
                   rel={external ? 'noopener noreferrer' : undefined}
                   aria-label={label}
-                  className="w-9 h-9 rounded-xl border border-border bg-surface flex items-center justify-center text-text-secondary hover:border-emerald-500/40 hover:text-emerald-500 hover:bg-emerald-500/5 transition-all duration-200"
+                  className="w-9 h-9 rounded-xl border border-border bg-surface flex items-center justify-center text-text-secondary hover:border-text-primary/40 hover:text-text-primary hover:bg-text-primary/5 transition-all duration-200"
                 >
                   <Icon className="w-4 h-4" />
                 </Link>
@@ -181,7 +181,7 @@ export function Hero() {
                   className="card card-emerald p-6 rounded-2xl relative overflow-hidden cursor-default"
                 >
                   {/* subtle corner tint */}
-                  <div className="absolute top-0 right-0 w-16 h-16 rounded-bl-3xl bg-gradient-to-bl from-emerald-500/10 to-transparent pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-16 h-16 rounded-bl-3xl bg-gradient-to-bl from-text-primary/10 to-transparent pointer-events-none" />
                   <p className="font-display text-4xl font-bold gradient-text-emerald mb-1">
                     {stat.value}
                   </p>
@@ -198,14 +198,14 @@ export function Hero() {
               className="card card-emerald p-4 rounded-2xl flex items-center gap-3"
             >
               <div className="relative flex h-2.5 w-2.5 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-text-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-text-primary">Open to full-time roles</p>
                 <p className="text-xs text-text-secondary truncate">Ready to join · Lahore or Remote</p>
               </div>
-              <span className="shrink-0 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider">
+              <span className="shrink-0 px-2.5 py-1 rounded-full bg-text-primary/10 border border-text-primary/25 text-text-primary text-[10px] font-bold uppercase tracking-wider">
                 Now
               </span>
             </motion.div>

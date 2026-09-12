@@ -4,7 +4,7 @@ import { About } from '@/components/sections/About'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Learn about Gull Snobar — a full-stack developer from Lahore, Pakistan building fast, scalable web applications with React, Next.js, Node.js and MongoDB.',
+    'Gull Snobar, full-stack software engineer in Lahore. Builds production web apps end-to-end with React, TypeScript, AdonisJS, PostgreSQL, and Docker. Shipped AI SaaS platforms and enterprise quote systems.',
 }
 
 export default function AboutPage() {

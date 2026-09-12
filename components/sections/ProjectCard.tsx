@@ -21,23 +21,23 @@ function getInitials(title: string): string {
     .join('')
 }
 
-/** Gradient sets for placeholder headers — cycles by index */
+/** Gradient sets for placeholder headers: monochrome, cycles by index */
 const GRADIENTS = [
-  'from-emerald-500/20 via-emerald-500/5 to-transparent',
-  'from-sky-500/20     via-sky-500/5     to-transparent',
-  'from-violet-500/20  via-violet-500/5  to-transparent',
-  'from-amber-500/20   via-amber-500/5   to-transparent',
-  'from-rose-500/20    via-rose-500/5    to-transparent',
-  'from-cyan-500/20    via-cyan-500/5    to-transparent',
+  'from-text-primary/10 via-text-primary/5 to-transparent',
+  'from-text-primary/8  via-text-primary/3 to-transparent',
+  'from-text-primary/12 via-text-primary/4 to-transparent',
+  'from-text-primary/6  via-text-primary/2 to-transparent',
+  'from-text-primary/14 via-text-primary/6 to-transparent',
+  'from-text-primary/9  via-text-primary/3 to-transparent',
 ]
 
 const INITIALS_COLORS = [
-  'text-emerald-500',
-  'text-sky-500',
-  'text-violet-500',
-  'text-amber-500',
-  'text-rose-500',
-  'text-cyan-500',
+  'text-text-primary',
+  'text-text-primary',
+  'text-text-primary',
+  'text-text-primary',
+  'text-text-primary',
+  'text-text-primary',
 ]
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
@@ -54,7 +54,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         className={cn(
           'h-full flex flex-col rounded-2xl overflow-hidden relative',
           'bg-surface border border-border/60',
-          'hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/5',
+          'hover:border-text-primary/30 hover:shadow-2xl hover:shadow-text-primary/5',
           'transition-all duration-400 ease-out'
         )}
       >
@@ -95,8 +95,8 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           {/* Featured badge */}
           {project.featured && (
             <div className="absolute top-3 left-3">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500 text-white shadow-md shadow-emerald-500/30 uppercase tracking-wide">
-                <Star className="w-2.5 h-2.5 fill-white" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-text-primary text-background shadow-md shadow-text-primary/20 uppercase tracking-wide">
+                <Star className="w-2.5 h-2.5 fill-background" />
                 Featured
               </span>
             </div>
@@ -157,7 +157,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className={cn(
                   'inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-border bg-surface',
-                  'text-text-secondary hover:text-emerald-600 dark:hover:text-emerald-400 hover:border-emerald-500/40',
+                  'text-text-secondary hover:text-text-primary hover:border-text-primary/40',
                   'transition-all duration-200'
                 )}
               >

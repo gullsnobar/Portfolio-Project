@@ -8,7 +8,7 @@ import type { Project } from '@/types'
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'A full collection of projects built by Gull Snobar — full-stack web applications, APIs, and more.',
+    'A full collection of projects built by Gull Snobar: full-stack web applications, APIs, and more.',
 }
 
 export const revalidate = 60 // ISR: revalidate every 60 seconds
@@ -43,7 +43,7 @@ export default async function ProjectsPage() {
         <SectionHeader
           tag="Projects"
           title="Everything I've built."
-          subtitle="From backend APIs to full-stack applications — a complete view of my work."
+          subtitle="From backend APIs to full-stack applications, a complete view of my work."
         />
 
         {featured.length > 0 && (

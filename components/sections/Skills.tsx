@@ -19,6 +19,7 @@ const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'React',        slug: 'react'          },
       { name: 'Next.js',      slug: 'nextdotjs'      },
+      { name: 'React Native', slug: 'reactos'        },
       { name: 'JavaScript',   slug: 'javascript'     },
       { name: 'TypeScript',   slug: 'typescript'     },
       { name: 'HTML5',        slug: 'html5'          },
@@ -31,13 +32,24 @@ const skillGroups: SkillGroup[] = [
     category: 'Backend & Database',
     skills: [
       { name: 'Node.js',      slug: 'nodedotjs'          },
+      { name: 'AdonisJS',     slug: 'adonisjs'           },
       { name: 'Express',      slug: 'express'            },
-      { name: 'MongoDB',      slug: 'mongodb'            },
       { name: 'PostgreSQL',   slug: 'postgresql'         },
+      { name: 'MongoDB',      slug: 'mongodb'            },
+      { name: 'Redis',        slug: 'redis'              },
       { name: 'GraphQL',      slug: 'graphql'            },
       { name: 'Supabase',     slug: 'supabase'           },
       { name: 'Firebase',     slug: 'firebase'           },
       { name: 'REST APIs',    slug: 'openapiinitiative'  },
+    ],
+  },
+  {
+    category: 'AI & Data',
+    skills: [
+      { name: 'RAG',          slug: 'langchain'          },
+      { name: 'OpenAI',       slug: 'openai'             },
+      { name: 'AI Integration', slug: 'openai'           },
+      { name: 'Prompt Engineering', slug: 'openai'       },
     ],
   },
   {
@@ -50,7 +62,6 @@ const skillGroups: SkillGroup[] = [
       { name: 'Postman',      slug: 'postman'           },
       { name: 'Vercel',       slug: 'vercel'            },
       { name: 'Netlify',      slug: 'netlify'           },
-      { name: 'OpenAI',       slug: 'openai'            },
     ],
   },
 ]
@@ -84,8 +95,8 @@ export function Skills() {
 
               {/* Category header */}
               <div className="flex items-center gap-3 mb-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-text-primary/10 border border-text-primary/20 text-text-primary text-xs font-bold uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-text-primary" />
                   {group.category}
                 </span>
                 <div className="flex-1 h-px bg-border" />
@@ -108,28 +119,6 @@ export function Skills() {
             </AnimatedSection>
           ))}
         </div>
-
-        {/* Exploring row */}
-        <AnimatedSection delay={0.3} className="mt-12">
-          <div className="card p-5 rounded-2xl border-dashed">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary border border-dashed border-border text-text-secondary text-xs font-bold uppercase tracking-widest">
-                <span className="w-1.5 h-1.5 rounded-full bg-text-secondary/60 animate-pulse" />
-                Currently Exploring
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {['AI Integration', 'tRPC', 'Prisma ORM', 'Redis', 'React Native'].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1.5 rounded-full border border-dashed border-border text-text-secondary/80 text-xs font-medium hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </AnimatedSection>
 
       </div>
     </section>

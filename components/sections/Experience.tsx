@@ -5,7 +5,7 @@ import { experience } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import { MapPin, Briefcase, Calendar } from 'lucide-react'
 
-/** Tech tags per role — mapped by experience ID */
+/** Tech tags per role: mapped by experience ID */
 const roleTech: Record<string, string[]> = {
   '1': ['React.js', 'Node.js', 'MongoDB', 'Express', 'Git'],
   '2': ['Next.js', 'TypeScript', 'Node.js', 'Express', 'REST APIs'],
@@ -24,8 +24,8 @@ export function Experience() {
 
         <div className="relative">
 
-          {/* Vertical guide line — emerald gradient */}
-          <div className="absolute left-[1.35rem] sm:left-[1.6rem] top-2 bottom-2 w-px bg-gradient-to-b from-emerald-500/60 via-border to-transparent" />
+          {/* Vertical guide line: monochrome gradient */}
+          <div className="absolute left-[1.35rem] sm:left-[1.6rem] top-2 bottom-2 w-px bg-gradient-to-b from-text-primary/60 via-border to-transparent" />
 
           <div className="space-y-6">
             {experience.map((item, index) => (
@@ -39,7 +39,7 @@ export function Experience() {
                         'w-3 h-3 rounded-full border-2 transition-all duration-300',
                         item.current
                           ? 'timeline-dot-active'
-                          : 'bg-surface border-border hover:border-emerald-500/60'
+                          : 'bg-surface border-border hover:border-text-primary/60'
                       )}
                     />
                   </div>
@@ -49,7 +49,7 @@ export function Experience() {
                     className={cn(
                       'flex-1 card p-5 sm:p-6 rounded-2xl transition-all duration-300 mb-1',
                       item.current
-                        ? 'card-emerald border-emerald-500/20 bg-emerald-500/5'
+                        ? 'card-emerald border-text-primary/20 bg-text-primary/5'
                         : 'card-emerald'
                     )}
                   >
@@ -61,8 +61,8 @@ export function Experience() {
                             {item.role}
                           </h3>
                           {item.current && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-text-primary/10 border border-text-primary/25 text-text-primary dark:text-text-primary text-[10px] font-bold uppercase tracking-wider">
+                              <span className="w-1.5 h-1.5 rounded-full bg-text-primary animate-pulse" />
                               Now
                             </span>
                           )}
@@ -91,7 +91,7 @@ export function Experience() {
                     <ul className="space-y-2.5 mb-5">
                       {item.description.map((point, i) => (
                         <li key={i} className="flex items-start gap-3 text-text-secondary text-sm leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/50 mt-[0.45rem] shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-text-primary/50 mt-[0.45rem] shrink-0" />
                           {point}
                         </li>
                       ))}
@@ -103,7 +103,7 @@ export function Experience() {
                         {roleTech[item.id].map((tech) => (
                           <span
                             key={tech}
-                            className="px-2.5 py-1 rounded-full bg-secondary border border-border text-text-secondary text-[11px] font-medium hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
+                            className="px-2.5 py-1 rounded-full bg-secondary border border-border text-text-secondary text-[11px] font-medium hover:border-text-primary/40 hover:text-text-primary dark:hover:text-text-primary transition-colors duration-200"
                           >
                             {tech}
                           </span>

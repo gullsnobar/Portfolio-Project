@@ -8,18 +8,18 @@ import { cn } from '@/lib/utils'
 const strengths = [
   {
     icon: Layers,
-    label: 'System-first thinking',
-    desc: 'Architecture before code, always. Plan the structure, then build it right.',
+    label: 'End-to-end ownership',
+    desc: 'I build features from database schema to pixel-perfect UI. No handoffs, no gaps.',
   },
   {
     icon: Zap,
-    label: 'Full-stack ownership',
-    desc: 'From DB schema to responsive UI, complete end-to-end delivery.',
+    label: 'Production mindset',
+    desc: 'I ship software that runs in real environments: Docker, caching, migrations, monitoring.',
   },
   {
     icon: Brain,
-    label: 'AI-augmented workflow',
-    desc: 'Claude & Cursor as daily tools to move faster with cleaner code.',
+    label: 'AI as a tool, not a buzzword',
+    desc: 'Built AI SaaS with 11 tools. Integrated OpenAI, RAG pipelines, and secure key handling.',
   },
 ]
 
@@ -29,8 +29,8 @@ export function About() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader
           tag="About Me"
-          title="From idea to deployed product."
-          subtitle="CS graduate and Full-Stack MERN developer building real, scalable applications."
+          title="I build software that ships."
+          subtitle="Full-stack engineer who turns requirements into deployed products."
         />
 
         <div className="space-y-10">
@@ -39,18 +39,23 @@ export function About() {
           <AnimatedSection className="max-w-3xl space-y-4" delay={0.1}>
             <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
               I'm{' '}
-              <span className="text-text-primary font-semibold">Gull Snobar</span>, a Computer Science graduate from Lahore who builds complete web products from scratch. In my first year as a professional developer, I shipped a company-internal project management platform, built an AI-powered mobile health app for my FYP, and independently developed a full multivendor marketplace with real-time chat and payment integration.
+              <span className="text-text-primary font-semibold">Gull Snobar</span>, a full-stack software engineer based in Lahore. I build production web applications end-to-end, from database design to frontend polish. I don't just write features; I own them.
             </p>
             <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
-              I work with{' '}
-              <span className="text-text-primary font-medium">React, Next.js, Node.js, Express, and MongoDB</span>. I don't just write code. I think about structure, plan the system first, then build it properly. I use Claude and Cursor as daily tools to move faster while keeping code clean and maintainable.
+              At{' '}
+              <span className="text-text-primary font-medium">Devyard</span>, I built{' '}
+              <span className="text-text-primary font-medium">OmniCat</span>, an AI SaaS platform with 11 content and image tools, and a{' '}
+              <span className="text-text-primary font-medium">Quote Management System</span>{' '}
+              handling 3,000+ corridors with strong performance metrics. Before that, I shipped a multivendor e-commerce marketplace with real-time chat and Stripe payments, and an AI-powered healthcare app as my final-year project.
+            </p>
+            <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
+              My stack is{' '}
+              <span className="text-text-primary font-medium">React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker</span>. I care about clean architecture, fast load times, and code that other engineers can actually read.
             </p>
             <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
               Currently open to{' '}
-              <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                full-time roles in Lahore
-              </span>{' '}
-              where I can build real things, grow fast, and actually make a difference.
+              <span className="text-text-primary font-medium">full-time roles</span>{' '}
+              where I can build real products, ship fast, and grow alongside a strong team.
             </p>
           </AnimatedSection>
 
@@ -61,8 +66,8 @@ export function About() {
                 key={label}
                 className="card card-emerald p-5 rounded-2xl flex items-start gap-4 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/15 transition-colors duration-300">
-                  <Icon className="w-5 h-5 text-emerald-500" />
+                <div className="w-10 h-10 rounded-xl bg-text-primary/10 border border-text-primary/20 flex items-center justify-center shrink-0 group-hover:bg-text-primary/15 transition-colors duration-300">
+                  <Icon className="w-5 h-5 text-text-primary" />
                 </div>
                 <div>
                   <p className="font-semibold text-text-primary text-sm mb-1">{label}</p>
@@ -90,7 +95,7 @@ export function About() {
                     className={cn('flex gap-3', i > 0 && 'pt-5 border-t border-border')}
                   >
                     {/* Emerald left border accent */}
-                    <div className="w-0.5 rounded-full bg-emerald-500/40 shrink-0 self-stretch" />
+                    <div className="w-0.5 rounded-full bg-text-primary/40 shrink-0 self-stretch" />
                     <div>
                       <p className="text-text-primary font-medium text-sm">{edu.institution}</p>
                       <p className="text-text-secondary text-sm mt-0.5">{edu.degree}</p>
@@ -112,7 +117,7 @@ export function About() {
               <ul className="space-y-4">
                 {certifications.map((cert, i) => (
                   <li key={i} className="flex items-start gap-3 leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-text-primary shrink-0 mt-0.5" />
                     <span className="text-text-secondary text-sm">{cert}</span>
                   </li>
                 ))}

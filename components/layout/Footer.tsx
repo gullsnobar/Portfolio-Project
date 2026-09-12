@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Mail, Linkedin, Github, FileText, Heart, ArrowRight, MapPin, ExternalLink, ArrowUp } from 'lucide-react'
 import { personalInfo } from '@/lib/data'
 
@@ -60,24 +61,24 @@ export function Footer() {
         {/* CTA Card */}
         <div className="relative overflow-hidden rounded-3xl p-10 sm:p-16 text-center"
              style={{
-               background: 'linear-gradient(135deg, #0d1f17 0%, #0a1a10 40%, #091209 100%)',
+               background: 'linear-gradient(135deg, #0a0a0a 0%, #050505 40%, #000000 100%)',
              }}
         >
-          {/* Emerald glow blobs */}
-          <div className="absolute top-0 left-1/4 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl -translate-y-1/2 pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-emerald-400/10 blur-3xl translate-y-1/2 pointer-events-none" />
+          {/* Monochrome glow blobs */}
+          <div className="absolute top-0 left-1/4 w-80 h-80 rounded-full bg-white/5 blur-3xl -translate-y-1/2 pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-white/5 blur-3xl translate-y-1/2 pointer-events-none" />
 
           {/* Subtle grid */}
           <div
             className="absolute inset-0 opacity-10 pointer-events-none rounded-3xl"
             style={{
-              backgroundImage: 'linear-gradient(rgba(52,211,153,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(52,211,153,0.15) 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)',
               backgroundSize: '48px 48px',
             }}
           />
 
           <div className="relative z-10">
-            <p className="text-emerald-400/80 text-xs font-semibold uppercase tracking-[0.25em] mb-3">
+            <p className="text-white/70 text-xs font-semibold uppercase tracking-[0.25em] mb-3">
               Ready to collaborate?
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
@@ -90,7 +91,7 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-400 hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-emerald-500/30"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-text-primary text-background font-semibold text-sm hover:opacity-85 hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-text-primary/20"
               >
                 <Mail className="w-4 h-4" />
                 Send me an email
@@ -116,15 +117,19 @@ export function Footer() {
           {/* 4-column grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
 
-            {/* Col 1 — Brand */}
+            {/* Col 1: Brand */}
             <div className="lg:col-span-1 flex flex-col space-y-6">
               <div className="flex items-center gap-2.5">
-                <span className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white text-base font-bold shadow-md shadow-emerald-500/25">
-                  G
-                </span>
+                <Image
+                  src="/Gull.png"
+                  alt="Gull Snobar logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-xl object-cover shadow-md"
+                />
                 <div>
                   <p className="font-display font-bold text-gray-900 dark:text-white text-lg leading-none">
-                    Gull<span className="text-emerald-500">.</span>Snobar
+                    Gull<span className="text-text-primary">.</span>Snobar
                   </p>
                   <p className="text-xs text-gray-500 dark:text-white/60 mt-1">Full-Stack Developer</p>
                 </div>
@@ -134,20 +139,20 @@ export function Footer() {
               </p>
               <div className="space-y-3 pt-1">
                 <div className="inline-flex items-center gap-2 text-sm">
-                  <MapPin className="w-4 h-4 text-emerald-500" />
+                  <MapPin className="w-4 h-4 text-text-primary" />
                   Lahore, Pakistan
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-text-primary opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-text-primary" />
                   </span>
                   <span className="font-medium text-gray-800 dark:text-white/90">Available for opportunities</span>
                 </div>
               </div>
             </div>
 
-            {/* Col 2 — Quick Links */}
+            {/* Col 2: Quick Links */}
             <div>
               <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-900 dark:text-white/90 mb-6">
                 Quick Links
@@ -157,9 +162,9 @@ export function Footer() {
                   <li key={href}>
                     <Link
                       href={href}
-                      className="group inline-flex items-center gap-2 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300"
+                      className="group inline-flex items-center gap-2 text-sm font-medium hover:text-text-primary dark:hover:text-text-primary transition-all duration-300"
                     >
-                      <span className="w-0 h-[1px] bg-emerald-500 transition-all duration-300 group-hover:w-4" />
+                      <span className="w-0 h-[1px] bg-text-primary transition-all duration-300 group-hover:w-4" />
                       <span className="group-hover:translate-x-1 transition-transform duration-300">{label}</span>
                     </Link>
                   </li>
@@ -167,7 +172,7 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Col 3 — Tech Stack */}
+            {/* Col 3: Tech Stack */}
             <div>
               <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-900 dark:text-white/90 mb-6">
                 Tech Stack
@@ -179,7 +184,7 @@ export function Footer() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1.5 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300"
+                      className="group inline-flex items-center gap-1.5 text-sm font-medium hover:text-text-primary dark:hover:text-text-primary transition-all duration-300"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-300">{label}</span>
                       <ExternalLink className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
@@ -189,7 +194,7 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Col 4 — Get in Touch */}
+            {/* Col 4: Get in Touch */}
             <div>
               <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-900 dark:text-white/90 mb-6">
                 Get in Touch
@@ -206,7 +211,7 @@ export function Footer() {
                       target={external ? '_blank' : undefined}
                       rel={external ? 'noopener noreferrer' : undefined}
                       aria-label={label}
-                      className="group w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-500 dark:text-white/60 transition-all duration-300 hover:scale-110 hover:border-emerald-500 hover:text-emerald-500 hover:bg-emerald-500/10 hover:shadow-[0_0_14px_rgba(16,185,129,0.25)]"
+                      className="group w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-500 dark:text-white/60 transition-all duration-300 hover:scale-110 hover:border-text-primary hover:text-text-primary hover:bg-text-primary/10 hover:shadow-[0_0_14px_hsl(var(--text-primary)/0.2)]"
                     >
                       <Icon className="w-4 h-4" />
                     </Link>
@@ -225,12 +230,12 @@ export function Footer() {
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-1.5 text-gray-500 dark:text-white/60">
                 Built with
-                <Heart className="w-3 h-3 text-emerald-500 fill-emerald-500" />
+                <Heart className="w-3 h-3 text-text-primary fill-text-primary" />
                 Next.js &amp; Tailwind
               </span>
               <button
                 onClick={scrollToTop}
-                className="group flex items-center gap-1.5 text-gray-600 dark:text-white/70 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-300 font-medium uppercase tracking-wider"
+                className="group flex items-center gap-1.5 text-gray-600 dark:text-white/70 hover:text-text-primary dark:hover:text-text-primary transition-colors duration-300 font-medium uppercase tracking-wider"
               >
                 Back to Top
                 <ArrowUp className="w-3 h-3 group-hover:-translate-y-1 transition-transform duration-300" />

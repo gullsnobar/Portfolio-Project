@@ -71,14 +71,14 @@ export function ContactForm() {
   const inputClass = cn(
     'w-full pl-11 pr-4 py-3.5 rounded-xl bg-background border border-border text-text-primary text-sm',
     'placeholder:text-text-secondary/50',
-    'focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500',
+    'focus:outline-none focus:ring-4 focus:ring-text-primary/10 focus:border-text-primary',
     'transition-all duration-300'
   )
 
   const textareaClass = cn(
     'w-full pl-11 pr-4 py-3.5 rounded-xl bg-background border border-border text-text-primary text-sm',
     'placeholder:text-text-secondary/50 resize-none',
-    'focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500',
+    'focus:outline-none focus:ring-4 focus:ring-text-primary/10 focus:border-text-primary',
     'transition-all duration-300'
   )
 
@@ -99,7 +99,7 @@ export function ContactForm() {
             {/* Left Column: Contact Info */}
             <div className="flex flex-col h-full space-y-10">
               <div>
-                <span className="inline-block text-emerald-500 font-bold uppercase tracking-widest text-xs mb-3">
+                <span className="inline-block text-text-primary font-bold uppercase tracking-widest text-xs mb-3">
                   Let&apos;s Connect
                 </span>
                 <h2 className="font-display text-4xl sm:text-5xl font-bold text-text-primary mb-4 leading-tight">
@@ -121,18 +121,18 @@ export function ContactForm() {
                     className={cn(
                       "flex items-center gap-4 p-5 rounded-2xl group transition-all duration-300 border",
                       primary 
-                        ? "border-emerald-500/50 bg-emerald-500/5 shadow-sm" 
-                        : "border-border bg-secondary hover:border-emerald-500/50 hover:bg-emerald-500/5 hover:-translate-y-1 hover:shadow-md"
+                        ? "border-text-primary/50 bg-text-primary/5 shadow-sm" 
+                        : "border-border bg-secondary hover:border-text-primary/50 hover:bg-text-primary/5 hover:-translate-y-1 hover:shadow-md"
                     )}
                   >
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 bg-emerald-500/10 text-emerald-500">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 bg-text-primary/10 text-text-primary">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-0.5">{label}</p>
                       <p className={cn(
                         "text-sm transition-colors",
-                        primary ? "text-text-primary font-bold" : "text-text-primary font-medium group-hover:text-emerald-600"
+                        primary ? "text-text-primary font-bold" : "text-text-primary font-medium group-hover:text-text-primary"
                       )}>
                         {value}
                       </p>
@@ -142,7 +142,7 @@ export function ContactForm() {
               </div>
 
               {/* Response time badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-emerald-500/10 text-emerald-600 self-start">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-text-primary/10 text-text-primary self-start">
                 <Clock className="w-4 h-4" />
                 <span className="text-xs font-semibold uppercase tracking-wider">Typically responds within 24 hours</span>
               </div>
@@ -157,7 +157,7 @@ export function ContactForm() {
                       Your Name
                     </label>
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/50 group-focus-within:text-emerald-500 transition-colors" />
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/50 group-focus-within:text-text-primary transition-colors" />
                       <input
                         id="contact-name"
                         type="text"
@@ -175,7 +175,7 @@ export function ContactForm() {
                       Email Address
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/50 group-focus-within:text-emerald-500 transition-colors" />
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/50 group-focus-within:text-text-primary transition-colors" />
                       <input
                         id="contact-email"
                         type="email"
@@ -195,7 +195,7 @@ export function ContactForm() {
                     Message
                   </label>
                   <div className="relative">
-                    <MessageSquare className="absolute left-4 top-4 w-4 h-4 text-text-secondary/50 group-focus-within:text-emerald-500 transition-colors" />
+                    <MessageSquare className="absolute left-4 top-4 w-4 h-4 text-text-secondary/50 group-focus-within:text-text-primary transition-colors" />
                     <textarea
                       id="contact-message"
                       rows={6}
@@ -216,7 +216,7 @@ export function ContactForm() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600"
+                      className="flex items-center gap-3 p-4 rounded-xl bg-text-primary/10 border border-text-primary/20 text-text-primary"
                     >
                       <CheckCircle className="w-5 h-5 shrink-0" />
                       <p className="text-sm font-semibold">Message sent! I&apos;ll get back to you soon.</p>
@@ -239,8 +239,8 @@ export function ContactForm() {
                       disabled={status === 'loading'}
                       className={cn(
                         'w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl',
-                        'bg-emerald-500 text-white font-bold text-sm uppercase tracking-wider',
-                        'transition-all duration-300 hover:bg-emerald-600 hover:shadow-[0_8px_30px_rgb(16,185,129,0.3)] hover:-translate-y-0.5',
+                        'bg-text-primary text-background font-bold text-sm uppercase tracking-wider',
+                        'transition-all duration-300 hover:opacity-85 hover:shadow-[0_8px_30px_hsl(var(--text-primary)/0.2)] hover:-translate-y-0.5',
                         'disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none'
                       )}
                       whileTap={{ scale: 0.98 }}

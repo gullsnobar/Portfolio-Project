@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import { cn } from '@/lib/utils'
@@ -61,16 +62,21 @@ export function Navbar() {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center group gap-1.5">
-          <span className="w-7 h-7 rounded-lg bg-emerald-500 flex items-center justify-center text-white text-xs font-bold shadow-md shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-shadow duration-300">
-            G
-          </span>
+        <Link href="/" className="flex items-center group gap-2">
+          <Image
+            src="/Gull.png"
+            alt="Gull Snobar logo"
+            width={32}
+            height={32}
+            className="w-8 h-8 rounded-lg object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
+            priority
+          />
           <span className="font-display font-semibold text-sm text-text-primary group-hover:text-text-secondary transition-colors">
-            Gull<span className="text-emerald-500">.</span>dev
+            Gull<span className="text-text-primary">.</span>dev
           </span>
         </Link>
 
-        {/* Desktop nav — pill container */}
+        {/* Desktop nav: pill container */}
         <div className="hidden md:flex items-center gap-0.5 p-1 rounded-full bg-surface border border-border">
           {navLinks.map((link) => {
             const isActive = activeSection === link.section
@@ -89,7 +95,7 @@ export function Navbar() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-500"
+                    className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-text-primary"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -105,8 +111,8 @@ export function Navbar() {
             href={`mailto:${personalInfo.email}`}
             className={cn(
               'hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold',
-              'bg-emerald-500 text-white shadow-md shadow-emerald-500/25',
-              'hover:bg-emerald-600 hover:shadow-emerald-500/40 hover:scale-[1.04] transition-all duration-200'
+              'bg-text-primary text-background shadow-md shadow-text-primary/20',
+              'hover:opacity-85 hover:shadow-text-primary/30 hover:scale-[1.04] transition-all duration-200'
             )}
           >
             Hire Me ✦
@@ -115,7 +121,7 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-border bg-surface hover:border-emerald-500/40 transition-colors"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-border bg-surface hover:border-text-primary/40 transition-colors"
             aria-label="Toggle mobile menu"
           >
             {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -147,7 +153,7 @@ export function Navbar() {
                     className={cn(
                       'block px-4 py-3 rounded-xl text-sm transition-all',
                       activeSection === link.section
-                        ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 font-medium'
+                        ? 'text-text-primary dark:text-text-primary bg-text-primary/5 font-medium'
                         : 'text-text-secondary hover:text-text-primary hover:bg-surface'
                     )}
                   >
@@ -157,7 +163,7 @@ export function Navbar() {
               ))}
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-600 transition-colors shadow-md shadow-emerald-500/25"
+                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-text-primary text-background font-semibold text-sm hover:opacity-85 transition-opacity shadow-md shadow-text-primary/20"
               >
                 Hire Me ✦
               </Link>

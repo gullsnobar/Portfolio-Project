@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
         await supabase.from('messages').insert([{ name, email, message }])
       }
     } catch {
-      // Supabase not configured or failed — skip silently
+      // Supabase not configured or failed: skip silently
     }
 
     // Send email via Resend

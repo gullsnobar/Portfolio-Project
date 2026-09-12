@@ -90,7 +90,7 @@ body {
 
 /* ─── Selection ───────────────────────────────────────── */
 ::selection {
-  background: rgba(16, 185, 129, 0.15);
+  background: hsl(var(--text-primary) / 0.15);
   color: hsl(var(--text-primary));
 }
 
@@ -102,9 +102,9 @@ body {
   background-clip: text;
 }
 
-/* ─── Gradient text — emerald signature ───────────────── */
+/* ─── Gradient text — monochrome strong ───────────────── */
 .gradient-text-emerald {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 60%, #6ee7b7 100%);
+  background: linear-gradient(135deg, hsl(var(--text-primary)) 0%, hsl(var(--text-secondary)) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -116,7 +116,7 @@ body {
   100% { background-position:  200% center; }
 }
 .shimmer-badge {
-  background: linear-gradient(90deg, #10b981 0%, #34d399 30%, #6ee7b7 50%, #34d399 70%, #10b981 100%);
+  background: linear-gradient(90deg, hsl(var(--text-primary)) 0%, hsl(var(--text-secondary)) 50%, hsl(var(--text-primary)) 100%);
   background-size: 200% auto;
   animation: shimmer-badge 3s linear infinite;
   -webkit-background-clip: text;
@@ -142,18 +142,18 @@ body {
 .float-c { animation: float-c 6s ease-in-out infinite 1.5s; }
 .float-d { animation: float-a 8s ease-in-out infinite 2s; }
 
-/* ─── Hero glow — emerald tint ────────────────────────── */
+/* ─── Hero glow — monochrome ─────────────────────────── */
 .hero-glow {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 65% 50% at 68% 18%, rgba(16,185,129,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 50% at 68% 18%, hsl(var(--text-primary) / 0.04) 0%, transparent 65%),
     radial-gradient(ellipse 35% 40% at 12% 82%, hsl(var(--text-primary) / 0.02) 0%, transparent 70%);
 }
 .dark .hero-glow {
   background:
-    radial-gradient(ellipse 65% 50% at 68% 18%, rgba(16,185,129,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 50% at 68% 18%, hsl(var(--text-primary) / 0.06) 0%, transparent 65%),
     radial-gradient(ellipse 35% 40% at 12% 82%, hsl(var(--text-primary) / 0.04) 0%, transparent 70%);
 }
 
@@ -181,14 +181,14 @@ body {
   border-color: hsl(var(--text-primary) / 0.15);
 }
 
-/* ─── Card with emerald hover glow ───────────────────── */
+/* ─── Card with monochrome hover glow ────────────────── */
 .card-emerald:hover {
-  border-color: rgba(16, 185, 129, 0.35) !important;
-  box-shadow: 0 8px 32px rgba(16,185,129,0.10), 0 2px 8px hsl(var(--text-primary) / 0.04) !important;
+  border-color: hsl(var(--text-primary) / 0.25) !important;
+  box-shadow: 0 8px 32px hsl(var(--text-primary) / 0.08), 0 2px 8px hsl(var(--text-primary) / 0.04) !important;
 }
 .dark .card-emerald:hover {
-  border-color: rgba(52, 211, 153, 0.30) !important;
-  box-shadow: 0 8px 32px rgba(52,211,153,0.12), 0 2px 8px rgba(0,0,0,0.30) !important;
+  border-color: hsl(var(--text-primary) / 0.20) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.40), 0 2px 8px rgba(0,0,0,0.30) !important;
 }
 
 /* ─── Skill badge ─────────────────────────────────────── */
@@ -206,15 +206,15 @@ body {
   min-width: 4.5rem;
 }
 .skill-badge:hover {
-  border-color: rgba(16, 185, 129, 0.45);
-  background: rgba(16, 185, 129, 0.04);
+  border-color: hsl(var(--text-primary) / 0.30);
+  background: hsl(var(--text-primary) / 0.03);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.12);
+  box-shadow: 0 6px 20px hsl(var(--text-primary) / 0.08);
 }
 .dark .skill-badge:hover {
-  border-color: rgba(52, 211, 153, 0.40);
-  background: rgba(52, 211, 153, 0.07);
-  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.15);
+  border-color: hsl(var(--text-primary) / 0.25);
+  background: hsl(var(--text-primary) / 0.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.30);
 }
 
 /* ─── Timeline dot animation ──────────────────────────── */
@@ -222,18 +222,18 @@ body {
   0%, 100% {
     transform: scale(1);
     opacity: 1;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 0 0 hsl(var(--text-primary) / 0.4);
   }
   50% {
     transform: scale(1.15);
     opacity: 0.9;
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 6px hsl(var(--text-primary) / 0);
   }
 }
 .timeline-dot-active {
   animation: timeline-pulse 2.2s ease-in-out infinite;
-  background-color: #10b981 !important;
-  border-color: #10b981 !important;
+  background-color: hsl(var(--text-primary)) !important;
+  border-color: hsl(var(--text-primary)) !important;
 }
 
 /* ─── Section divider ─────────────────────────────────── */
@@ -252,15 +252,15 @@ body {
   opacity: 0.88;
 }
 
-/* ─── Emerald button ──────────────────────────────────── */
+/* ─── Strong button ───────────────────────────────────── */
 .btn-emerald {
-  background: #10b981;
-  color: white;
+  background: hsl(var(--text-primary));
+  color: hsl(var(--background));
   transition: all 0.2s ease;
 }
 .btn-emerald:hover {
-  background: #059669;
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+  opacity: 0.88;
+  box-shadow: 0 4px 20px hsl(var(--text-primary) / 0.20);
   transform: translateY(-1px);
 }
 
@@ -273,8 +273,8 @@ body {
   transition: box-shadow 0.3s ease;
 }
 .glow-emerald {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.20);
+  box-shadow: 0 0 20px hsl(var(--text-primary) / 0.15);
 }
 .dark .glow-emerald {
-  box-shadow: 0 0 20px rgba(52, 211, 153, 0.25);
+  box-shadow: 0 0 20px hsl(var(--text-primary) / 0.20);
 }

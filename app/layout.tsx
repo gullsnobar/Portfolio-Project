@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Gull Snobar — Full-Stack Developer',
+    default: 'Gull Snobar, Full-Stack Developer',
     template: '%s | Gull Snobar',
   },
   description:
@@ -37,16 +37,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Gull Snobar — Full-Stack Developer',
+    title: 'Gull Snobar, Full-Stack Developer',
     description:
-      'Full-Stack Developer specialising in React, Next.js, Node.js & MongoDB. Based in Lahore, Pakistan.',
+      'Full-stack software engineer specializing in React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. Building production web apps and AI-powered SaaS platforms.',
     siteName: 'Gull Snobar Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gull Snobar — Full-Stack Developer',
+    title: 'Gull Snobar, Full-Stack Developer',
     description:
-      'Full-Stack Developer specialising in React, Next.js, Node.js & MongoDB. Based in Lahore, Pakistan.',
+      'Full-stack software engineer specializing in React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. Building production web apps and AI-powered SaaS platforms.',
   },
   robots: {
     index: true,

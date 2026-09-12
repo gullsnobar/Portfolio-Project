@@ -9,8 +9,8 @@ export const personalInfo = {
   linkedin: 'https://linkedin.com/in/gullsanobar',
   github: 'https://github.com/gullsnobar', // Update with your real GitHub URL
   resume: '/resume.pdf',
-  bio: "I'm a full-stack developer passionate about building fast, reliable, and scalable web applications. I started with frontend development — creating responsive, interactive interfaces with React, Next.js, JavaScript, HTML5, and CSS3 — then expanded into backend development with Node.js and Express, giving me the ability to build complete solutions from server to client. Every project, from small utilities to full applications, has sharpened my ability to write clean, maintainable code and architect systems that perform well in the real world. I'm currently focused on React performance optimization, scalable backend APIs, and exploring AI-enhanced web development.",
-  openTo: 'Frontend, full-stack, and innovative web development opportunities.',
+  bio: "I'm Gull Snobar, a full-stack software engineer based in Lahore. I build production web applications end-to-end, from database design to frontend polish. At Devyard, I built OmniCat, an AI SaaS platform with 11 content and image tools, and a Quote Management System handling 3,000+ corridors with strong performance metrics. My stack is React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. I care about clean architecture, fast load times, and code that other engineers can actually read.",
+  openTo: 'Full-time full-stack and AI engineering roles.',
 }
 
 export const skillGroups: SkillGroup[] = [
@@ -19,6 +19,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'React.js' },
       { name: 'Next.js' },
+      { name: 'React Native' },
       { name: 'JavaScript (ES6+)' },
       { name: 'HTML5' },
       { name: 'CSS3' },
@@ -30,8 +31,11 @@ export const skillGroups: SkillGroup[] = [
     category: 'Backend',
     skills: [
       { name: 'Node.js' },
+      { name: 'AdonisJS' },
       { name: 'Express.js' },
+      { name: 'PostgreSQL' },
       { name: 'MongoDB' },
+      { name: 'Redis' },
       { name: 'RESTful APIs' },
       { name: 'TypeScript' },
     ],
@@ -47,11 +51,12 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    category: 'Exploring',
+    category: 'AI & Data',
     skills: [
+      { name: 'RAG (Retrieval-Augmented Generation)' },
+      { name: 'OpenAI API' },
       { name: 'AI Integration' },
-      { name: 'Performance Marketing' },
-      { name: 'Modern Web Dev' },
+      { name: 'Prompt Engineering' },
     ],
   },
 ]
@@ -128,119 +133,120 @@ export const languages = [
 
 export const featuredProjects = [
   {
-    id: '1',
-    title: 'Project Hub System',
-    slug: 'project-hub-system',
+    id: 'omnicat',
+    title: 'OmniCat: AI SaaS Platform',
+    slug: 'omnicat-ai-saas',
     description:
-      'A company-internal project management platform built with Next.js and Node.js. Features task tracking, role-based access control, and a clean dashboard for project lifecycle management.',
-    tech_stack: ['Next.js', 'Node.js', 'Express', 'TypeScript', 'MongoDB'],
-    image_url: '/projects/project-hub.png',
+      'A full-stack AI SaaS platform with 11 content and image tools. Users generate blog posts, ad copy, logos, and photoshoot images, plus use image tools like background removal and photo enhancement. Includes an admin panel for user management, pricing plans, and AI provider configuration.',
+    tech_stack: [
+      'React 19',
+      'TypeScript',
+      'AdonisJS 7',
+      'PostgreSQL',
+      'OpenAI API',
+      'Docker',
+    ],
+    image_url: '/projects/omnicat.jpg' as string | null,
     live_url: null as string | null,
     repo_url: null as string | null,
     featured: true,
-    company: 'Xpert Prime',
+    company: 'Devyard',
     created_at: new Date().toISOString(),
   },
-
+  {
+    id: 'quote-management',
+    title: 'Quote Management System',
+    slug: 'quote-management-system',
+    description:
+      'A full-stack quote management system with draft workflows, search, and corridor-based pricing. Built with React and AdonisJS 6. Features secure authentication, resource ownership, and CRUD operations with server-side validation. Optimized for 3,000+ corridors using TanStack Virtual.',
+    tech_stack: [
+      'React',
+      'TypeScript',
+      'AdonisJS 6',
+      'PostgreSQL',
+      'Lucid ORM',
+      'Cypress',
+      'TanStack Virtual',
+    ],
+    image_url: '/projects/QMS.jpg' as string | null,
+    live_url: null as string | null,
+    repo_url: null as string | null,
+    featured: true,
+    company: 'Devyard',
+    created_at: new Date().toISOString(),
+  },
   {
     id: '4',
-    title: 'MultiVendor E-Commerce Platform (MERN Stack)',
+    title: 'MultiVendor E-Commerce Platform',
     slug: 'multivendor-ecommerce',
     description:
-      'Built a scalable MERN-based marketplace featuring Customer, Seller, and Admin roles with secure JWT authentication, Stripe & PayPal payments, real-time chat using Socket.IO, seller dashboards, product management, order tracking, and a responsive user interface.',
+      'A MERN-based marketplace with Customer, Seller, and Admin roles. Features JWT authentication, Stripe and PayPal payments, real-time chat via Socket.IO, seller dashboards, and order tracking.',
     tech_stack: [
       'React.js',
       'Redux Toolkit',
       'Node.js',
       'Express.js',
       'MongoDB',
-      'Stripe API',
       'Socket.IO',
-      'Tailwind CSS'
+      'Tailwind CSS',
     ],
     image_url: '/projects/multivendor-shop.png',
     live_url: null as string | null,
     repo_url: 'https://github.com/gullsnobar/Multivendor-Project',
-    featured: true,
-    created_at: new Date().toISOString(),
-  },
-  {
-    id: '5',
-    title: 'LMS Platform',
-    slug: 'lms-project',
-    description:
-      'A comprehensive Learning Management System built with the MERN stack, Next.js, and TypeScript. It features interactive course management, student enrollments, progress tracking, and a modern, responsive user interface.',
-    tech_stack: [
-      'Next.js',
-      'TypeScript',
-      'React.js',
-      'Node.js',
-      'Express.js',
-      'MongoDB',
-      'Tailwind CSS'
-    ],
-    image_url: '/projects/lms-dashboard.png',
-    live_url: null as string | null,
-    repo_url: 'https://github.com/gullsnobar/LMS-Project',
-    featured: true,
+    featured: false,
     created_at: new Date().toISOString(),
   },
   {
     id: '6',
-    title: 'Healio – AI-Powered Healthcare App',
+    title: 'Healio: AI Healthcare App',
     slug: 'healio-project',
     description:
-      'A full-stack healthcare mobile application featuring AI-powered health assistance, medication management, fitness tracking, and secure authentication. Developed as a BS Computer Science Final Year Project.',
+      'A full-stack healthcare mobile app with AI-powered health assistance, medication management, and fitness tracking. Built as a BS Computer Science final-year project with secure authentication and Firebase notifications.',
     tech_stack: [
       'React Native',
       'Expo',
       'Node.js',
       'Express.js',
       'MongoDB',
-      'Firebase FCM',
-      'Google Fit API',
-      'JWT Auth'
+      'Firebase',
     ],
     image_url: '/projects/healio-app.png',
     live_url: null as string | null,
     repo_url: 'https://github.com/gullsnobar/Healio',
-    featured: true,
+    featured: false,
     created_at: new Date().toISOString(),
   },
   {
     id: '7',
-    title: 'Edusity – Responsive LMS Website',
+    title: 'Edusity: LMS Website',
     slug: 'edusity-lms-website',
     description:
-      'A fully responsive front-end landing page for an educational platform built with React.js and Tailwind CSS. It features a modern hero section, program offerings, video modal, campus gallery, student testimonials, and a comprehensive contact form.',
+      'A responsive front-end landing page for an educational platform. Features a hero section, program offerings, video modal, campus gallery, student testimonials, and a contact form.',
     tech_stack: [
       'React.js',
       'Tailwind CSS',
-      'HTML5',
-      'JavaScript'
+      'JavaScript',
     ],
     image_url: '/projects/edusity-website.png',
     live_url: null as string | null,
     repo_url: 'https://github.com/gullsnobar/LMS-Website',
-    featured: true,
+    featured: false,
     created_at: new Date().toISOString(),
   },
   {
     id: '8',
-    title: 'QuickShop – Ecommerce Website',
+    title: 'QuickShop: Ecommerce Website',
     slug: 'quickshop-ecommerce',
     description:
-      'A modern E-commerce website built with React.js. It features robust React state management for seamless shopping experiences and prioritizes an intuitive UI/UX design.',
+      'A modern e-commerce website built with React.js. Features robust state management for a seamless shopping experience with an intuitive UI/UX design.',
     tech_stack: [
       'React.js',
-      'State Management',
-      'UI/UX',
-      'JavaScript'
+      'JavaScript',
     ],
     image_url: '/projects/quickshop-ecommerce.png',
     live_url: null as string | null,
     repo_url: 'https://github.com/gullsnobar/QuickShop',
-    featured: true,
+    featured: false,
     created_at: new Date().toISOString(),
   },
 ]

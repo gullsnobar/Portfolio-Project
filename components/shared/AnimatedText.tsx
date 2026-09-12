@@ -55,8 +55,8 @@ export function SectionHeader({ tag, title, subtitle, className }: SectionHeader
   return (
     <AnimatedSection className={cn('mb-14', className)}>
       {tag && (
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-[11px] font-semibold tracking-widest uppercase mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-text-primary/25 bg-text-primary/5 text-text-primary text-[11px] font-semibold tracking-widest uppercase mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-text-primary" />
           {tag}
         </div>
       )}

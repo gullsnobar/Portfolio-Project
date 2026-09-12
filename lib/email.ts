@@ -7,7 +7,7 @@ interface ContactEmailProps {
 }
 
 export async function sendContactEmail({ name, email, message }: ContactEmailProps) {
-  // No API key configured — skip sending (dev mode or not set in Vercel env)
+  // No API key configured: skip sending (dev mode or not set in Vercel env)
   if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'your_resend_api_key_here') {
     console.log('[Email - Dev mode] Contact form submission:', { name, email, message })
     return { success: true }

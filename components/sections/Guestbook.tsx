@@ -54,7 +54,7 @@ export function Guestbook() {
       reset()
       fetchEntries()
     } catch {
-      // silently fail — user can retry
+      // silently fail: user can retry
     } finally {
       setSubmitting(false)
     }

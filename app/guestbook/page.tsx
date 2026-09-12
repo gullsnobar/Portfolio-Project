@@ -5,7 +5,7 @@ import { Guestbook } from '@/components/sections/Guestbook'
 
 export const metadata: Metadata = {
   title: 'Guestbook',
-  description: "Sign Gull Snobar's portfolio guestbook — leave a message, say hello, or drop feedback.",
+  description: "Sign Gull Snobar's portfolio guestbook. Leave a message, say hello, or drop feedback.",
 }
 
 export default function GuestbookPage() {

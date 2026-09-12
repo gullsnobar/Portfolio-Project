@@ -3,7 +3,7 @@ import { ContactForm } from '@/components/sections/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with Gull Snobar — available for frontend, full-stack, and innovative web development opportunities.',
+  description: 'Get in touch with Gull Snobar. Available for full-stack and AI engineering roles.',
 }
 
 export default function ContactPage() {
