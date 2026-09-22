@@ -1,16 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 
 export async function POST(req: NextRequest) {
   try {
-    const { password } = await req.json()
+    const adminPassword = process.env.ADMIN_PASSWORD
+    const adminSecret = process.env.ADMIN_SECRET_COOKIE
 
-    if (password !== process.env.ADMIN_PASSWORD) {
-      return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
+    if (!adminPassword || !adminSecret) {
+      return NextResponse.json(
+        { error: 'Admin authentication is not configured on the server' },
+        { status: 503 }
+      )
+    }
+
+    const body = await req.json().catch(() => ({}))
+    const { password } = body
+
+    if (typeof password !== 'string' || password !== adminPassword) {
+      return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 
     const response = NextResponse.json({ success: true })
-    response.cookies.set('admin_token', process.env.ADMIN_SECRET_COOKIE || '', {
+    response.cookies.set('admin_token', adminSecret, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

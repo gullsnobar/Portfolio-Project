@@ -9,7 +9,6 @@ interface Skill {
 
 interface SkillGroup {
   category: string
-  badge?: string  // optional category label style variant
   skills: Skill[]
 }
 
@@ -46,10 +45,10 @@ const skillGroups: SkillGroup[] = [
   {
     category: 'AI & Data',
     skills: [
-      { name: 'RAG',          slug: 'langchain'          },
-      { name: 'OpenAI',       slug: 'openai'             },
-      { name: 'AI Integration', slug: 'openai'           },
-      { name: 'Prompt Engineering', slug: 'openai'       },
+      { name: 'OpenAI',             slug: 'openai'       },
+      { name: 'RAG',                slug: 'langchain'    },
+      { name: 'AI Integration',     slug: 'googlegemini' },
+      { name: 'Prompt Engineering',  slug: 'anthropic'   },
     ],
   },
   {
@@ -95,8 +94,8 @@ export function Skills() {
 
               {/* Category header */}
               <div className="flex items-center gap-3 mb-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-text-primary/10 border border-text-primary/20 text-text-primary text-xs font-bold uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-text-primary" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                   {group.category}
                 </span>
                 <div className="flex-1 h-px bg-border" />

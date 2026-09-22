@@ -12,16 +12,16 @@ export function ThemeToggle() {
   useEffect(() => setMounted(true), [])
 
   if (!mounted) {
-    return <div className="w-10 h-10 rounded-full bg-surface border border-border" />
+    return <div className="w-9 h-9 rounded-xl bg-surface border border-border" />
   }
 
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className={cn(
-        'relative w-10 h-10 rounded-full flex items-center justify-center',
+        'relative w-9 h-9 rounded-xl flex items-center justify-center',
         'border border-border bg-surface',
-        'hover:border-accent hover:bg-accent/10',
+        'hover:border-accent/50 hover:bg-accent/5',
         'transition-all duration-300 ease-in-out',
         'focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background',
         'group'

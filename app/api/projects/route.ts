@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { projectSchema } from '@/lib/validations'
 import { createServerSupabaseClient } from '@/lib/supabase'
-import { cookies } from 'next/headers'
-
-function isAdmin(): boolean {
-  const cookieStore = cookies()
-  const token = cookieStore.get('admin_token')?.value
-  return token === process.env.ADMIN_SECRET_COOKIE
-}
+import { verifyAdminSession } from '@/lib/auth'
 
 export async function GET() {
   try {
@@ -27,7 +21,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAdmin()) {
+  if (!verifyAdminSession()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

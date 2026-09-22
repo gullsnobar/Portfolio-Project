@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import './globals.css'
 
@@ -9,19 +9,13 @@ const inter = Inter({
   display: 'swap',
 })
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-})
-
 export const metadata: Metadata = {
   title: {
     default: 'Gull Snobar, Full-Stack Developer',
     template: '%s | Gull Snobar',
   },
   description:
-    'Full-Stack Developer specialising in React, Next.js, Node.js & MongoDB. Building fast, scalable web applications from server to client. Based in Lahore, Pakistan.',
+    'Full-Stack Developer specialising in React, Next.js, Node.js & MongoDB. Building fast, scalable web applications and AI-powered SaaS platforms. Based in Lahore, Pakistan.',
   keywords: [
     'Gull Snobar',
     'Full-Stack Developer',
@@ -29,6 +23,10 @@ export const metadata: Metadata = {
     'Next.js Developer',
     'Node.js Developer',
     'MERN Stack',
+    'AI Developer',
+    'AI SaaS',
+    'Prompt Engineering',
+    'TypeScript Developer',
     'Lahore Pakistan',
     'Web Developer Portfolio',
   ],
@@ -63,7 +61,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable}`}
+      className={inter.variable}
     >
       <body>
         <ThemeProvider

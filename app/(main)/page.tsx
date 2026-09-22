@@ -37,7 +37,7 @@ export default function HomePage() {
             />
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent/80 font-medium transition-colors shrink-0"
+              className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent/70 font-semibold transition-colors shrink-0 group"
             >
               View all <ArrowRight className="w-4 h-4" />
             </Link>

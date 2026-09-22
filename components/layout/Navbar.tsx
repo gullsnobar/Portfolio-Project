@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,6 +14,7 @@ const navLinks = [
   { href: '/#skills',     label: 'Skills',     section: 'skills'     },
   { href: '/#experience', label: 'Experience', section: 'experience' },
   { href: '/#projects',   label: 'Projects',   section: 'projects'   },
+  { href: '/#contact',    label: 'Contact',    section: 'contact'    },
   { href: '/guestbook',   label: 'Guestbook',  section: 'guestbook'  },
 ]
 
@@ -72,7 +73,7 @@ export function Navbar() {
             priority
           />
           <span className="font-display font-semibold text-sm text-text-primary group-hover:text-text-secondary transition-colors">
-            Gull<span className="text-text-primary">.</span>dev
+            Gull<span className="text-accent">.</span>dev
           </span>
         </Link>
 
@@ -95,7 +96,7 @@ export function Navbar() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-text-primary"
+                    className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -110,12 +111,13 @@ export function Navbar() {
           <Link
             href={`mailto:${personalInfo.email}`}
             className={cn(
-              'hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold',
+              'hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold',
               'bg-text-primary text-background shadow-md shadow-text-primary/20',
               'hover:opacity-85 hover:shadow-text-primary/30 hover:scale-[1.04] transition-all duration-200'
             )}
           >
-            Hire Me ✦
+            Hire Me
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
 
           {/* Mobile toggle */}
@@ -153,7 +155,7 @@ export function Navbar() {
                     className={cn(
                       'block px-4 py-3 rounded-xl text-sm transition-all',
                       activeSection === link.section
-                        ? 'text-text-primary dark:text-text-primary bg-text-primary/5 font-medium'
+                        ? 'text-text-primary bg-accent/5 font-medium'
                         : 'text-text-secondary hover:text-text-primary hover:bg-surface'
                     )}
                   >
@@ -161,11 +163,13 @@ export function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+              <div className="h-px bg-border my-2" />
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-text-primary text-background font-semibold text-sm hover:opacity-85 transition-opacity shadow-md shadow-text-primary/20"
+                className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-text-primary text-background font-semibold text-sm hover:opacity-85 transition-opacity shadow-md shadow-text-primary/20"
               >
-                Hire Me ✦
+                Hire Me
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </motion.div>

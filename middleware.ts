@@ -8,7 +8,7 @@ export function middleware(req: NextRequest) {
     const token = req.cookies.get('admin_token')?.value
     const validToken = process.env.ADMIN_SECRET_COOKIE
 
-    if (!token || token !== validToken) {
+    if (!validToken || !token || token !== validToken) {
       const loginUrl = new URL('/admin/login', req.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)

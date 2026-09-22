@@ -21,28 +21,18 @@ function getInitials(title: string): string {
     .join('')
 }
 
-/** Gradient sets for placeholder headers: monochrome, cycles by index */
+/** Gradient sets for placeholder headers: subtle differentiated tints */
 const GRADIENTS = [
-  'from-text-primary/10 via-text-primary/5 to-transparent',
-  'from-text-primary/8  via-text-primary/3 to-transparent',
-  'from-text-primary/12 via-text-primary/4 to-transparent',
-  'from-text-primary/6  via-text-primary/2 to-transparent',
-  'from-text-primary/14 via-text-primary/6 to-transparent',
-  'from-text-primary/9  via-text-primary/3 to-transparent',
-]
-
-const INITIALS_COLORS = [
-  'text-text-primary',
-  'text-text-primary',
-  'text-text-primary',
-  'text-text-primary',
-  'text-text-primary',
-  'text-text-primary',
+  'from-accent/8 via-accent/3 to-transparent',
+  'from-text-primary/10 via-text-primary/3 to-transparent',
+  'from-accent/12 via-accent/4 to-transparent',
+  'from-text-primary/6 via-text-primary/2 to-transparent',
+  'from-accent/6 via-text-primary/3 to-transparent',
+  'from-text-primary/8 via-accent/2 to-transparent',
 ]
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const gradient = GRADIENTS[index % GRADIENTS.length]
-  const initialsColor = INITIALS_COLORS[index % INITIALS_COLORS.length]
 
   return (
     <motion.div
@@ -54,7 +44,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         className={cn(
           'h-full flex flex-col rounded-2xl overflow-hidden relative',
           'bg-surface border border-border/60',
-          'hover:border-text-primary/30 hover:shadow-2xl hover:shadow-text-primary/5',
+          'hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/5',
           'transition-all duration-400 ease-out'
         )}
       >
@@ -82,7 +72,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               />
               {/* Initials */}
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                <span className={`font-display text-5xl font-bold tracking-tight ${initialsColor} opacity-30`}>
+                <span className="font-display text-5xl font-bold tracking-tight text-text-primary opacity-30">
                   {getInitials(project.title)}
                 </span>
                 <span className="text-xs text-text-secondary/40 font-mono tabular-nums">
@@ -95,8 +85,8 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           {/* Featured badge */}
           {project.featured && (
             <div className="absolute top-3 left-3">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-text-primary text-background shadow-md shadow-text-primary/20 uppercase tracking-wide">
-                <Star className="w-2.5 h-2.5 fill-background" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-accent text-accent-foreground shadow-md shadow-accent/20 uppercase tracking-wide">
+                <Star className="w-2.5 h-2.5 fill-accent-foreground" />
                 Featured
               </span>
             </div>
@@ -142,8 +132,8 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className={cn(
                   'flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold',
-                  'bg-text-primary text-background',
-                  'transition-all duration-200 hover:opacity-85 hover:shadow-md hover:scale-[1.02]'
+                  'bg-accent text-accent-foreground',
+                  'transition-all duration-200 hover:brightness-110 hover:shadow-md hover:shadow-accent/20 hover:scale-[1.02]'
                 )}
               >
                 <ExternalLink className="w-3 h-3" />
@@ -157,7 +147,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className={cn(
                   'inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-border bg-surface',
-                  'text-text-secondary hover:text-text-primary hover:border-text-primary/40',
+                  'text-text-secondary hover:text-text-primary hover:border-accent/40',
                   'transition-all duration-200'
                 )}
               >
