@@ -2,14 +2,14 @@ import type { ExperienceItem, SkillGroup, EducationItem } from '@/types'
 
 export const personalInfo = {
   name: 'Gull Snobar',
-  title: 'Full-Stack Developer',
+  title: 'Associate Software Engineer (Full-Stack)',
   subtitle: 'React & Next.js | Node.js & Express | MongoDB',
   location: 'Lahore, Punjab, Pakistan',
   email: 'gullsnobar07@gmail.com',
   linkedin: 'https://linkedin.com/in/gullsanobar',
   github: 'https://github.com/gullsnobar', // Update with your real GitHub URL
   resume: '/resume.pdf',
-  bio: "I'm Gull Snobar, a full-stack software engineer based in Lahore. I build production web applications end-to-end, from database design to frontend polish. At Devyard, I built OmniCat, an AI SaaS platform with 11 content and image tools, and a Quote Management System handling 3,000+ corridors with strong performance metrics. My stack is React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. I care about clean architecture, fast load times, and code that other engineers can actually read.",
+  bio: "I'm Gull Snobar, a full-stack software engineer based in Lahore. I build production web applications end-to-end, from database design to frontend polish. At Devyard, I am contributing to OmniCat, a Shopify SaaS product, and a quote management system with about 3,000 records. My stack is React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. I care about clean architecture, fast load times, and code that other engineers can actually read.",
   openTo: 'Full-time full-stack and AI engineering roles.',
 }
 
@@ -63,13 +63,25 @@ export const skillGroups: SkillGroup[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    id: '1',
-    role: 'MERN Stack Developer',
-    company: 'Dev Weekends',
-    type: 'Remote Fellowship',
-    period: 'June 2025 – Present',
-    location: 'Remote',
+    id: 'devyard',
+    role: 'Associate Software Engineer',
+    company: 'Devyard',
+    type: 'Onsite',
+    period: 'Aug 2026 – Present',
+    location: 'Lahore, Pakistan',
     current: true,
+    description: [
+      'Contributing to OmniCat, a Shopify SaaS product.',
+      'Contributing to a quote management system with about 3,000 records, built with TanStack Virtual.',
+    ],
+  },
+  {
+    id: '1',
+    role: 'Full-Stack Development and AI Engineering Fellowship',
+    company: 'Dev Weekends',
+    type: 'Fellowship',
+    period: 'Jun 2025 – Oct 2025',
+    location: 'Remote',
     description: [
       'Worked on real-world MERN stack projects in a collaborative remote environment.',
       'Built responsive UIs using React.js and managed complex application state.',
@@ -79,15 +91,15 @@ export const experience: ExperienceItem[] = [
   },
   {
     id: '2',
-    role: 'Software Engineer',
+    role: 'Software Engineer Intern',
     company: 'Xpert Prime',
-    type: 'Full-time',
+    type: 'Onsite',
     period: 'Dec 2025 – Jan 2026',
     location: 'Lahore, Pakistan',
     description: [
+      'Built the backend for Project Hub, a company product.',
+      'Built 15+ REST APIs with JWT authentication and role-based access control.',
       'Worked on backend systems with Node.js, Express, and TypeScript.',
-      'Handled CRUD operations, authentication flows, and secure REST APIs.',
-      'Built and maintained the Project Hub System (a company product) using Next.js.',
     ],
   },
   {
@@ -102,6 +114,15 @@ export const experience: ExperienceItem[] = [
       'Enhanced my ability to build responsive, user-friendly applications and apply modern front-end practices in practical scenarios.',
     ],
   },
+  {
+    id: '4',
+    role: 'Frontend Web Development Intern',
+    company: 'Arch Technologies',
+    type: 'Internship',
+    period: 'Jun 2025 – Aug 2025',
+    location: 'To confirm',
+    description: [],
+  },
 ]
 
 export const education: EducationItem[] = [
@@ -109,6 +130,7 @@ export const education: EducationItem[] = [
     institution: 'University of Education, Lahore',
     degree: 'B.S. Computer Science',
     period: 'Sept 2022 – June 2026',
+    detail: 'CGPA 3.34/4.00',
   },
   {
     institution: 'Institute of Emerging Careers',
@@ -158,7 +180,7 @@ export const featuredProjects = [
     title: 'Quote Management System',
     slug: 'quote-management-system',
     description:
-      'A full-stack quote management system with draft workflows, search, and corridor-based pricing. Built with React and AdonisJS 6. Features secure authentication, resource ownership, and CRUD operations with server-side validation. Optimized for 3,000+ corridors using TanStack Virtual.',
+      'A full-stack quote management system with draft workflows, search, and corridor-based pricing. Built with React and AdonisJS 6. Features secure authentication, resource ownership, and CRUD operations with server-side validation. Handles about 3,000 records using TanStack Virtual.',
     tech_stack: [
       'React',
       'TypeScript',

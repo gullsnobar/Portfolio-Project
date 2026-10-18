@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, CheckCircle, AlertCircle, Loader2, Mail, Linkedin, Github, Clock, User, MessageSquare, ArrowUpRight } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle, Loader2, Mail, Linkedin, Github, User, MessageSquare, ArrowUpRight } from 'lucide-react'
 import { contactSchema, type ContactInput } from '@/lib/validations'
 import { SectionHeader, AnimatedSection } from '@/components/shared/AnimatedText'
 import { personalInfo } from '@/lib/data'
@@ -116,12 +116,6 @@ export function ContactForm() {
                   <ArrowUpRight className="w-3.5 h-3.5 text-text-secondary/40 group-hover:text-accent transition-colors shrink-0" />
                 </Link>
               ))}
-            </div>
-
-            {/* Response time */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-accent/8 border border-accent/15 text-accent self-start">
-              <Clock className="w-3.5 h-3.5" />
-              <span className="text-xs font-semibold">Typically responds within 24 hours</span>
             </div>
 
             {/* Brief note */}

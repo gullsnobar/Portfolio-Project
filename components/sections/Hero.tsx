@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { personalInfo } from '@/lib/data'
 
 const ROTATING_TITLES = [
-  'Full-Stack Developer',
+  'Associate Software Engineer',
   'React and Next.js Engineer',
   'Node.js Backend Developer',
   'AI-Powered Systems Builder',

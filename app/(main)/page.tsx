@@ -12,7 +12,7 @@ import { ArrowRight } from 'lucide-react'
 import type { Project } from '@/types'
 
 export const metadata: Metadata = {
-  title: 'Gull Snobar, Full-Stack Developer',
+  title: 'Gull Snobar, Associate Software Engineer',
   description:
     'Full-stack software engineer building production web apps and AI-powered SaaS platforms with React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. Based in Lahore, Pakistan.',
 }

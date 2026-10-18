@@ -52,4 +52,5 @@ export interface EducationItem {
   institution: string
   degree: string
   period: string
+  detail?: string
 }

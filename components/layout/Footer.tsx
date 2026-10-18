@@ -47,7 +47,7 @@ export function Footer() {
                 <p className="font-display font-bold text-text-primary text-base leading-none">
                   Gull<span className="text-accent">.</span>Snobar
                 </p>
-                <p className="text-xs text-text-secondary mt-1">Full-Stack Developer</p>
+                <p className="text-xs text-text-secondary mt-1">Associate Software Engineer</p>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-text-secondary max-w-xs">

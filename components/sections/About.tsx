@@ -14,7 +14,7 @@ const strengths = [
   {
     icon: Zap,
     label: 'Production mindset',
-    desc: 'I ship software that runs in real environments: Docker, caching, migrations, monitoring.',
+    desc: 'I ship software that runs in real environments, with Docker and database migrations.',
   },
   {
     icon: Brain,
@@ -44,10 +44,10 @@ export function About() {
             </p>
             <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
               At{' '}
-              <span className="text-text-primary font-medium">Devyard</span>, I built{' '}
-              <span className="text-text-primary font-medium">OmniCat</span>, an AI SaaS platform with 11 content and image tools, and a{' '}
-              <span className="text-text-primary font-medium">Quote Management System</span>{' '}
-              handling 3,000+ corridors with strong performance metrics. Before that, I shipped a multivendor e-commerce marketplace with real-time chat and Stripe payments, and an AI-powered healthcare app as my final-year project.
+              <span className="text-text-primary font-medium">Devyard</span>, I am contributing to{' '}
+              <span className="text-text-primary font-medium">OmniCat</span>, a Shopify SaaS product, and a{' '}
+              <span className="text-text-primary font-medium">quote management system</span>{' '}
+              with about 3,000 records. Before that, I shipped a multivendor e-commerce marketplace with real-time chat and Stripe payments, and an AI-powered healthcare app as my final-year project.
             </p>
             <p className="text-text-secondary leading-relaxed text-base sm:text-[1.05rem]">
               My stack is{' '}
@@ -109,6 +109,9 @@ export function About() {
                       <p className="text-text-primary font-medium text-sm">{edu.institution}</p>
                       <p className="text-text-secondary text-sm mt-0.5">{edu.degree}</p>
                       <p className="text-text-secondary/60 text-xs mt-1">{edu.period}</p>
+                      {edu.detail && (
+                        <p className="text-text-secondary text-xs mt-1">{edu.detail}</p>
+                      )}
                     </div>
                   </div>
                 ))}

@@ -73,7 +73,7 @@ export function Navbar() {
             priority
           />
           <span className="font-display font-semibold text-sm text-text-primary group-hover:text-text-secondary transition-colors">
-            Gull<span className="text-accent">.</span>dev
+            Gull<span className="text-accent">.</span>Snobar
           </span>
         </Link>
 
