@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -18,25 +18,24 @@ export function AnimatedSection({
   direction = 'up',
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-60px' })
-
-  const directionMap = {
-    up: { y: 32, x: 0 },
-    down: { y: -32, x: 0 },
-    left: { y: 0, x: 32 },
-    right: { y: 0, x: -32 },
+  const isInView = useInView(ref, { once: true, margin: '-48px' })
+  const reduceMotion = useReducedMotion()
+  const offsets = {
+    up: { y: 22, x: 0 },
+    down: { y: -22, x: 0 },
+    left: { y: 0, x: 22 },
+    right: { y: 0, x: -22 },
     none: { y: 0, x: 0 },
   }
-
-  const initial = { opacity: 0, ...directionMap[direction] }
-  const animate = isInView ? { opacity: 1, y: 0, x: 0 } : initial
+  const offset = reduceMotion ? offsets.none : offsets[direction]
+  const initial = { opacity: reduceMotion ? 1 : 0, ...offset }
 
   return (
     <motion.div
       ref={ref}
       initial={initial}
-      animate={animate}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      animate={isInView || reduceMotion ? { opacity: 1, y: 0, x: 0 } : initial}
+      transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -53,21 +52,18 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ tag, title, subtitle, className }: SectionHeaderProps) {
   return (
-    <AnimatedSection className={cn('mb-14', className)}>
-      {tag && (
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/5 text-accent text-[11px] font-semibold tracking-widest uppercase mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-          {tag}
-        </div>
-      )}
-      <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-text-primary leading-tight">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="mt-3 text-text-secondary text-base sm:text-lg max-w-2xl leading-relaxed">
-          {subtitle}
-        </p>
-      )}
+    <AnimatedSection className={cn('mb-12 grid gap-5 border-t border-border pt-5 md:grid-cols-12 md:gap-8', className)}>
+      <div className="md:col-span-3">
+        {tag && <p className="eyebrow text-text-secondary">{tag}</p>}
+      </div>
+      <div className="md:col-span-9">
+        <h2 className="section-title max-w-[13ch]">{title}</h2>
+        {subtitle && (
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            {subtitle}
+          </p>
+        )}
+      </div>
     </AnimatedSection>
   )
 }

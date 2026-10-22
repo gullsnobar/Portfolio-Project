@@ -2,15 +2,15 @@ import type { ExperienceItem, SkillGroup, EducationItem } from '@/types'
 
 export const personalInfo = {
   name: 'Gull Snobar',
-  title: 'Associate Software Engineer (Full-Stack)',
-  subtitle: 'React & Next.js | Node.js & Express | MongoDB',
+  title: 'Associate Software Engineer',
+  subtitle: 'Full-stack products, AI applications, APIs, and integrations',
   location: 'Lahore, Punjab, Pakistan',
   email: 'gullsnobar07@gmail.com',
   linkedin: 'https://linkedin.com/in/gullsanobar',
   github: 'https://github.com/gullsnobar', // Update with your real GitHub URL
   resume: '/resume.pdf',
-  bio: "I'm Gull Snobar, a full-stack software engineer based in Lahore. I build production web applications end-to-end, from database design to frontend polish. At Devyard, I am contributing to OmniCat, a Shopify SaaS product, and a quote management system with about 3,000 records. My stack is React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. I care about clean architecture, fast load times, and code that other engineers can actually read.",
-  openTo: 'Full-time full-stack and AI engineering roles.',
+  bio: "I'm Gull Snobar, an Associate Software Engineer based in Lahore. I build practical software across frontend, backend, databases, and AI integrations. At Devyard, I contribute to OmniCat and a quote management system, learning through real product work and end-to-end engineering problems.",
+  openTo: 'Junior, associate, and full-stack software engineering roles.',
 }
 
 export const skillGroups: SkillGroup[] = [
@@ -120,7 +120,7 @@ export const experience: ExperienceItem[] = [
     company: 'Arch Technologies',
     type: 'Internship',
     period: 'Jun 2025 – Aug 2025',
-    location: 'To confirm',
+    location: '',
     description: [],
   },
 ]

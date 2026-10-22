@@ -68,27 +68,27 @@ export function ContactForm() {
   }
 
   const inputClass = cn(
-    'w-full pl-11 pr-4 py-3.5 rounded-xl bg-background border border-border text-text-primary text-sm',
+    'w-full pl-11 pr-4 py-3.5 bg-background border border-border text-text-primary text-sm',
     'placeholder:text-text-secondary/50',
     'focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent',
     'transition-all duration-300'
   )
 
   const textareaClass = cn(
-    'w-full pl-11 pr-4 py-3.5 rounded-xl bg-background border border-border text-text-primary text-sm',
+    'w-full pl-11 pr-4 py-3.5 bg-background border border-border text-text-primary text-sm',
     'placeholder:text-text-secondary/50 resize-none',
     'focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent',
     'transition-all duration-300'
   )
 
   return (
-    <section id="contact" className="pt-8 sm:pt-16 pb-24 sm:pb-32">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="contact" className="section-spacing bg-surface">
+      <div className="site-shell">
         
         <SectionHeader
-          tag="Contact"
-          title="Let's start a conversation."
-          subtitle="Interested in working together? I'm open to full-time roles, freelance projects, and meaningful collaborations."
+          tag="05 / Contact"
+          title="Let's build something useful."
+          subtitle="I'm open to junior, associate, and full-stack software engineering opportunities in Pakistan and with remote teams."
           className="mb-12"
         />
 
@@ -104,9 +104,9 @@ export function ContactForm() {
                   href={href}
                   target={external ? '_blank' : undefined}
                   rel={external ? 'noopener noreferrer' : undefined}
-                  className="group flex items-center gap-3.5 p-4 rounded-xl border border-border bg-surface hover:border-accent/40 hover:bg-accent/[0.03] transition-all duration-300"
+                  className="group flex items-center gap-3.5 border-t border-border py-4 transition-colors hover:border-text-primary last:border-b"
                 >
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-accent/10 text-accent group-hover:bg-accent/15 transition-colors">
+                  <div className="signal-mark flex h-10 w-10 shrink-0 items-center justify-center">
                     <Icon className="w-4.5 h-4.5" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -120,13 +120,13 @@ export function ContactForm() {
 
             {/* Brief note */}
             <p className="text-text-secondary text-sm leading-relaxed">
-              I&apos;m currently based in Lahore, Pakistan and open to both local and remote opportunities. Feel free to reach out — even if it&apos;s just to say hello.
+              I&apos;m based in Lahore, Pakistan and open to both local and remote opportunities. A clear email is the fastest way to reach me.
             </p>
           </div>
 
           {/* Right Column: Form — 3/5 width */}
           <div className="lg:col-span-3">
-            <div className="card p-6 sm:p-8 rounded-2xl">
+            <div className="border-t border-text-primary pt-6 sm:pt-8">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="relative group">
@@ -193,7 +193,7 @@ export function ContactForm() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-accent/10 border border-accent/20 text-accent"
+                      className="flex items-center gap-3 border border-accent/30 bg-accent/10 p-4 text-accent"
                     >
                       <CheckCircle className="w-5 h-5 shrink-0" />
                       <p className="text-sm font-semibold">Message sent! I&apos;ll get back to you soon.</p>
@@ -204,7 +204,7 @@ export function ContactForm() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500"
+                      className="flex items-center gap-3 border border-red-500/20 bg-red-500/10 p-4 text-red-500"
                     >
                       <AlertCircle className="w-5 h-5 shrink-0" />
                       <p className="text-sm font-medium">{errorMessage}</p>
@@ -215,7 +215,7 @@ export function ContactForm() {
                       type="submit"
                       disabled={status === 'loading'}
                       className={cn(
-                        'w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl',
+                        'w-full inline-flex items-center justify-center gap-2 px-6 py-3.5',
                         'bg-accent text-accent-foreground font-semibold text-sm',
                         'transition-all duration-300 hover:brightness-110 hover:shadow-[0_8px_30px_hsl(var(--accent)/0.25)] hover:-translate-y-0.5',
                         'disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none'

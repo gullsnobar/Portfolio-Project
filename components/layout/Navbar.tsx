@@ -1,141 +1,113 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { Menu, X, ArrowUpRight } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ThemeToggle } from './ThemeToggle'
 import { cn } from '@/lib/utils'
 import { personalInfo } from '@/lib/data'
 
 const navLinks = [
-  { href: '/#about',      label: 'About',      section: 'about'      },
-  { href: '/#skills',     label: 'Skills',     section: 'skills'     },
-  { href: '/#experience', label: 'Experience', section: 'experience' },
-  { href: '/#projects',   label: 'Projects',   section: 'projects'   },
-  { href: '/#contact',    label: 'Contact',    section: 'contact'    },
-  { href: '/guestbook',   label: 'Guestbook',  section: 'guestbook'  },
+  { href: '/#projects', label: 'Work', section: 'projects', number: '01' },
+  { href: '/#experience', label: 'Experience', section: 'experience', number: '02' },
+  { href: '/#skills', label: 'Expertise', section: 'skills', number: '03' },
+  { href: '/#about', label: 'About', section: 'about', number: '04' },
 ]
-
-const pageSections = navLinks.map((link) => link.section).filter((s) => s !== 'guestbook')
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const reduceMotion = useReducedMotion()
 
-  /* Shadow after scrolling */
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 8)
+    const handleScroll = () => setIsScrolled(window.scrollY > 12)
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  /* Active section: the first nav item (in menu order) whose section is on screen */
   useEffect(() => {
-    const visible = new Set<string>()
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) visible.add(entry.target.id)
-          else visible.delete(entry.target.id)
-        })
-        setActiveSection(pageSections.find((id) => visible.has(id)) ?? '')
+        const current = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+        if (current) setActiveSection(current.target.id)
       },
-      { rootMargin: '-40% 0px -55% 0px' }
+      { rootMargin: '-28% 0px -58% 0px', threshold: [0.05, 0.2, 0.5] }
     )
 
-    pageSections.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
+    navLinks.forEach(({ section }) => {
+      const element = document.getElementById(section)
+      if (element) observer.observe(element)
     })
 
     return () => observer.disconnect()
   }, [])
 
-  /* Close the mobile menu with Escape */
   useEffect(() => {
     if (!mobileOpen) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileOpen(false)
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileOpen(false)
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKeyDown)
+    }
   }, [mobileOpen])
 
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 border-b border-border',
-        'bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70',
-        'transition-shadow duration-300',
-        isScrolled && 'shadow-sm shadow-black/5'
+        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200',
+        isScrolled || mobileOpen
+          ? 'border-border bg-background/95 backdrop-blur-md'
+          : 'border-transparent bg-background/75 backdrop-blur-sm'
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-
-        {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2.5" aria-label="Gull Snobar, home">
-          <Image
-            src="/Gull.png"
-            alt=""
-            width={32}
-            height={32}
-            className="h-8 w-8 rounded-lg object-cover"
-            priority
-          />
-          <span className="font-heading text-base font-semibold text-text-primary">
-            Gull<span className="text-accent">.</span>Snobar
-          </span>
+      <nav className="site-shell flex h-[4.5rem] items-center justify-between gap-4" aria-label="Primary navigation">
+        <Link href="/" className="flex items-center gap-3" aria-label="Gull Snobar, home">
+          <span className="signal-mark flex h-8 w-8 items-center justify-center font-display text-xs font-bold">GS</span>
+          <span className="font-display text-sm font-semibold tracking-[-0.02em] sm:text-base">Gull Snobar</span>
         </Link>
 
-        {/* Desktop links */}
         <ul className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.section
+            const active = activeSection === link.section
             return (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  aria-current={isActive ? 'location' : undefined}
+                  aria-current={active ? 'location' : undefined}
                   className={cn(
-                    'relative block px-3 py-2 text-sm font-medium transition-colors duration-200',
-                    isActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                    'group flex items-baseline gap-1.5 px-3 py-2 text-sm font-medium transition-colors',
+                    active ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
                   )}
                 >
+                  <span className={cn('font-mono text-[0.55rem]', active ? 'text-accent' : 'text-text-secondary/60')}>
+                    {link.number}
+                  </span>
                   {link.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-accent"
-                      transition={{ type: 'spring', stiffness: 400, damping: 34 }}
-                    />
-                  )}
                 </Link>
               </li>
             )
           })}
         </ul>
 
-        {/* Actions */}
         <div className="flex items-center gap-2">
           <ThemeToggle />
-
-          <Link
-            href={`mailto:${personalInfo.email}`}
-            className="btn btn-primary hidden px-4 py-2 text-sm lg:inline-flex"
-          >
-            Hire Me
-            <ArrowUpRight className="h-3.5 w-3.5" />
+          <Link href={`mailto:${personalInfo.email}`} className="btn btn-primary !hidden min-h-10 px-4 lg:!inline-flex">
+            Let&apos;s talk <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
-
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-surface text-text-primary transition-colors hover:border-accent/50 lg:hidden"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            className="flex h-10 w-10 items-center justify-center border border-border bg-background text-text-primary lg:hidden"
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
@@ -144,46 +116,42 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       <AnimatePresence initial={false}>
         {mobileOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="overflow-hidden border-t border-border bg-background lg:hidden"
+            initial={reduceMotion ? false : { opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -12 }}
+            transition={{ duration: reduceMotion ? 0 : 0.2 }}
+            className="min-h-[calc(100dvh-4.5rem)] border-t border-border bg-background lg:hidden"
           >
-            <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.section
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    aria-current={isActive ? 'location' : undefined}
-                    className={cn(
-                      'rounded-lg px-3 py-3 text-base transition-colors',
-                      isActive
-                        ? 'bg-accent/10 font-semibold text-accent'
-                        : 'text-text-secondary hover:bg-surface hover:text-text-primary'
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
+            <div className="site-shell flex min-h-[calc(100dvh-4.5rem)] flex-col py-8">
+              <ul>
+                {navLinks.map((link) => (
+                  <li key={link.href} className="border-b border-border">
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-baseline justify-between py-5 font-display text-3xl font-medium tracking-tight"
+                    >
+                      {link.label}
+                      <span className="font-mono text-xs text-text-secondary">{link.number}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-              <Link
-                href={`mailto:${personalInfo.email}`}
-                onClick={() => setMobileOpen(false)}
-                className="btn btn-primary mt-3 w-full"
-              >
-                Hire Me
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
+              <div className="mt-auto pt-10">
+                <p className="eyebrow text-text-secondary">Start a conversation</p>
+                <Link
+                  href={`mailto:${personalInfo.email}`}
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-3 inline-flex items-center gap-2 break-all text-lg font-semibold underline decoration-border"
+                >
+                  {personalInfo.email} <ArrowUpRight className="h-4 w-4 shrink-0" />
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}

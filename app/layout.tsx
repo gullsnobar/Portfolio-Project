@@ -28,10 +28,11 @@ export const metadata: Metadata = {
     template: '%s | Gull Snobar',
   },
   description:
-    'Full-Stack Developer specialising in React, Next.js, Node.js & MongoDB. Building fast, scalable web applications and AI-powered SaaS platforms. Based in Lahore, Pakistan.',
+    'Associate Software Engineer building full-stack applications, AI-powered tools, SaaS products, APIs, and integrations. Based in Lahore, Pakistan.',
   keywords: [
     'Gull Snobar',
-    'Full-Stack Developer',
+    'Associate Software Engineer',
+    'Full-Stack Software Engineer',
     'React Developer',
     'Next.js Developer',
     'Node.js Developer',
@@ -50,14 +51,14 @@ export const metadata: Metadata = {
     locale: 'en_US',
     title: 'Gull Snobar, Associate Software Engineer',
     description:
-      'Full-stack software engineer specializing in React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. Building production web apps and AI-powered SaaS platforms.',
+      'Associate Software Engineer building full-stack applications, AI-powered tools, SaaS products, APIs, and integrations.',
     siteName: 'Gull Snobar Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Gull Snobar, Associate Software Engineer',
     description:
-      'Full-stack software engineer specializing in React, TypeScript, AdonisJS, Node.js, PostgreSQL, and Docker. Building production web apps and AI-powered SaaS platforms.',
+      'Associate Software Engineer building full-stack applications, AI-powered tools, SaaS products, APIs, and integrations.',
   },
   robots: {
     index: true,
