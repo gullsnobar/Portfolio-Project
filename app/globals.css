@@ -252,6 +252,7 @@ h3 {
 }
 
 /* ─── Badges ──────────────────────────────────────────── */
+@layer components {
 .badge {
   display: inline-flex;
   align-items: center;
@@ -271,6 +272,7 @@ h3 {
   border-color: hsl(var(--accent) / 0.30);
   background: hsl(var(--accent) / 0.10);
   color: hsl(var(--accent));
+}
 }
 
 /* ─── Skill badge ─────────────────────────────────────── */
@@ -326,6 +328,7 @@ h3 {
 }
 
 /* ─── Buttons ─────────────────────────────────────────── */
+@layer components {
 .btn {
   display: inline-flex;
   align-items: center;
@@ -368,6 +371,7 @@ h3 {
 .btn-secondary:hover {
   border-color: hsl(var(--accent) / 0.5);
   background: hsl(var(--accent) / 0.05);
+}
 }
 
 /* ─── Glow utilities ──────────────────────────────────── */
