@@ -18,7 +18,7 @@ export function Experience() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
             <div className="border-t border-text-primary pt-5 lg:sticky lg:top-28">
-              <p className="eyebrow text-text-secondary">02 / Experience</p>
+              <p className="eyebrow text-text-secondary">02 Experience</p>
               <h2 className="section-title mt-6 max-w-[8ch]">Learning by shipping.</h2>
               <p className="mt-6 max-w-sm leading-relaxed text-text-secondary">
                 About a year across product engineering, internships, and a hands-on full-stack fellowship.
@@ -61,8 +61,8 @@ export function Experience() {
                     {item.description.length > 0 && (
                       <ul className="mt-6 max-w-2xl space-y-3">
                         {item.description.map((point) => (
-                          <li key={point} className="grid grid-cols-[1rem_1fr] gap-3 text-sm leading-relaxed text-text-secondary sm:text-base">
-                            <span className="mt-[0.6em] h-px bg-accent" aria-hidden="true" />
+                          <li key={point} className="grid grid-cols-[0.5rem_1fr] gap-4 text-sm leading-relaxed text-text-secondary sm:text-base">
+                            <span className="mt-[0.58em] h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                             {point}
                           </li>
                         ))}

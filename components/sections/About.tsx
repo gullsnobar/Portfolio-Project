@@ -9,7 +9,7 @@ export function About() {
     <section id="about" className="section-spacing">
       <div className="site-shell">
         <SectionHeader
-          tag="04 / About"
+          tag="04 About"
           title="Curious about the whole product."
           subtitle="I work across frontend and backend development, with a growing focus on AI-enabled applications and well-structured product systems."
         />

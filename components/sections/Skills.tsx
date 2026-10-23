@@ -16,7 +16,7 @@ export function Skills() {
       <div className="site-shell">
         <div className="grid gap-6 border-t border-current/50 pt-5 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-3">
-            <p className="eyebrow opacity-60">03 / Expertise</p>
+            <p className="eyebrow opacity-60">03 Expertise</p>
           </div>
           <div className="md:col-span-9">
             <h2 className="section-title max-w-[12ch] !text-current">A practical full-stack toolkit.</h2>

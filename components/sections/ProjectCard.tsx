@@ -14,7 +14,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
     <article className="group border-t border-border pt-4">
       <div className="flex items-center justify-between gap-4">
-        <p className="eyebrow text-text-secondary">{String(index + 1).padStart(2, '0')} / {project.featured ? 'Featured' : 'Project'}</p>
+        <p className="eyebrow text-text-secondary">{String(index + 1).padStart(2, '0')} · {project.featured ? 'Featured' : 'Project'}</p>
         {project.company && <p className="font-mono text-[0.62rem] uppercase tracking-wider text-text-secondary">{project.company}</p>}
       </div>
 

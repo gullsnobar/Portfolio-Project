@@ -16,7 +16,7 @@ export function Hero() {
         <div className="grid border-t border-text-primary pt-4 lg:grid-cols-12 lg:gap-x-8">
           <div className="lg:col-span-8">
             <div className="mb-10 flex flex-wrap items-center justify-between gap-3 lg:pr-8">
-              <p className="eyebrow text-text-primary">Gull Snobar / Software Engineer</p>
+              <p className="eyebrow text-text-primary">Gull Snobar · Software Engineer</p>
               <p className="eyebrow flex items-center gap-2 text-text-secondary">
                 <span className="h-2 w-2 bg-[hsl(var(--signal))]" aria-hidden="true" />
                 Open to relevant roles

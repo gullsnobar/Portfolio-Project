@@ -86,7 +86,7 @@ export function ContactForm() {
       <div className="site-shell">
         
         <SectionHeader
-          tag="05 / Contact"
+          tag="05 Contact"
           title="Let's build something useful."
           subtitle="I'm open to junior, associate, and full-stack software engineering opportunities in Pakistan and with remote teams."
           className="mb-12"

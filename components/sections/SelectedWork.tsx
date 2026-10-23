@@ -34,7 +34,7 @@ export function SelectedWork() {
       <div className="site-shell">
         <div className="grid gap-6 border-t border-text-primary pt-5 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-3">
-            <p className="eyebrow text-text-secondary">01 / Selected work</p>
+            <p className="eyebrow text-text-secondary">01 Selected work</p>
           </div>
           <div className="md:col-span-9">
             <h2 className="section-title max-w-[11ch]">Product work with real constraints.</h2>
