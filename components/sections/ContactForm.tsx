@@ -138,13 +138,16 @@ export function ContactForm() {
                       <input
                         id="contact-name"
                         type="text"
+                        autoComplete="name"
                         placeholder="John Doe"
+                        aria-invalid={Boolean(errors.name)}
+                        aria-describedby={errors.name ? 'contact-name-error' : undefined}
                         className={cn(inputClass, errors.name && 'border-red-400/60 focus:ring-red-400/20')}
                         {...register('name')}
                       />
                     </div>
                     {errors.name && (
-                      <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.name.message}</p>
+                      <p id="contact-name-error" className="mt-1.5 text-xs text-red-500 font-medium">{errors.name.message}</p>
                     )}
                   </div>
                   <div className="relative group">
@@ -156,13 +159,16 @@ export function ContactForm() {
                       <input
                         id="contact-email"
                         type="email"
+                        autoComplete="email"
                         placeholder="john@example.com"
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={errors.email ? 'contact-email-error' : undefined}
                         className={cn(inputClass, errors.email && 'border-red-400/60 focus:ring-red-400/20')}
                         {...register('email')}
                       />
                     </div>
                     {errors.email && (
-                      <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.email.message}</p>
+                      <p id="contact-email-error" className="mt-1.5 text-xs text-red-500 font-medium">{errors.email.message}</p>
                     )}
                   </div>
                 </div>
@@ -177,12 +183,14 @@ export function ContactForm() {
                       id="contact-message"
                       rows={5}
                       placeholder="Tell me about your project or opportunity..."
+                      aria-invalid={Boolean(errors.message)}
+                      aria-describedby={errors.message ? 'contact-message-error' : undefined}
                       className={cn(textareaClass, errors.message && 'border-red-400/60 focus:ring-red-400/20')}
                       {...register('message')}
                     />
                   </div>
                   {errors.message && (
-                    <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.message.message}</p>
+                    <p id="contact-message-error" className="mt-1.5 text-xs text-red-500 font-medium">{errors.message.message}</p>
                   )}
                 </div>
 
@@ -193,6 +201,7 @@ export function ContactForm() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
+                      role="status"
                       className="flex items-center gap-3 border border-accent/30 bg-accent/10 p-4 text-accent"
                     >
                       <CheckCircle className="w-5 h-5 shrink-0" />
@@ -204,6 +213,7 @@ export function ContactForm() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
+                      role="alert"
                       className="flex items-center gap-3 border border-red-500/20 bg-red-500/10 p-4 text-red-500"
                     >
                       <AlertCircle className="w-5 h-5 shrink-0" />
@@ -214,6 +224,7 @@ export function ContactForm() {
                       key="submit"
                       type="submit"
                       disabled={status === 'loading'}
+                      aria-busy={status === 'loading'}
                       className={cn(
                         'inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 sm:w-auto',
                         'bg-accent text-accent-foreground font-semibold text-sm',

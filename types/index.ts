@@ -41,6 +41,7 @@ export interface ExperienceItem {
 export interface SkillGroup {
   category: string
   skills: Skill[]
+  status?: 'learning'
 }
 
 export interface Skill {
