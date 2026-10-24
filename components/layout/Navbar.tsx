@@ -70,7 +70,7 @@ export function Navbar() {
       )}
     >
       <nav className="site-shell flex h-[4.5rem] items-center justify-between gap-4" aria-label="Primary navigation">
-        <Link href="/" className="flex items-center gap-3" aria-label="Gull Snobar, home">
+        <Link href="/" className="flex min-h-11 items-center gap-3" aria-label="Gull Snobar, home">
           <span className="signal-mark flex h-8 w-8 items-center justify-center font-display text-xs font-bold">GS</span>
           <span className="font-display text-sm font-semibold tracking-[-0.02em] sm:text-base">Gull Snobar</span>
         </Link>
@@ -84,7 +84,7 @@ export function Navbar() {
                   href={link.href}
                   aria-current={active ? 'location' : undefined}
                   className={cn(
-                    'group flex items-baseline gap-1.5 px-3 py-2 text-sm font-medium transition-colors',
+                    'group flex min-h-11 items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors',
                     active ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
                   )}
                 >
@@ -106,7 +106,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
-            className="flex h-10 w-10 items-center justify-center border border-border bg-background text-text-primary lg:hidden"
+            className="flex h-11 w-11 items-center justify-center border border-border bg-background text-text-primary lg:hidden"
             aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
@@ -147,7 +147,7 @@ export function Navbar() {
                 <Link
                   href={`mailto:${personalInfo.email}`}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-3 inline-flex items-center gap-2 break-all text-lg font-semibold underline decoration-border"
+                  className="mt-3 inline-flex min-h-11 items-center gap-2 break-all text-lg font-semibold underline decoration-border"
                 >
                   {personalInfo.email} <ArrowUpRight className="h-4 w-4 shrink-0" />
                 </Link>

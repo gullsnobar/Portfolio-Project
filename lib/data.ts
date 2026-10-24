@@ -114,15 +114,6 @@ export const experience: ExperienceItem[] = [
       'Enhanced my ability to build responsive, user-friendly applications and apply modern front-end practices in practical scenarios.',
     ],
   },
-  {
-    id: '4',
-    role: 'Frontend Web Development Intern',
-    company: 'Arch Technologies',
-    type: 'Internship',
-    period: 'Jun 2025 – Aug 2025',
-    location: '',
-    description: [],
-  },
 ]
 
 export const education: EducationItem[] = [
@@ -159,7 +150,7 @@ export const featuredProjects = [
     title: 'OmniCat: AI SaaS Platform',
     slug: 'omnicat-ai-saas',
     description:
-      'A full-stack AI SaaS platform with 11 content and image tools. Users generate blog posts, ad copy, logos, and photoshoot images, plus use image tools like background removal and photo enhancement. Includes an admin panel for user management, pricing plans, and AI provider configuration.',
+      'A full-stack AI SaaS platform with 11 content and image tools spanning writing, logos, photoshoots, background removal, and image enhancement. I contribute to user, plan, and admin workflows, including configurable AI providers.',
     tech_stack: [
       'React 19',
       'TypeScript',
@@ -180,7 +171,7 @@ export const featuredProjects = [
     title: 'Quote Management System',
     slug: 'quote-management-system',
     description:
-      'A full-stack quote management system with draft workflows, search, and corridor-based pricing. Built with React and AdonisJS 6. Features secure authentication, resource ownership, and CRUD operations with server-side validation. Handles about 3,000 records using TanStack Virtual.',
+      'A full-stack quote system with draft workflows, corridor-based pricing, search, secure ownership-aware CRUD, and server-side validation. It handles about 3,000 records with TanStack Virtual.',
     tech_stack: [
       'React',
       'TypeScript',

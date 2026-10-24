@@ -1,10 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Send, Loader2, MessageSquare, User } from 'lucide-react'
+import { Check, Loader2, MessageSquare, Send } from 'lucide-react'
 import { guestbookSchema, type GuestbookInput } from '@/lib/validations'
 import { formatDate } from '@/lib/utils'
 import type { GuestbookEntry } from '@/types'
@@ -15,6 +14,7 @@ export function Guestbook() {
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const {
     register,
@@ -31,8 +31,9 @@ export function Guestbook() {
 
   async function fetchEntries() {
     try {
-      const res = await fetch('/api/guestbook')
-      const data = await res.json()
+      const response = await fetch('/api/guestbook')
+      if (!response.ok) throw new Error('Unable to load guestbook entries')
+      const data = await response.json()
       setEntries(data.entries || [])
     } catch {
       setEntries([])
@@ -43,153 +44,175 @@ export function Guestbook() {
 
   const onSubmit = async (data: GuestbookInput) => {
     setSubmitting(true)
+    setSubmitError('')
+
     try {
-      const res = await fetch('/api/guestbook', {
+      const response = await fetch('/api/guestbook', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-      if (!res.ok) throw new Error('Failed to post')
+
+      if (!response.ok) throw new Error('Your note could not be posted. Please try again.')
+
       setSubmitted(true)
       reset()
-      fetchEntries()
-    } catch {
-      // silently fail: user can retry
+      await fetchEntries()
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Your note could not be posted. Please try again.')
     } finally {
       setSubmitting(false)
     }
   }
 
   const inputClass = cn(
-    'w-full px-4 py-3 rounded-xl bg-background border border-border text-text-primary text-sm',
-    'placeholder:text-text-secondary/50',
-    'focus:outline-none focus:ring-2 focus:ring-text-primary/20 focus:border-text-primary',
-    'transition-all duration-200'
+    'w-full border border-border bg-background px-4 py-3.5 text-sm text-text-primary',
+    'placeholder:text-text-secondary/55',
+    'focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25',
+    'transition-colors duration-200'
   )
 
   return (
-    <section className="py-24 sm:py-32">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary border border-border text-text-secondary text-xs font-medium tracking-widest uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-text-primary animate-pulse" />
-            Guestbook
+    <section className="pb-24 pt-32 sm:pb-32 sm:pt-40">
+      <div className="site-shell">
+        <div className="grid gap-6 border-t border-text-primary pt-5 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-3">
+            <p className="eyebrow text-text-secondary">Guestbook</p>
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-text-primary mb-4">
-            Leave a mark.
-          </h1>
-          <p className="text-text-secondary leading-relaxed">
-            Sign the guestbook, say hello, drop feedback, or just leave your name.
-          </p>
+          <div className="md:col-span-9">
+            <h1 className="section-title max-w-[11ch]">Leave a note behind.</h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+              Say hello, share a thought, or leave a little encouragement. Short and genuine is perfect.
+            </p>
+          </div>
         </div>
 
-        {/* Form */}
-        {!submitted ? (
-          <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            onSubmit={handleSubmit(onSubmit)}
-            className="p-6 rounded-2xl bg-surface border border-border space-y-4 mb-12"
-          >
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="gb-name" className="block text-xs font-medium text-text-secondary mb-2">
-                  Your Name
-                </label>
-                <input
-                  id="gb-name"
-                  type="text"
-                  placeholder="Jane Doe"
-                  className={cn(inputClass, errors.name && 'border-red-500/50')}
-                  {...register('name')}
-                />
-                {errors.name && (
-                  <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
+        <div className="mt-16 grid gap-8 sm:mt-20 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <p className="eyebrow text-text-secondary">Add your message</p>
+            <h2 className="mt-3 max-w-[12ch] font-display text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
+              Sign the guestbook.
+            </h2>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-text-secondary">
+              Your name and message will appear publicly after submission.
+            </p>
+          </div>
+
+          <div className="lg:col-span-8">
+            {!submitted ? (
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 border-t border-text-primary pt-6 sm:pt-8">
+                <div className="max-w-md">
+                  <label htmlFor="gb-name" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                    Your name
+                  </label>
+                  <input
+                    id="gb-name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Jane Doe"
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? 'gb-name-error' : undefined}
+                    className={cn(inputClass, errors.name && 'border-red-500/60')}
+                    {...register('name')}
+                  />
+                  {errors.name && (
+                    <p id="gb-name-error" className="mt-1.5 text-xs font-medium text-red-500">
+                      {errors.name.message}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="gb-message" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                    Message
+                  </label>
+                  <textarea
+                    id="gb-message"
+                    rows={4}
+                    placeholder="A quick hello or a thoughtful note..."
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={errors.message ? 'gb-message-error' : undefined}
+                    className={cn(inputClass, 'resize-y', errors.message && 'border-red-500/60')}
+                    {...register('message')}
+                  />
+                  {errors.message && (
+                    <p id="gb-message-error" className="mt-1.5 text-xs font-medium text-red-500">
+                      {errors.message.message}
+                    </p>
+                  )}
+                </div>
+
+                {submitError && (
+                  <p role="alert" className="border-l-2 border-red-500 pl-3 text-sm text-red-500">
+                    {submitError}
+                  </p>
                 )}
-              </div>
-              <div className="sm:col-span-1" />
-            </div>
 
-            <div>
-              <label htmlFor="gb-message" className="block text-xs font-medium text-text-secondary mb-2">
-                Message
-              </label>
-              <textarea
-                id="gb-message"
-                rows={3}
-                placeholder="Great portfolio! Keep building..."
-                className={cn(inputClass, 'resize-none', errors.message && 'border-red-500/50')}
-                {...register('message')}
-              />
-              {errors.message && (
-                <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={submitting}
-              className={cn(
-                'inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium',
-                'bg-text-primary text-background hover:opacity-85',
-                'transition-all duration-200 hover:shadow-lg',
-                'disabled:opacity-60 disabled:cursor-not-allowed'
-              )}
-            >
-              {submitting ? (
-                <><Loader2 className="w-4 h-4 animate-spin" /> Signing...</>
-              ) : (
-                <><Send className="w-4 h-4" /> Sign Guestbook</>
-              )}
-            </button>
-          </motion.form>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="p-6 rounded-2xl bg-secondary border border-border text-center mb-12"
-          >
-            <p className="text-text-primary font-medium">Thanks for signing! 🎉</p>
-          </motion.div>
-        )}
-
-        {/* Entries */}
-        <div className="space-y-4">
-          {loading ? (
-            <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 text-text-secondary animate-spin" />
-            </div>
-          ) : entries.length === 0 ? (
-            <div className="text-center py-16">
-              <MessageSquare className="w-10 h-10 text-text-secondary/30 mx-auto mb-3" />
-              <p className="text-text-secondary text-sm">No entries yet. Be the first to sign!</p>
-            </div>
-          ) : (
-            <AnimatePresence>
-              {entries.map((entry, i) => (
-                <motion.div
-                  key={entry.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="flex gap-4 p-5 rounded-xl bg-surface border border-border hover:border-text-primary/25 transition-all duration-200"
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="signal-mark inline-flex min-h-11 items-center justify-center gap-2 px-5 text-sm font-bold transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                 >
-                  <div className="w-9 h-9 rounded-full bg-secondary border border-border flex items-center justify-center shrink-0">
-                    <User className="w-4 h-4 text-text-primary" />
+                  {submitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Posting note...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" /> Sign guestbook
+                    </>
+                  )}
+                </button>
+              </form>
+            ) : (
+              <div className="border-t border-text-primary pt-6 sm:pt-8" aria-live="polite">
+                <div className="flex items-start gap-4 border-l-2 border-accent pl-4">
+                  <span className="signal-mark flex h-9 w-9 shrink-0 items-center justify-center">
+                    <Check className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className="font-display text-xl font-semibold">Thanks for leaving a note.</p>
+                    <p className="mt-1 text-sm text-text-secondary">Your message has been added to the guestbook.</p>
+                    <button type="button" onClick={() => setSubmitted(false)} className="text-link mt-3">
+                      Sign again
+                    </button>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2 mb-1">
-                      <p className="font-medium text-text-primary text-sm truncate">{entry.name}</p>
-                      <span className="text-xs text-text-secondary shrink-0">
-                        {formatDate(entry.created_at)}
-                      </span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-20 grid gap-8 border-t border-text-primary pt-5 sm:mt-28 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-3">
+            <p className="eyebrow text-text-secondary">Recent notes</p>
+          </div>
+          <div className="md:col-span-9">
+            {loading ? (
+              <div className="flex min-h-24 items-center gap-3 border-b border-border py-6 text-sm text-text-secondary" aria-live="polite">
+                <Loader2 className="h-4 w-4 animate-spin" /> Loading messages...
+              </div>
+            ) : entries.length === 0 ? (
+              <div className="flex min-h-28 items-center gap-4 border-b border-border py-6">
+                <MessageSquare className="h-5 w-5 text-text-secondary" />
+                <p className="text-sm text-text-secondary">No notes yet. You can be the first.</p>
+              </div>
+            ) : (
+              <div>
+                {entries.map((entry) => (
+                  <article key={entry.id} className="grid gap-3 border-b border-border py-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-8">
+                    <div className="min-w-0">
+                      <p className="font-display font-semibold text-text-primary">{entry.name}</p>
+                      <p className="mt-2 max-w-2xl break-words text-sm leading-relaxed text-text-secondary">{entry.message}</p>
                     </div>
-                    <p className="text-text-secondary text-sm leading-relaxed">{entry.message}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          )}
+                    <time className="font-mono text-[0.65rem] uppercase tracking-wider text-text-secondary">
+                      {formatDate(entry.created_at)}
+                    </time>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

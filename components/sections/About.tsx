@@ -1,8 +1,7 @@
 'use client'
 
 import { AnimatedSection, SectionHeader } from '@/components/shared/AnimatedText'
-import { certifications, education, personalInfo } from '@/lib/data'
-import { ArrowUpRight } from 'lucide-react'
+import { certifications, education } from '@/lib/data'
 
 export function About() {
   return (
@@ -16,20 +15,14 @@ export function About() {
 
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <AnimatedSection className="lg:col-span-7">
-            <p className="font-display text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-text-primary sm:text-4xl">
+            <p className="max-w-[30ch] font-display text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-text-primary sm:text-3xl">
               I&apos;m Gull, an Associate Software Engineer based in Lahore. I enjoy taking a feature from data model and API through to the details people actually interact with.
             </p>
-            <div className="mt-8 max-w-2xl space-y-5 text-base leading-relaxed text-text-secondary">
+            <div className="mt-8 max-w-2xl text-base leading-relaxed text-text-secondary">
               <p>
                 At Devyard, I contribute to OmniCat and a quote management system. That work has strengthened how I think about real product constraints: maintaining workflows, handling data carefully, debugging across the stack, and shipping changes other people can build on.
               </p>
-              <p>
-                I&apos;m looking for junior, associate, or full-stack software engineering opportunities where I can contribute to useful products and keep growing with a strong engineering team.
-              </p>
             </div>
-            <a href={`mailto:${personalInfo.email}`} className="text-link mt-8">
-              Start a conversation <ArrowUpRight className="h-4 w-4" />
-            </a>
           </AnimatedSection>
 
           <AnimatedSection className="lg:col-span-5" delay={0.08}>

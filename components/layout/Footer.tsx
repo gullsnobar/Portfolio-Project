@@ -63,7 +63,7 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {navigation.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="text-sm text-white/65 transition-colors hover:text-white">
+                    <Link href={item.href} className="inline-flex min-h-11 items-center text-sm text-white/65 transition-colors hover:text-white">
                       {item.label}
                     </Link>
                   </li>
@@ -79,7 +79,7 @@ export function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm text-white/65 transition-colors hover:text-white"
+                      className="inline-flex min-h-11 items-center gap-1.5 text-sm text-white/65 transition-colors hover:text-white"
                     >
                       {item.label} <ArrowUpRight className="h-3 w-3" />
                     </Link>

@@ -53,7 +53,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           )}
           {project.repo_url && (
             <Link href={project.repo_url} target="_blank" rel="noopener noreferrer" className="text-link">
-              Source <Github className="h-3.5 w-3.5" />
+              Source code <Github className="h-3.5 w-3.5" />
             </Link>
           )}
           {!project.live_url && !project.repo_url && (

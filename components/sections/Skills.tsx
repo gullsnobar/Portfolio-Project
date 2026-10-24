@@ -42,8 +42,8 @@ export function Skills() {
                   </p>
                   <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-3">
                     {group.skills.map((skill) => (
-                      <li key={skill.name} className="border-b border-current/35 pb-0.5 text-sm font-medium">
-                        {skill.name}
+                      <li key={skill.name} className="inline-flex items-center gap-2 text-sm font-medium">
+                        <span aria-hidden="true" className="h-1 w-1 bg-current opacity-45" /> {skill.name}
                       </li>
                     ))}
                   </ul>
