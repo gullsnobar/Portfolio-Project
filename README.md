@@ -18,7 +18,7 @@ A responsive developer portfolio presenting my projects, professional experience
 | --- | --- |
 | Framework | Next.js 14, React 18, TypeScript |
 | Styling | Tailwind CSS, PostCSS, CSS custom properties |
-| Motion and icons | Framer Motion, Lucide React |
+| Motion and icons | Framer Motion, GSAP, Lucide React |
 | Forms and validation | React Hook Form, Zod |
 | Data and email | Supabase, Resend |
 | Theming | next-themes |
