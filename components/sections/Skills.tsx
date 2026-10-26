@@ -17,7 +17,7 @@ export function Skills() {
   return (
     <section id="skills" className="section-spacing bg-[#151710] text-[#f3f1e8] dark:bg-[#eff09f] dark:text-[#14160f]">
       <div className="site-shell">
-        <div className="grid gap-6 border-t border-current/50 pt-5 md:grid-cols-12 md:gap-8">
+        <AnimatedSection className="grid gap-6 border-t border-current/50 pt-5 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-3">
             <p className="eyebrow opacity-60">03 Expertise</p>
           </div>
@@ -27,7 +27,7 @@ export function Skills() {
               My working toolkit across interfaces, backend systems, data, testing, and AI—followed by the areas I&apos;m actively learning.
             </p>
           </div>
-        </div>
+        </AnimatedSection>
 
         <div className="mt-16 grid border-t border-current/30 lg:grid-cols-2">
           {skillGroups.map((group, index) => (

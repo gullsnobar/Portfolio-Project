@@ -17,7 +17,7 @@ export function Experience() {
       <div className="site-shell">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <div className="border-t border-text-primary pt-5 lg:sticky lg:top-28">
+            <AnimatedSection className="border-t border-text-primary pt-5 lg:sticky lg:top-28">
               <p className="eyebrow text-text-secondary">02 Experience</p>
               <h2 className="section-title mt-6 max-w-[8ch]">Learning by shipping.</h2>
               <p className="mt-6 max-w-sm leading-relaxed text-text-secondary">
@@ -26,7 +26,7 @@ export function Experience() {
               <a href="#skills" className="text-link mt-8">
                 Explore technical range <ArrowDownRight className="h-4 w-4" />
               </a>
-            </div>
+            </AnimatedSection>
           </div>
 
           <div className="lg:col-span-8">

@@ -1,8 +1,14 @@
 'use client'
 
+import { useRef } from 'react'
 import Link from 'next/link'
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 import { personalInfo } from '@/lib/data'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const navigation = [
   { href: '/#projects', label: 'Work' },
@@ -20,30 +26,60 @@ const links = [
 
 export function Footer() {
   const year = new Date().getFullYear()
+  const footerRef = useRef<HTMLElement>(null)
+
+  useGSAP(
+    () => {
+      const media = gsap.matchMedia()
+
+      media.add('(prefers-reduced-motion: no-preference)', () => {
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 78%',
+            once: true,
+          },
+          defaults: { ease: 'power3.out' },
+        })
+
+        timeline
+          .from('[data-footer="label"]', { autoAlpha: 0, y: 12, duration: 0.4 })
+          .from('[data-footer="headline"]', { autoAlpha: 0, y: 28, duration: 0.75 }, '-=0.2')
+          .from('[data-footer="contact"]', { autoAlpha: 0, y: 16, duration: 0.55 }, '-=0.35')
+          .from('[data-footer="details"]', { autoAlpha: 0, y: 18, duration: 0.55 }, '-=0.25')
+          .from('[data-footer="legal"]', { autoAlpha: 0, duration: 0.4 }, '-=0.2')
+      })
+
+      return () => media.revert()
+    },
+    { scope: footerRef }
+  )
 
   return (
-    <footer className="bg-[#11130f] text-[#f3f1e8]">
+    <footer ref={footerRef} className="bg-[#11130f] text-[#f3f1e8]">
       <div className="site-shell pb-7 pt-16 sm:pt-24">
         <div className="grid gap-10 border-t border-white/35 pt-5 md:grid-cols-12 md:gap-8">
-          <p className="eyebrow text-white/55 md:col-span-3">A final note</p>
+          <p data-footer="label" className="eyebrow text-white/55 md:col-span-3">A final note</p>
           <div className="md:col-span-9">
-            <h2 className="max-w-[11ch] font-display text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-[#f3f1e8]">
+            <h2 data-footer="headline" className="max-w-[11ch] font-display text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-[#f3f1e8]">
               Have something interesting to build?
             </h2>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
-              I&apos;m open to thoughtful software engineering roles, product work, and professional conversations with teams building useful things.
-            </p>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="signal-mark mt-8 inline-flex max-w-full items-center gap-3 px-5 py-4 text-sm font-bold transition-transform hover:-translate-y-1 sm:text-base"
-            >
-              <span className="truncate">{personalInfo.email}</span>
-              <ArrowUpRight className="h-4 w-4 shrink-0" />
-            </a>
+            <div data-footer="contact">
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
+                I&apos;m open to thoughtful software engineering roles, product work, and professional conversations with teams building useful things.
+              </p>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="signal-mark mt-8 inline-flex max-w-full items-center gap-3 px-5 py-4 text-sm font-bold transition-transform hover:-translate-y-1 sm:text-base"
+              >
+                <span className="truncate">{personalInfo.email}</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="mt-20 grid gap-10 border-t border-white/20 pt-7 sm:mt-28 md:grid-cols-12 md:gap-8">
+        <div data-footer="details" className="mt-20 grid gap-10 border-t border-white/20 pt-7 sm:mt-28 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
               <span className="signal-mark flex h-9 w-9 items-center justify-center font-display text-xs font-bold">GS</span>
@@ -101,7 +137,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/20 pt-5 font-mono text-[0.62rem] uppercase tracking-wider text-white/35 sm:flex-row sm:items-center sm:justify-between">
+        <div data-footer="legal" className="mt-12 flex flex-col gap-2 border-t border-white/20 pt-5 font-mono text-[0.62rem] uppercase tracking-wider text-white/35 sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Gull Snobar</p>
           <p>Designed &amp; built in Lahore, Pakistan</p>
         </div>

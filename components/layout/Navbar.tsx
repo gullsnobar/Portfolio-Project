@@ -1,12 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { gsap } from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { ThemeToggle } from './ThemeToggle'
 import { cn } from '@/lib/utils'
 import { personalInfo } from '@/lib/data'
+
+gsap.registerPlugin(useGSAP)
 
 const navLinks = [
   { href: '/#projects', label: 'Work', section: 'projects', number: '01' },
@@ -16,10 +20,32 @@ const navLinks = [
 ]
 
 export function Navbar() {
+  const headerRef = useRef<HTMLElement>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const reduceMotion = useReducedMotion()
+
+  useGSAP(
+    () => {
+      const media = gsap.matchMedia()
+
+      media.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from('[data-nav-part]', {
+          autoAlpha: 0,
+          y: -10,
+          duration: 0.45,
+          delay: 0.08,
+          stagger: 0.05,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity,visibility',
+        })
+      })
+
+      return () => media.revert()
+    },
+    { scope: headerRef }
+  )
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 12)
@@ -62,6 +88,7 @@ export function Navbar() {
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200',
         isScrolled || mobileOpen
@@ -70,12 +97,12 @@ export function Navbar() {
       )}
     >
       <nav className="site-shell flex h-[4.5rem] items-center justify-between gap-4" aria-label="Primary navigation">
-        <Link href="/" className="flex min-h-11 items-center gap-3" aria-label="Gull Snobar, home">
+        <Link data-nav-part href="/" className="flex min-h-11 items-center gap-3" aria-label="Gull Snobar, home">
           <span className="signal-mark flex h-8 w-8 items-center justify-center font-display text-xs font-bold">GS</span>
           <span className="font-display text-sm font-semibold tracking-[-0.02em] sm:text-base">Gull Snobar</span>
         </Link>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul data-nav-part className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
             const active = activeSection === link.section
             return (
@@ -98,7 +125,7 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="flex items-center gap-2">
+        <div data-nav-part className="flex items-center gap-2">
           <ThemeToggle />
           <Link href={`mailto:${personalInfo.email}`} className="btn btn-primary !hidden min-h-10 px-4 lg:!inline-flex">
             Let&apos;s talk <ArrowUpRight className="h-3.5 w-3.5" />

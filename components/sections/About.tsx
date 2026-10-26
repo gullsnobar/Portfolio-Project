@@ -42,7 +42,7 @@ export function About() {
           </AnimatedSection>
         </div>
 
-        <div className="mt-20 grid gap-10 border-t border-text-primary pt-5 md:grid-cols-12">
+        <AnimatedSection className="mt-20 grid gap-10 border-t border-text-primary pt-5 md:grid-cols-12">
           <div className="md:col-span-3">
             <p className="eyebrow text-text-secondary">Education & learning</p>
           </div>
@@ -72,7 +72,7 @@ export function About() {
               </ul>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   )

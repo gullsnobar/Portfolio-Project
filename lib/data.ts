@@ -8,7 +8,7 @@ export const personalInfo = {
   email: 'gullsnobar07@gmail.com',
   linkedin: 'https://linkedin.com/in/gullsanobar',
   github: 'https://github.com/gullsnobar', // Update with your real GitHub URL
-  resume: '/resume.pdf',
+  resume: '/Gull_Snobar_CV.pdf',
   bio: "I'm Gull Snobar, an Associate Software Engineer based in Lahore. I build practical software across frontend, backend, databases, and AI integrations. At Devyard, I contribute to OmniCat and a quote management system, learning through real product work and end-to-end engineering problems.",
   openTo: 'Junior, associate, and full-stack software engineering roles.',
 }

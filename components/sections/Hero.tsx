@@ -1,10 +1,13 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
 import { ArrowDownRight, ArrowUpRight, Download } from 'lucide-react'
 import { gsap } from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { personalInfo } from '@/lib/data'
+
+gsap.registerPlugin(useGSAP)
 
 const practices = [
   'Full-stack product development',
@@ -15,11 +18,11 @@ const practices = [
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null)
 
-  useLayoutEffect(() => {
-    const context = gsap.context(() => {
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      if (reduceMotion) return
+  useGSAP(
+    () => {
+      const media = gsap.matchMedia()
 
+      media.add('(prefers-reduced-motion: no-preference)', () => {
       const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
       timeline
@@ -51,10 +54,12 @@ export function Hero() {
           { autoAlpha: 0, y: 12, duration: 0.4, stagger: 0.07 },
           '-=0.25'
         )
-    }, heroRef)
+      })
 
-    return () => context.revert()
-  }, [])
+      return () => media.revert()
+    },
+    { scope: heroRef }
+  )
 
   return (
     <section ref={heroRef} id="hero" className="relative overflow-hidden pb-16 pt-28 sm:pb-24 sm:pt-36">

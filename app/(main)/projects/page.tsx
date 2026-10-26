@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { ProjectCard } from '@/components/sections/ProjectCard'
+import { AnimatedSection } from '@/components/shared/AnimatedText'
 import { getSupabaseClient } from '@/lib/supabase'
 import { featuredProjects } from '@/lib/data'
 import type { Project } from '@/types'
@@ -37,7 +38,7 @@ export default async function ProjectsPage() {
   return (
     <div className="pb-24 pt-32 sm:pb-32 sm:pt-40">
       <div className="site-shell">
-        <div className="grid gap-6 border-t border-text-primary pt-5 md:grid-cols-12 md:gap-8">
+        <AnimatedSection className="grid gap-6 border-t border-text-primary pt-5 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-3">
             <p className="eyebrow text-text-secondary">Project index</p>
           </div>
@@ -50,11 +51,13 @@ export default async function ProjectsPage() {
               <ArrowLeft className="h-4 w-4" /> Back to selected work
             </Link>
           </div>
-        </div>
+        </AnimatedSection>
 
         <div className="mt-20 grid gap-x-10 gap-y-16 md:grid-cols-2">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <AnimatedSection key={project.id} delay={(index % 2) * 0.06}>
+              <ProjectCard project={project} index={index} />
+            </AnimatedSection>
           ))}
         </div>
       </div>

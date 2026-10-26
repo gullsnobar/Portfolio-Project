@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, Github, LockKeyhole } from 'lucide-react'
 import { AnimatedSection } from '@/components/shared/AnimatedText'
+import { ProjectReveal } from '@/components/shared/ProjectReveal'
 import { featuredProjects } from '@/lib/data'
 import type { Project } from '@/types'
 
@@ -32,7 +33,7 @@ export function SelectedWork() {
   return (
     <section id="projects" className="section-spacing bg-surface">
       <div className="site-shell">
-        <div className="grid gap-6 border-t border-text-primary pt-5 md:grid-cols-12 md:gap-8">
+        <AnimatedSection className="grid gap-6 border-t border-text-primary pt-5 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-3">
             <p className="eyebrow text-text-secondary">01 Selected work</p>
           </div>
@@ -42,15 +43,15 @@ export function SelectedWork() {
               A closer look at the systems I contribute to professionally, followed by independent full-stack builds.
             </p>
           </div>
-        </div>
+        </AnimatedSection>
 
         <div className="mt-16 space-y-24 lg:space-y-32">
           {selected.map((project, index) => {
             const details = projectDetails[project.id]
             return (
-              <AnimatedSection key={project.id}>
+              <ProjectReveal key={project.id}>
                 <article className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
-                  <div className={index % 2 === 0 ? 'lg:col-span-7' : 'lg:col-span-7 lg:col-start-6'}>
+                  <div data-project-visual className={index % 2 === 0 ? 'lg:col-span-7' : 'lg:col-span-7 lg:col-start-6'}>
                     <div className={index === 0 ? 'relative overflow-hidden bg-[#211b35] p-3 sm:p-6' : 'relative overflow-hidden bg-[#dff5c7] p-3 sm:p-6'}>
                       <span className="absolute left-4 top-4 z-10 bg-[#11130f] px-2 py-1 font-mono text-[0.6rem] text-[#f4f2e9]">
                         0{index + 1}
@@ -58,6 +59,7 @@ export function SelectedWork() {
                       {project.image_url && (
                         <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-2xl shadow-black/20">
                           <Image
+                            data-project-image
                             src={project.image_url}
                             alt={`${project.title} product interface`}
                             fill
@@ -70,7 +72,7 @@ export function SelectedWork() {
                     </div>
                   </div>
 
-                  <div className={index % 2 === 0 ? 'lg:col-span-5 lg:pt-8' : 'lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:pt-8'}>
+                  <div data-project-copy className={index % 2 === 0 ? 'lg:col-span-5 lg:pt-8' : 'lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:pt-8'}>
                     <p className="eyebrow text-accent">{details?.label ?? 'Product engineering'}</p>
                     <h3 className="mt-4 max-w-[13ch] font-display text-3xl font-semibold leading-[1.02] tracking-[-0.045em] sm:text-5xl">
                       {project.title}
@@ -110,7 +112,7 @@ export function SelectedWork() {
                     </div>
                   </div>
                 </article>
-              </AnimatedSection>
+              </ProjectReveal>
             )
           })}
         </div>

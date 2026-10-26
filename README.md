@@ -10,7 +10,8 @@ A responsive developer portfolio presenting my projects, professional experience
 - Validated contact and guestbook forms
 - Supabase-backed project and guestbook data with local project fallbacks
 - Password-protected project administration
-- Accessible navigation, focus states, and reduced-motion support
+- GSAP entrance and scroll-reveal motion with reduced-motion support
+- Accessible navigation and focus states
 
 ## Technology Stack
 
@@ -18,7 +19,7 @@ A responsive developer portfolio presenting my projects, professional experience
 | --- | --- |
 | Framework | Next.js 14, React 18, TypeScript |
 | Styling | Tailwind CSS, PostCSS, CSS custom properties |
-| Motion and icons | Framer Motion, GSAP, Lucide React |
+| Motion and icons | GSAP, ScrollTrigger, @gsap/react, Framer Motion, Lucide React |
 | Forms and validation | React Hook Form, Zod |
 | Data and email | Supabase, Resend |
 | Theming | next-themes |

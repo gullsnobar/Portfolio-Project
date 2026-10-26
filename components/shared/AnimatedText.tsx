@@ -1,8 +1,12 @@
 'use client'
 
-import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 import { cn } from '@/lib/utils'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 interface AnimatedSectionProps {
   children: React.ReactNode
@@ -18,8 +22,6 @@ export function AnimatedSection({
   direction = 'up',
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-48px' })
-  const reduceMotion = useReducedMotion()
   const offsets = {
     up: { y: 22, x: 0 },
     down: { y: -22, x: 0 },
@@ -27,19 +29,41 @@ export function AnimatedSection({
     right: { y: 0, x: -22 },
     none: { y: 0, x: 0 },
   }
-  const offset = reduceMotion ? offsets.none : offsets[direction]
-  const initial = { opacity: reduceMotion ? 1 : 0, ...offset }
+  const offset = offsets[direction]
+
+  useGSAP(
+    () => {
+      const media = gsap.matchMedia()
+
+      media.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from(ref.current, {
+          autoAlpha: 0,
+          ...offset,
+          duration: 0.65,
+          delay,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity,visibility',
+          scrollTrigger: {
+            trigger: ref.current,
+            start: 'top 88%',
+            once: true,
+          },
+        })
+      })
+
+      return () => media.revert()
+    },
+    { scope: ref, dependencies: [delay, direction] }
+  )
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={initial}
-      animate={isInView || reduceMotion ? { opacity: 1, y: 0, x: 0 } : initial}
-      transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
+      data-gsap-reveal
       className={className}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
